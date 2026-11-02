@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Datos generados localmente (el CI commitea el consolidado)
+# data/results.json
+
+# IDE
+.idea/
+.vscode/
+
+# Maven
+target/
+
+# Sistema
+.DS_Store
+Thumbs.db
