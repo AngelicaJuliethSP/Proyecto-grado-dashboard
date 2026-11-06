@@ -1,19 +1,67 @@
 [
   {
     "project": "SauceDemoAutomation",
-    "executed_at": "2026-11-03T02:01:45.545046+00:00",
+    "executed_at": "2026-11-06T16:24:50.327018+00:00",
     "total": 4,
     "passed": 4,
     "failed": 0,
     "skipped": 0,
     "success_rate": 100.0,
-    "duration_ms": 12762,
+    "duration_ms": 13960,
     "tests": [
+      {
+        "name": "removeAllItemsFromCart",
+        "class": "com.saucedemo.tests.RemoveCartItemsTest",
+        "status": "passed",
+        "duration_ms": 1897,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "purchaseProductSuccessfully",
+        "class": "com.saucedemo.tests.PurchaseTest",
+        "status": "passed",
+        "duration_ms": 7565,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "purchaseProductSuccessfully",
+        "class": "com.saucedemo.tests.PurchaseTest",
+        "status": "passed",
+        "duration_ms": 2927,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
       {
         "name": "logoutRedirectsToLoginPage",
         "class": "com.saucedemo.tests.LogoutTest",
         "status": "passed",
-        "duration_ms": 2010,
+        "duration_ms": 1571,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
+  },
+  {
+    "project": "SauceDemoAutomation",
+    "executed_at": "2026-11-06T16:25:47.579582+00:00",
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": 100.0,
+    "duration_ms": 14244,
+    "tests": [
+      {
+        "name": "purchaseProductSuccessfully",
+        "class": "com.saucedemo.tests.PurchaseTest",
+        "status": "passed",
+        "duration_ms": 7147,
         "started_at": null,
         "exception_type": null,
         "exception_message": null
@@ -22,16 +70,7 @@
         "name": "purchaseProductSuccessfully",
         "class": "com.saucedemo.tests.PurchaseTest",
         "status": "passed",
-        "duration_ms": 2474,
-        "started_at": null,
-        "exception_type": null,
-        "exception_message": null
-      },
-      {
-        "name": "purchaseProductSuccessfully",
-        "class": "com.saucedemo.tests.PurchaseTest",
-        "status": "passed",
-        "duration_ms": 7041,
+        "duration_ms": 3282,
         "started_at": null,
         "exception_type": null,
         "exception_message": null
@@ -40,7 +79,64 @@
         "name": "removeAllItemsFromCart",
         "class": "com.saucedemo.tests.RemoveCartItemsTest",
         "status": "passed",
-        "duration_ms": 1237,
+        "duration_ms": 2101,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "logoutRedirectsToLoginPage",
+        "class": "com.saucedemo.tests.LogoutTest",
+        "status": "passed",
+        "duration_ms": 1714,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
+  },
+  {
+    "project": "SauceDemoAutomation",
+    "executed_at": "2026-11-06T16:26:39.805918+00:00",
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": 100.0,
+    "duration_ms": 12376,
+    "tests": [
+      {
+        "name": "removeAllItemsFromCart",
+        "class": "com.saucedemo.tests.RemoveCartItemsTest",
+        "status": "passed",
+        "duration_ms": 1721,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "purchaseProductSuccessfully",
+        "class": "com.saucedemo.tests.PurchaseTest",
+        "status": "passed",
+        "duration_ms": 7304,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "logoutRedirectsToLoginPage",
+        "class": "com.saucedemo.tests.LogoutTest",
+        "status": "passed",
+        "duration_ms": 1129,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "purchaseProductSuccessfully",
+        "class": "com.saucedemo.tests.PurchaseTest",
+        "status": "passed",
+        "duration_ms": 2222,
         "started_at": null,
         "exception_type": null,
         "exception_message": null
@@ -49,19 +145,19 @@
   },
   {
     "project": "PetStoreRestAssured",
-    "executed_at": "2026-11-04T02:27:37.184871+00:00",
+    "executed_at": "2026-11-06T16:27:08.530188+00:00",
     "total": 6,
     "passed": 6,
     "failed": 0,
     "skipped": 0,
     "success_rate": 100.0,
-    "duration_ms": 8991,
+    "duration_ms": 7770,
     "tests": [
       {
-        "name": "createOrderTest",
-        "class": "com.globant.automation.test.CreateOrderTest",
+        "name": "getPetByIdTest",
+        "class": "com.globant.automation.test.GetPetByIdTest",
         "status": "passed",
-        "duration_ms": 1137,
+        "duration_ms": 1156,
         "started_at": null,
         "exception_type": null,
         "exception_message": null
@@ -70,25 +166,7 @@
         "name": "createUserTest",
         "class": "com.globant.automation.test.CreateUserTest",
         "status": "passed",
-        "duration_ms": 4825,
-        "started_at": null,
-        "exception_type": null,
-        "exception_message": null
-      },
-      {
-        "name": "getPetByIdTest",
-        "class": "com.globant.automation.test.GetPetByIdTest",
-        "status": "passed",
-        "duration_ms": 1270,
-        "started_at": null,
-        "exception_type": null,
-        "exception_message": null
-      },
-      {
-        "name": "loginUserTest",
-        "class": "com.globant.automation.test.LoginUserTest",
-        "status": "passed",
-        "duration_ms": 502,
+        "duration_ms": 3760,
         "started_at": null,
         "exception_type": null,
         "exception_message": null
@@ -97,7 +175,7 @@
         "name": "logoutUserTest",
         "class": "com.globant.automation.test.LogoutUserTest",
         "status": "passed",
-        "duration_ms": 518,
+        "duration_ms": 507,
         "started_at": null,
         "exception_type": null,
         "exception_message": null
@@ -106,7 +184,157 @@
         "name": "getPetsByStatusTest",
         "class": "com.globant.automation.test.GetPetsByStatusTest",
         "status": "passed",
-        "duration_ms": 739,
+        "duration_ms": 784,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "createOrderTest",
+        "class": "com.globant.automation.test.CreateOrderTest",
+        "status": "passed",
+        "duration_ms": 1087,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "loginUserTest",
+        "class": "com.globant.automation.test.LoginUserTest",
+        "status": "passed",
+        "duration_ms": 476,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
+  },
+  {
+    "project": "PetStoreRestAssured",
+    "executed_at": "2026-11-06T16:27:33.984944+00:00",
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": 100.0,
+    "duration_ms": 7146,
+    "tests": [
+      {
+        "name": "logoutUserTest",
+        "class": "com.globant.automation.test.LogoutUserTest",
+        "status": "passed",
+        "duration_ms": 460,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "loginUserTest",
+        "class": "com.globant.automation.test.LoginUserTest",
+        "status": "passed",
+        "duration_ms": 512,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "createOrderTest",
+        "class": "com.globant.automation.test.CreateOrderTest",
+        "status": "passed",
+        "duration_ms": 1064,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "getPetsByStatusTest",
+        "class": "com.globant.automation.test.GetPetsByStatusTest",
+        "status": "passed",
+        "duration_ms": 653,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "getPetByIdTest",
+        "class": "com.globant.automation.test.GetPetByIdTest",
+        "status": "passed",
+        "duration_ms": 1093,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "createUserTest",
+        "class": "com.globant.automation.test.CreateUserTest",
+        "status": "passed",
+        "duration_ms": 3364,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
+  },
+  {
+    "project": "PetStoreRestAssured",
+    "executed_at": "2026-11-06T16:28:01.210263+00:00",
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": 100.0,
+    "duration_ms": 7749,
+    "tests": [
+      {
+        "name": "logoutUserTest",
+        "class": "com.globant.automation.test.LogoutUserTest",
+        "status": "passed",
+        "duration_ms": 546,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "createOrderTest",
+        "class": "com.globant.automation.test.CreateOrderTest",
+        "status": "passed",
+        "duration_ms": 1141,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "getPetByIdTest",
+        "class": "com.globant.automation.test.GetPetByIdTest",
+        "status": "passed",
+        "duration_ms": 1116,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "loginUserTest",
+        "class": "com.globant.automation.test.LoginUserTest",
+        "status": "passed",
+        "duration_ms": 558,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "createUserTest",
+        "class": "com.globant.automation.test.CreateUserTest",
+        "status": "passed",
+        "duration_ms": 3633,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "getPetsByStatusTest",
+        "class": "com.globant.automation.test.GetPetsByStatusTest",
+        "status": "passed",
+        "duration_ms": 755,
         "started_at": null,
         "exception_type": null,
         "exception_message": null
@@ -115,121 +343,253 @@
   },
   {
     "project": "WdioMobileAutomation",
-    "executed_at": "2026-11-04T03:12:17.970093+00:00",
-    "total": 4,
-    "passed": 2,
-    "failed": 0,
-    "skipped": 0,
-    "success_rate": 50.0,
-    "duration_ms": 0,
+    "executed_at": "2026-11-06T16:28:36.768062+00:00",
+    "total": 8,
+    "passed": 0,
+    "failed": 4,
+    "skipped": 4,
+    "success_rate": 0.0,
+    "duration_ms": 11,
     "tests": [
       {
-        "name": "setUp",
-        "class": "unknown",
-        "status": "passed",
-        "duration_ms": 13853,
-        "started_at": "2026-11-03T21:50:59 COT",
-        "exception_type": null,
-        "exception_message": null
-      },
-      {
-        "name": "successfulLogin",
-        "class": "unknown",
-        "status": "passed",
-        "duration_ms": 16670,
-        "started_at": "2026-11-03T21:51:13 COT",
-        "exception_type": null,
-        "exception_message": null
-      },
-      {
-        "name": "tearDown",
-        "class": "unknown",
-        "status": "passed",
-        "duration_ms": 3823,
-        "started_at": "2026-11-03T21:51:30 COT",
-        "exception_type": null,
-        "exception_message": null
-      },
-      {
-        "name": "setUp",
-        "class": "unknown",
-        "status": "passed",
-        "duration_ms": 13993,
-        "started_at": "2026-11-03T21:51:55 COT",
-        "exception_type": null,
-        "exception_message": null
-      },
-      {
         "name": "successfulSignUp",
-        "class": "unknown",
-        "status": "passed",
-        "duration_ms": 9792,
-        "started_at": "2026-11-03T21:52:09 COT",
+        "class": "tests.SignupTest",
+        "status": "skipped",
+        "duration_ms": 1,
+        "started_at": null,
         "exception_type": null,
-        "exception_message": null
-      },
-      {
-        "name": "tearDown",
-        "class": "unknown",
-        "status": "passed",
-        "duration_ms": 4047,
-        "started_at": "2026-11-03T21:52:18 COT",
-        "exception_type": null,
-        "exception_message": null
+        "exception_message": "Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: 'Command ''C:\\Users\\angelica.silva01\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe' -P 5037 -s emulator-5554 shell 'settings delete global hidden_api_policy_pre_p_apps;settings delete global hidden_api_policy_p_apps;settings delete global hidden_api_policy'' exited with code 20'; Command output: cmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\n \nHost info: host: 'CO-IT006840', ip: '192.168.1.10'\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.20.1'\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities=[Capabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}]}]\nCapabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}"
       },
       {
         "name": "setUp",
-        "class": "unknown",
-        "status": "passed",
-        "duration_ms": 13651,
-        "started_at": "2026-11-03T21:52:22 COT",
-        "exception_type": null,
-        "exception_message": null
-      },
-      {
-        "name": "swipeCardsAndFindHiddenText",
-        "class": "unknown",
+        "class": "base.BaseTest",
         "status": "failed",
-        "duration_ms": 1499,
-        "started_at": "2026-11-03T21:52:36 COT",
-        "exception_type": "java.lang.AssertionError",
-        "exception_message": "\n              Swipe screen no se muestra expected [true] but found [false]\n            "
-      },
-      {
-        "name": "tearDown",
-        "class": "unknown",
-        "status": "passed",
-        "duration_ms": 3907,
-        "started_at": "2026-11-03T21:52:38 COT",
+        "duration_ms": 1,
+        "started_at": null,
         "exception_type": null,
-        "exception_message": null
-      },
-      {
-        "name": "setUp",
-        "class": "unknown",
-        "status": "passed",
-        "duration_ms": 11681,
-        "started_at": "2026-11-03T21:51:33 COT",
-        "exception_type": null,
-        "exception_message": null
+        "exception_message": "Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: 'Command ''C:\\Users\\angelica.silva01\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe' -P 5037 -s emulator-5554 shell 'settings delete global hidden_api_policy_pre_p_apps;settings delete global hidden_api_policy_p_apps;settings delete global hidden_api_policy'' exited with code 20'; Command output: cmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\n \nHost info: host: 'CO-IT006840', ip: '192.168.1.10'\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.20.1'\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities=[Capabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}]}]\nCapabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}"
       },
       {
         "name": "navigateThroughBottomMenu",
-        "class": "unknown",
-        "status": "failed",
-        "duration_ms": 3704,
-        "started_at": "2026-11-03T21:51:45 COT",
-        "exception_type": "java.lang.AssertionError",
-        "exception_message": "\n              Texto WebdriverIO no visible expected [true] but found [false]\n            "
+        "class": "tests.NavigationTest",
+        "status": "skipped",
+        "duration_ms": 1,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": "Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: 'Command ''C:\\Users\\angelica.silva01\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe' -P 5037 -s emulator-5554 shell 'settings delete global hidden_api_policy_pre_p_apps;settings delete global hidden_api_policy_p_apps;settings delete global hidden_api_policy'' exited with code 20'; Command output: cmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\n \nHost info: host: 'CO-IT006840', ip: '192.168.1.10'\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.20.1'\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities=[Capabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}]}]\nCapabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}"
       },
       {
-        "name": "tearDown",
-        "class": "unknown",
-        "status": "passed",
-        "duration_ms": 5742,
-        "started_at": "2026-11-03T21:51:49 COT",
+        "name": "successfulLogin",
+        "class": "tests.LoginTest",
+        "status": "skipped",
+        "duration_ms": 1,
+        "started_at": null,
         "exception_type": null,
-        "exception_message": null
+        "exception_message": "Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: 'Command ''C:\\Users\\angelica.silva01\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe' -P 5037 -s emulator-5554 shell 'settings delete global hidden_api_policy_pre_p_apps;settings delete global hidden_api_policy_p_apps;settings delete global hidden_api_policy'' exited with code 20'; Command output: cmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\n \nHost info: host: 'CO-IT006840', ip: '192.168.1.10'\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.20.1'\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities=[Capabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}]}]\nCapabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}"
+      },
+      {
+        "name": "swipeCardsAndFindHiddenText",
+        "class": "tests.SwipeTest",
+        "status": "skipped",
+        "duration_ms": 1,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": "Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: 'Command ''C:\\Users\\angelica.silva01\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe' -P 5037 -s emulator-5554 shell 'settings delete global hidden_api_policy_pre_p_apps;settings delete global hidden_api_policy_p_apps;settings delete global hidden_api_policy'' exited with code 20'; Command output: cmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\n \nHost info: host: 'CO-IT006840', ip: '192.168.1.10'\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.20.1'\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities=[Capabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}]}]\nCapabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}"
+      },
+      {
+        "name": "setUp",
+        "class": "base.BaseTest",
+        "status": "failed",
+        "duration_ms": 0,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": "Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: 'Command ''C:\\Users\\angelica.silva01\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe' -P 5037 -s emulator-5554 shell 'settings delete global hidden_api_policy_pre_p_apps;settings delete global hidden_api_policy_p_apps;settings delete global hidden_api_policy'' exited with code 20'; Command output: cmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\n \nHost info: host: 'CO-IT006840', ip: '192.168.1.10'\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.20.1'\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities=[Capabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}]}]\nCapabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}"
+      },
+      {
+        "name": "setUp",
+        "class": "base.BaseTest",
+        "status": "failed",
+        "duration_ms": 5,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": "Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: 'Command ''C:\\Users\\angelica.silva01\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe' -P 5037 -s emulator-5554 shell 'settings delete global hidden_api_policy_pre_p_apps;settings delete global hidden_api_policy_p_apps;settings delete global hidden_api_policy'' exited with code 20'; Command output: cmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\n \nHost info: host: 'CO-IT006840', ip: '192.168.1.10'\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.20.1'\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities=[Capabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}]}]\nCapabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}"
+      },
+      {
+        "name": "setUp",
+        "class": "base.BaseTest",
+        "status": "failed",
+        "duration_ms": 1,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": "Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: 'Command ''C:\\Users\\angelica.silva01\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe' -P 5037 -s emulator-5554 shell 'settings delete global hidden_api_policy_pre_p_apps;settings delete global hidden_api_policy_p_apps;settings delete global hidden_api_policy'' exited with code 20'; Command output: cmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\n \nHost info: host: 'CO-IT006840', ip: '192.168.1.10'\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.20.1'\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities=[Capabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}]}]\nCapabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}"
+      }
+    ]
+  },
+  {
+    "project": "WdioMobileAutomation",
+    "executed_at": "2026-11-06T16:29:09.085756+00:00",
+    "total": 8,
+    "passed": 0,
+    "failed": 4,
+    "skipped": 4,
+    "success_rate": 0.0,
+    "duration_ms": 10,
+    "tests": [
+      {
+        "name": "navigateThroughBottomMenu",
+        "class": "tests.NavigationTest",
+        "status": "skipped",
+        "duration_ms": 1,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": "Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: 'Command ''C:\\Users\\angelica.silva01\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe' -P 5037 -s emulator-5554 shell 'settings delete global hidden_api_policy_pre_p_apps;settings delete global hidden_api_policy_p_apps;settings delete global hidden_api_policy'' exited with code 20'; Command output: cmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\n \nHost info: host: 'CO-IT006840', ip: '192.168.1.10'\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.20.1'\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities=[Capabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}]}]\nCapabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}"
+      },
+      {
+        "name": "setUp",
+        "class": "base.BaseTest",
+        "status": "failed",
+        "duration_ms": 0,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": "Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: 'Command ''C:\\Users\\angelica.silva01\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe' -P 5037 -s emulator-5554 shell 'settings delete global hidden_api_policy_pre_p_apps;settings delete global hidden_api_policy_p_apps;settings delete global hidden_api_policy'' exited with code 20'; Command output: cmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\n \nHost info: host: 'CO-IT006840', ip: '192.168.1.10'\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.20.1'\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities=[Capabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}]}]\nCapabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}"
+      },
+      {
+        "name": "setUp",
+        "class": "base.BaseTest",
+        "status": "failed",
+        "duration_ms": 1,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": "Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: 'Command ''C:\\Users\\angelica.silva01\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe' -P 5037 -s emulator-5554 shell 'settings delete global hidden_api_policy_pre_p_apps;settings delete global hidden_api_policy_p_apps;settings delete global hidden_api_policy'' exited with code 20'; Command output: cmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\n \nHost info: host: 'CO-IT006840', ip: '192.168.1.10'\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.20.1'\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities=[Capabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}]}]\nCapabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}"
+      },
+      {
+        "name": "setUp",
+        "class": "base.BaseTest",
+        "status": "failed",
+        "duration_ms": 2,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": "Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: 'Command ''C:\\Users\\angelica.silva01\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe' -P 5037 -s emulator-5554 shell 'settings delete global hidden_api_policy_pre_p_apps;settings delete global hidden_api_policy_p_apps;settings delete global hidden_api_policy'' exited with code 20'; Command output: cmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\n \nHost info: host: 'CO-IT006840', ip: '192.168.1.10'\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.20.1'\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities=[Capabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}]}]\nCapabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}"
+      },
+      {
+        "name": "successfulSignUp",
+        "class": "tests.SignupTest",
+        "status": "skipped",
+        "duration_ms": 1,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": "Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: 'Command ''C:\\Users\\angelica.silva01\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe' -P 5037 -s emulator-5554 shell 'settings delete global hidden_api_policy_pre_p_apps;settings delete global hidden_api_policy_p_apps;settings delete global hidden_api_policy'' exited with code 20'; Command output: cmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\n \nHost info: host: 'CO-IT006840', ip: '192.168.1.10'\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.20.1'\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities=[Capabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}]}]\nCapabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}"
+      },
+      {
+        "name": "swipeCardsAndFindHiddenText",
+        "class": "tests.SwipeTest",
+        "status": "skipped",
+        "duration_ms": 0,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": "Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: 'Command ''C:\\Users\\angelica.silva01\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe' -P 5037 -s emulator-5554 shell 'settings delete global hidden_api_policy_pre_p_apps;settings delete global hidden_api_policy_p_apps;settings delete global hidden_api_policy'' exited with code 20'; Command output: cmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\n \nHost info: host: 'CO-IT006840', ip: '192.168.1.10'\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.20.1'\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities=[Capabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}]}]\nCapabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}"
+      },
+      {
+        "name": "setUp",
+        "class": "base.BaseTest",
+        "status": "failed",
+        "duration_ms": 4,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": "Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: 'Command ''C:\\Users\\angelica.silva01\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe' -P 5037 -s emulator-5554 shell 'settings delete global hidden_api_policy_pre_p_apps;settings delete global hidden_api_policy_p_apps;settings delete global hidden_api_policy'' exited with code 20'; Command output: cmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\n \nHost info: host: 'CO-IT006840', ip: '192.168.1.10'\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.20.1'\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities=[Capabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}]}]\nCapabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}"
+      },
+      {
+        "name": "successfulLogin",
+        "class": "tests.LoginTest",
+        "status": "skipped",
+        "duration_ms": 1,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": "Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: 'Command ''C:\\Users\\angelica.silva01\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe' -P 5037 -s emulator-5554 shell 'settings delete global hidden_api_policy_pre_p_apps;settings delete global hidden_api_policy_p_apps;settings delete global hidden_api_policy'' exited with code 20'; Command output: cmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\n \nHost info: host: 'CO-IT006840', ip: '192.168.1.10'\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.20.1'\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities=[Capabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}]}]\nCapabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}"
+      }
+    ]
+  },
+  {
+    "project": "WdioMobileAutomation",
+    "executed_at": "2026-11-06T16:29:49.331351+00:00",
+    "total": 8,
+    "passed": 0,
+    "failed": 4,
+    "skipped": 4,
+    "success_rate": 0.0,
+    "duration_ms": 14,
+    "tests": [
+      {
+        "name": "swipeCardsAndFindHiddenText",
+        "class": "tests.SwipeTest",
+        "status": "skipped",
+        "duration_ms": 1,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": "Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: 'Command ''C:\\Users\\angelica.silva01\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe' -P 5037 -s emulator-5554 shell 'settings delete global hidden_api_policy_pre_p_apps;settings delete global hidden_api_policy_p_apps;settings delete global hidden_api_policy'' exited with code 20'; Command output: cmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\n \nHost info: host: 'CO-IT006840', ip: '192.168.1.10'\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.20.1'\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities=[Capabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}]}]\nCapabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}"
+      },
+      {
+        "name": "setUp",
+        "class": "base.BaseTest",
+        "status": "failed",
+        "duration_ms": 4,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": "Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: 'Command ''C:\\Users\\angelica.silva01\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe' -P 5037 -s emulator-5554 shell 'settings delete global hidden_api_policy_pre_p_apps;settings delete global hidden_api_policy_p_apps;settings delete global hidden_api_policy'' exited with code 20'; Command output: cmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\n \nHost info: host: 'CO-IT006840', ip: '192.168.1.10'\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.20.1'\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities=[Capabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}]}]\nCapabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}"
+      },
+      {
+        "name": "setUp",
+        "class": "base.BaseTest",
+        "status": "failed",
+        "duration_ms": 1,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": "Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: 'Command ''C:\\Users\\angelica.silva01\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe' -P 5037 -s emulator-5554 shell 'settings delete global hidden_api_policy_pre_p_apps;settings delete global hidden_api_policy_p_apps;settings delete global hidden_api_policy'' exited with code 20'; Command output: cmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\n \nHost info: host: 'CO-IT006840', ip: '192.168.1.10'\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.20.1'\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities=[Capabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}]}]\nCapabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}"
+      },
+      {
+        "name": "successfulSignUp",
+        "class": "tests.SignupTest",
+        "status": "skipped",
+        "duration_ms": 2,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": "Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: 'Command ''C:\\Users\\angelica.silva01\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe' -P 5037 -s emulator-5554 shell 'settings delete global hidden_api_policy_pre_p_apps;settings delete global hidden_api_policy_p_apps;settings delete global hidden_api_policy'' exited with code 20'; Command output: cmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\n \nHost info: host: 'CO-IT006840', ip: '192.168.1.10'\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.20.1'\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities=[Capabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}]}]\nCapabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}"
+      },
+      {
+        "name": "setUp",
+        "class": "base.BaseTest",
+        "status": "failed",
+        "duration_ms": 1,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": "Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: 'Command ''C:\\Users\\angelica.silva01\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe' -P 5037 -s emulator-5554 shell 'settings delete global hidden_api_policy_pre_p_apps;settings delete global hidden_api_policy_p_apps;settings delete global hidden_api_policy'' exited with code 20'; Command output: cmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\n \nHost info: host: 'CO-IT006840', ip: '192.168.1.10'\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.20.1'\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities=[Capabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}]}]\nCapabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}"
+      },
+      {
+        "name": "navigateThroughBottomMenu",
+        "class": "tests.NavigationTest",
+        "status": "skipped",
+        "duration_ms": 1,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": "Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: 'Command ''C:\\Users\\angelica.silva01\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe' -P 5037 -s emulator-5554 shell 'settings delete global hidden_api_policy_pre_p_apps;settings delete global hidden_api_policy_p_apps;settings delete global hidden_api_policy'' exited with code 20'; Command output: cmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\n \nHost info: host: 'CO-IT006840', ip: '192.168.1.10'\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.20.1'\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities=[Capabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}]}]\nCapabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}"
+      },
+      {
+        "name": "successfulLogin",
+        "class": "tests.LoginTest",
+        "status": "skipped",
+        "duration_ms": 2,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": "Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: 'Command ''C:\\Users\\angelica.silva01\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe' -P 5037 -s emulator-5554 shell 'settings delete global hidden_api_policy_pre_p_apps;settings delete global hidden_api_policy_p_apps;settings delete global hidden_api_policy'' exited with code 20'; Command output: cmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\n \nHost info: host: 'CO-IT006840', ip: '192.168.1.10'\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.20.1'\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities=[Capabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}]}]\nCapabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}"
+      },
+      {
+        "name": "setUp",
+        "class": "base.BaseTest",
+        "status": "failed",
+        "duration_ms": 2,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": "Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: 'Command ''C:\\Users\\angelica.silva01\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe' -P 5037 -s emulator-5554 shell 'settings delete global hidden_api_policy_pre_p_apps;settings delete global hidden_api_policy_p_apps;settings delete global hidden_api_policy'' exited with code 20'; Command output: cmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\n \nHost info: host: 'CO-IT006840', ip: '192.168.1.10'\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.20.1'\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities=[Capabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}]}]\nCapabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}"
       }
     ]
   }

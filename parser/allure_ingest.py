@@ -25,14 +25,25 @@ STATUS_MAP = {
 }
 
 
-def load_allure_results(allure_dir: Path) -> pd.DataFrame:
-    """Lee todos los *-result.json de un directorio allure-results en un DataFrame."""
+def load_allure_results(allure_dir: Path, since_ms: int | None = None) -> pd.DataFrame:
+    """Lee los *-result.json de un directorio allure-results en un DataFrame.
+
+    Si `since_ms` (epoch ms) se indica, solo incluye tests cuyo `start`
+    sea posterior a ese instante — útil cuando el directorio acumula
+    resultados de varias corridas.
+    """
     files = sorted(allure_dir.glob("*-result.json"))
     if not files:
         raise FileNotFoundError(f"No hay archivos *-result.json en {allure_dir}")
 
-    frames = [pd.json_normalize(f.read_text(encoding="utf-8") and json.loads(f.read_text(encoding="utf-8"))) for f in files]
+    frames = [pd.json_normalize(json.loads(f.read_text(encoding="utf-8"))) for f in files]
     df = pd.concat(frames, ignore_index=True)
+    if since_ms is not None and "start" in df.columns:
+        df = df[df["start"] >= since_ms]
+        if df.empty:
+            raise FileNotFoundError(
+                f"No hay resultados posteriores a {since_ms} en {allure_dir}"
+            )
     return df
 
 
@@ -97,10 +108,22 @@ def main() -> None:
     parser.add_argument("--project", required=True)
     parser.add_argument("--allure-dir", required=True, help="Ruta al directorio allure-results")
     parser.add_argument("--output", default="data/results.json")
+    parser.add_argument(
+        "--since",
+        type=str,
+        default=None,
+        help="Solo incluir tests iniciados después de esta marca ISO/epoch (para directorios que acumulan varias corridas)",
+    )
     args = parser.parse_args()
 
     allure_dir = Path(args.allure_dir)
-    df = load_allure_results(allure_dir)
+    since_ms = None
+    if args.since:
+        try:
+            since_ms = int(args.since)
+        except ValueError:
+            since_ms = int(pd.Timestamp(args.since).timestamp() * 1000)
+    df = load_allure_results(allure_dir, since_ms=since_ms)
     result = summarize(df)
     record = build_record(args.project, result)
     append_to_store(Path(args.output), record)
