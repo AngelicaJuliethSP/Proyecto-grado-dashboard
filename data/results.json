@@ -592,5 +592,53 @@
         "exception_message": "Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: 'Command ''C:\\Users\\angelica.silva01\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe' -P 5037 -s emulator-5554 shell 'settings delete global hidden_api_policy_pre_p_apps;settings delete global hidden_api_policy_p_apps;settings delete global hidden_api_policy'' exited with code 20'; Command output: cmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\ncmd: Can't find service: settings\r\n \nHost info: host: 'CO-IT006840', ip: '192.168.1.10'\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.20.1'\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities=[Capabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}]}]\nCapabilities {appium:app: C:\\Users\\angelica.silva01\\D..., appium:automationName: UIAutomator2, appium:deviceName: Pixel_6, appium:uiautomator2ServerInstallTimeout: 60000, platformName: ANDROID}"
       }
     ]
+  },
+  {
+    "project": "WdioMobileAutomation",
+    "executed_at": "2026-11-07T00:45:46.309509+00:00",
+    "total": 4,
+    "passed": 3,
+    "failed": 1,
+    "skipped": 0,
+    "success_rate": 75.0,
+    "duration_ms": 117758,
+    "tests": [
+      {
+        "name": "navigateThroughBottomMenu",
+        "class": "tests.NavigationTest",
+        "status": "failed",
+        "duration_ms": 5244,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": "Texto WebdriverIO no visible expected [true] but found [false]"
+      },
+      {
+        "name": "successfulLogin",
+        "class": "tests.LoginTest",
+        "status": "passed",
+        "duration_ms": 16345,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "swipeCardsAndFindHiddenText",
+        "class": "tests.SwipeTest",
+        "status": "passed",
+        "duration_ms": 85450,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "successfulSignUp",
+        "class": "tests.SignupTest",
+        "status": "passed",
+        "duration_ms": 10719,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
   }
 ]

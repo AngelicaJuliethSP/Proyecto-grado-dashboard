@@ -20,12 +20,6 @@
 
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
       <version>4.47.0</version>
@@ -33,7 +27,7 @@
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
-      <version>7.5</version>
+      <version>7.10.2</version>
       <scope>test</scope>
     </dependency>
     <!-- Allure TestNG adapter: genera allure-results/ en formato JSON -->
@@ -64,7 +58,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.1</version>
+          <version>3.1.2</version>
           <!-- allure-testng se auto-registra como listener (ServiceLoader de TestNG)
                y escribe los resultados en target/allure-results/ sin javaagent -->
         </plugin>
