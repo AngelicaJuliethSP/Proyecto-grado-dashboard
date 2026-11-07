@@ -88,6 +88,37 @@ Adicionalmente:
 | JUnit 4.11 | presente (SauceDemo) | **eliminado** | Sin uso; generaba confusión |
 | allure-testng 2.29.1 | presente | presente | Agregado en el piloto (Fase 0) |
 
+### 4.5 Documentación de los frameworks (READMEs)
+
+Cada repositorio cuenta con un README que documenta su arquitectura, configuración
+y ejecución, como parte de la consolidación de los frameworks:
+
+- **WdioMobileAutomation** (creado desde cero): descripción de los 4 flujos
+  automatizados (Login, Signup, Swipe, Navigation), stack tecnológico (Appium
+  Server 3.9.0, driver uiautomator2 8.7.3, TestNG 7.10.2), estructura del
+  proyecto (Screen Object Model), tabla de parámetros de configuración
+  (`-Dapp.path`, `-Ddevice.name`, `-Dappium.url`), instrucciones de ejecución
+  con prerrequisitos y limitación conocida (renderizado WebView en emulador
+  headless).
+- **PetStoreRestAssured** (creado desde cero): descripción de los 6 escenarios
+  API, arquitectura en capas (RequestBuilder → modelos → tests), estructura del
+  proyecto y ejecución.
+- **SauceDemoAutomation** (mejorado): nueva sección *Configuration Options* con
+  los parámetros `-Dbase.url` y `-Dheadless`, versión de TestNG actualizada a
+  7.10.2 en la tabla de stack, y nueva decisión de diseño sobre configuración
+  externalizada.
+
+### 4.6 Sincronización a GitHub
+
+El código refactorizado y los READMEs se publicaron en los repositorios remotos
+del proyecto (organización personal `AngelicaJuliethSP`):
+
+| Repositorio | Commit | Contenido publicado |
+|---|---|---|
+| `WdioMobileAutomation` | `23e67d7` | DriverManager externalizado, limpieza, .gitignore, README |
+| `PetStoreRestAssured` | `a38c69a` | Limpieza, versiones unificadas, README |
+| `SauceDemoAutomation` | `8073fe0` | BaseTest externalizado, versiones, README mejorado |
+
 ## 5. Verificación de la refactorización
 
 Cada cambio se validó con ejecución real de las suites, no solo compilación:
@@ -156,6 +187,8 @@ del archivo con un mensaje de error accionable.
 | `piloto/SauceDemoAutomation/src/test/java/com/saucedemo/base/BaseTest.java` | Base de tests web con URL y headless configurables |
 | `piloto/*/pom.xml` | Versiones unificadas (TestNG 7.10.2, surefire 3.1.2, JUnit removido) |
 | `piloto/WdioMobileAutomation/.gitignore` | Exclusión del APK (`apps/`, `*.apk`) del versionamiento |
+| `README.md` (los 3 repositorios) | Documentación de arquitectura, configuración y ejecución de cada framework |
+| Repositorios GitHub `AngelicaJuliethSP/*` | Código refactorizado y READMEs publicados (commits `23e67d7`, `a38c69a`, `8073fe0`) |
 | `data/results.json` | Resultados de la corrida de verificación post-refactorización, consolidados con el parser |
 
 ## 8. Conclusiones
@@ -178,4 +211,6 @@ del archivo con un mensaje de error accionable.
 | Misma versión de TestNG y surefire en los 3 proyectos | ✅ |
 | Código muerto eliminado | ✅ |
 | Suites verificadas con ejecución real post-refactorización | ✅ (Web 100%, API 100%, Mobile 75%) |
+| Frameworks documentados (README en cada repositorio) | ✅ |
+| Cambios publicados en los repositorios remotos | ✅ (commits `23e67d7`, `a38c69a`, `8073fe0`) |
 | Cambios versionados en el repositorio | ✅ (commit `refactor: fase 1`) |
