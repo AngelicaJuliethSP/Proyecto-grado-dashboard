@@ -157,13 +157,23 @@ def build_record(project: str, reports_dir: Path, result: dict) -> dict:
 
 
 def append_to_store(store_path: Path, record: dict) -> None:
-    """Agrega el registro al histórico JSON (data/results.json)."""
+    """Agrega el registro al histórico JSON (data/results.json).
+
+    Deduplica por (project, executed_at): si ya existe una ejecución con la
+    misma clave, la reemplaza en lugar de duplicarla.
+    """
     store_path.parent.mkdir(parents=True, exist_ok=True)
     if store_path.exists():
         with open(store_path, encoding="utf-8") as f:
             store = json.load(f)
     else:
         store = []
+
+    key = (record["project"], record["executed_at"])
+    store = [
+        r for r in store
+        if (r.get("project"), r.get("executed_at")) != key
+    ]
     store.append(record)
     with open(store_path, "w", encoding="utf-8") as f:
         json.dump(store, f, indent=2, ensure_ascii=False)
@@ -174,11 +184,15 @@ def main() -> None:
     parser.add_argument("--project", required=True, help="Nombre del proyecto (ej. SauceDemoAutomation)")
     parser.add_argument("--reports-dir", required=True, help="Ruta a target/surefire-reports")
     parser.add_argument("--output", default="data/results.json", help="Archivo JSON del histórico")
+    parser.add_argument("--executed-at", default=None,
+                        help="Timestamp ISO de la ejecución (por defecto: ahora, UTC)")
     args = parser.parse_args()
 
     reports_dir = Path(args.reports_dir)
     result = parse_reports_dir(reports_dir)
     record = build_record(args.project, reports_dir, result)
+    if args.executed_at:
+        record["executed_at"] = args.executed_at
     append_to_store(Path(args.output), record)
 
     print(f"[OK] {args.project}: {record['passed']}/{record['total']} passed "

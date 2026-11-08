@@ -11,9 +11,9 @@ y resultados) consumible por las fases siguientes.
 
 | Proyecto | Tipo | Pipeline | Trigger |
 |---|---|---|---|
-| `SauceDemoAutomation` | Web (Selenium) | CI - SauceDemo Web Tests | push/PR a `main` + manual |
-| `PetStoreRestAssured` | API (Rest Assured) | CI - PetStore API Tests | push/PR a `main` + manual |
-| `WdioMobileAutomation` | Mobile (Appium) | CI - WdioMobile Android Tests | push/PR a `main` + manual |
+| `SauceDemoAutomation` | Web (Selenium) | CI - SauceDemo Web Tests | push/PR a `main` + manual + cron diario |
+| `PetStoreRestAssured` | API (Rest Assured) | CI - PetStore API Tests | push/PR a `main` + manual + cron diario |
+| `WdioMobileAutomation` | Mobile (Appium) | CI - WdioMobile Android Tests | push/PR a `main` + manual + cron diario |
 
 Cada repositorio cuenta con su propio workflow (`.github/workflows/ci.yml`),
 responsable de su suite. La consolidación de resultados entre suites se realiza
@@ -35,7 +35,9 @@ Los tres workflows comparten una estructura base:
    - Retención: 7 días.
 
 Los triggers configurados en los tres casos son: push a `main`, pull request a
-`main` y ejecución manual (`workflow_dispatch`).
+`main`, ejecución manual (`workflow_dispatch`) y **programación diaria**
+(`schedule` con cron `0 6 * * *`, equivalente a las 01:00 hora Colombia), que
+alimenta el histórico del dashboard con ejecuciones periódicas.
 
 ## 4. Pipeline Web (SauceDemoAutomation)
 
