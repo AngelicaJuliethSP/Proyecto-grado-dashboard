@@ -90,7 +90,11 @@ def parse_junit_xml(xml_path: Path) -> dict:
         exception_type = None
         exception_msg = None
 
-        failure = case.find("failure") or case.find("error")
+        # Nota: no usar `find(...) or find(...)` — un elemento XML sin hijos
+        # evalúa como False en Python y el fallo se perdería.
+        failure = case.find("failure")
+        if failure is None:
+            failure = case.find("error")
         if failure is not None:
             status = "failed"
             exception_type = failure.get("type")
