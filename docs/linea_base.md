@@ -49,7 +49,7 @@ Metodología: cada suite se ejecutó localmente 3 veces consecutivas, sin modifi
 
 \* El conteo de 8 incluye resultados residuales del directorio Allure.
 
-**Diagnóstico:** los fallos de las corridas 1-3 son **fallos de infraestructura** (el emulador API 37.1 entró en ANR de SystemUI y el framework Android quedó degradado — `system_server` no reinicia ni con wipe-data). No son fallos del framework de pruebas: en la corrida piloto con el emulador sano, Login y Signup pasaron.
+**Diagnóstico:** en la suite móvil, en cambio, ninguna de las tres ejecuciones pudo completarse: la sesión de Appium falló debido a una incompatibilidad entre el controlador (driver uiautomator2) y la imagen del emulador. En las ejecuciones previas a estas corridas, con el emulador en buen estado, la suite móvil había superado únicamente 2 de las 4 pruebas, ya que las dos restantes dependen del renderizado gráfico del emulador (véase el Anexo G). Se trata, por tanto, de fallos de infraestructura y no de fallos del framework de pruebas.
 
 **Hallazgo clave para la tesis:** los tests mobile son sensibles a la estabilidad del entorno de ejecución (emulador). Esto motiva la ejecución mobile en el pipeline de CI con un emulador gestionado (`reactivecircus/android-emulator-runner`), donde el entorno se aprovisiona limpio en cada corrida.
 
