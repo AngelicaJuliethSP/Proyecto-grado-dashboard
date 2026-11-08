@@ -88,19 +88,30 @@ un emulador Android, un servidor Appium y el APK de la aplicación bajo prueba.
 4. **Ejecución de la suite** dentro del `android-emulator-runner`, que crea el
    emulador, espera el boot y ejecuta el script de Maven contra él.
 
-### 6.3 Exclusiones en CI
+### 6.3 Escenarios con falla conocida
 
-Dos escenarios mobile se excluyen de la ejecución en CI mediante
-`-Dtest=!NavigationTest,!SwipeTest`:
+Dos escenarios mobile presentan fallas conocidas en el entorno de CI (emulador
+headless con renderizado por software). En lugar de excluirlos, se ejecutan en
+un **paso separado** con `-Dmaven.test.failure.ignore=true`, de modo que la
+falla queda **registrada en los reportes Surefire/Allure como evidencia
+documentada**, sin romper el pipeline:
 
-| Escenario | Motivo | Comportamiento fuera de CI |
+| Escenario | Falla conocida | Comportamiento fuera de CI |
 |---|---|---|
 | `NavigationTest` | El WebView de la aplicación no renderiza contenido en emuladores headless con renderizado por software (SwiftShader). | Pasa en emulador con aceleración por hardware. |
 | `SwipeTest` | Los gestos de swipe no siempre se procesan bajo renderizado por software; comportamiento intermitente. | Pasa en emulador con aceleración por hardware (verificado en la Fase 1). |
 
-Ambas exclusiones están justificadas en comentarios dentro del workflow y en el
-README del repositorio. Se trata de limitaciones del entorno de ejecución (CI
-headless sin GPU), no de defectos del framework de pruebas.
+La estrategia de dos pasos distingue claramente:
+
+- **Paso principal** (`LoginTest`, `SignupTest`): escenarios estables que deben
+  pasar siempre; su falla rompe el pipeline (CI estricto).
+- **Paso de fallas conocidas** (`NavigationTest`, `SwipeTest`): su falla se
+  registra en los reportes como evidencia documentada, pero no rompe el
+  pipeline.
+
+Ambas limitaciones están justificadas en comentarios dentro del workflow y en
+el README del repositorio. Se trata de limitaciones del entorno de ejecución
+(CI headless sin GPU), no de defectos del framework de pruebas.
 
 ## 7. Incidencias y depuración
 
@@ -119,8 +130,10 @@ por su valor de aprendizaje:
    insuficiente bajo el renderizado por software del runner (más lento que un
    emulador local con GPU). Se aumentó a 25 segundos.
 4. **Intermitencia de Swipe**: los gestos de swipe no se procesan de forma
-   confiable bajo SwiftShader; se excluyó el escenario con la justificación
-   documentada (sección 6.3).
+   confiable bajo SwiftShader. Como decisión final, Navigation y Swipe se
+   ejecutan en un paso separado con `maven.test.failure.ignore=true`, dejando
+   la falla registrada en los reportes como **falla conocida documentada**
+   (sección 6.3) en lugar de excluirlos del CI.
 
 Los pipelines web y API quedaron en verde en su primera ejecución.
 
@@ -132,7 +145,7 @@ Estado final de los tres pipelines (verificado tras la última ejecución):
 |---|---|---|
 | `SauceDemoAutomation` | CI - SauceDemo Web Tests | ✅ success |
 | `PetStoreRestAssured` | CI - PetStore API Tests | ✅ success |
-| `WdioMobileAutomation` | CI - WdioMobile Android Tests | ✅ success (Login, Signup) |
+| `WdioMobileAutomation` | CI - WdioMobile Android Tests | ✅ success (Login, Signup estables; Navigation y Swipe ejecutados como fallas conocidas documentadas) |
 
 Cada ejecución genera como artefactos los reportes Surefire y los resultados
 Allure de la suite, con 7 días de retención.
@@ -158,9 +171,10 @@ Allure de la suite, con 7 días de retención.
 - La depuración del pipeline mobile dejó documentadas tres lecciones
   reutilizables: registro de drivers de Appium, sensibilidad de la app a la
   versión de API, y ajuste de waits para renderizado por software.
-- Las exclusiones de CI están **justificadas y documentadas** (workflow y
-  README), distinguiendo limitaciones del entorno de ejecución de defectos del
-  framework.
+- Las fallas conocidas de mobile (Navigation, Swipe) están **documentadas y
+  registradas en los reportes** como evidencia, mediante una estrategia de dos
+  pasos que separa escenarios estables (CI estricto) de escenarios con falla
+  conocida (registrados sin romper el pipeline).
 
 ## 11. Criterios de salida cumplidos
 
@@ -169,5 +183,5 @@ Allure de la suite, con 7 días de retención.
 | Pipeline automático por push/PR en los 3 repositorios | ✅ |
 | Ejecución en verde de los pipelines | ✅ (Web, API y Mobile) |
 | Evidencia de ejecución publicada como artefactos | ✅ (Surefire + Allure) |
-| Exclusiones justificadas y documentadas | ✅ (workflow + README) |
+| Fallas conocidas documentadas y registradas en los reportes | ✅ (Navigation, Swipe — workflow + README) |
 | Cambios versionados y publicados en los repositorios | ✅ |
