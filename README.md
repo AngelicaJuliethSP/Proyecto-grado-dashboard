@@ -2,6 +2,8 @@
 
 Dashboard para la **visualización y análisis de reportes de ejecución de pruebas automatizadas**, integrado a un **pipeline de integración continua**, con el propósito de centralizar los resultados y facilitar el seguimiento de indicadores de calidad y estabilidad del proceso de automatización.
 
+**🌐 Dashboard público: https://proyecto-grado-dashboard.streamlit.app**
+
 ## Arquitectura
 
 ```
@@ -9,31 +11,39 @@ Dashboard para la **visualización y análisis de reportes de ejecución de prue
 │  SauceDemo (Web UI) │     │ WdioMobile (Mobile) │     │   PetStore (API)    │
 │  Selenium + TestNG  │     │  Appium + TestNG    │     │ RestAssured + TestNG│
 └──────────┬──────────┘     └──────────┬──────────┘     └──────────┬──────────┘
-           │  mvn test                 │  mvn test                 │  mvn test
+           │  GitHub Actions           │  GitHub Actions           │  GitHub Actions
+           │  (push/PR/cron diario)    │  (push/PR/cron diario)    │  (push/PR/cron diario)
            ▼                           ▼                           ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                     GitHub Actions — Pipeline de CI                          │
-│  jobs paralelos → parser/results_parser.py → data/results.json (histórico)  │
+│              Cada pipeline parsea sus XML de Surefire y hace push            │
+│              del consolidado a data/results.json de ESTE repositorio         │
 └──────────────────────────────────┬──────────────────────────────────────────┘
                                    ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                  Dashboard Streamlit (dashboard/app.py)                      │
 │   KPIs · tendencia de éxito · pass/fail/skip · duración · top fallos        │
+│   causa raíz · bottlenecks · flaky · detalle por test                        │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
+
+**El ciclo es 100% automático:** los 3 pipelines de CI (en sus repos
+respectivos) ejecutan las suites a diario (cron 06:00 UTC = 01:00 Colombia),
+parsean sus reportes y publican los resultados en `data/results.json` de este
+repositorio. Streamlit Community Cloud redespliega automáticamente con cada
+push, por lo que el dashboard siempre refleja el histórico actualizado — sin
+ningún paso manual.
 
 ## Estructura del repositorio
 
 ```
 proyecto-grado-dashboard/
 ├── dashboard/
-│   └── app.py                  # Dashboard Streamlit
+│   └── app.py                  # Dashboard Streamlit (11 vistas)
 ├── parser/
 │   └── results_parser.py       # Parser de testng-results.xml / TEST-*.xml
 ├── data/
-│   └── results.json            # Histórico de ejecuciones (generado)
-├── .github/workflows/
-│   └── ci.yml                  # Pipeline de integración continua
+│   └── results.json            # Histórico de ejecuciones (actualizado por CI)
+├── docs/                       # Documentación técnica por fases
 ├── requirements.txt
 └── README.md
 ```
@@ -42,15 +52,23 @@ proyecto-grado-dashboard/
 
 | Proyecto | Tipo | Stack |
 |---|---|---|
-| SauceDemoAutomation | Web UI | Java 17, Selenium 4.47, TestNG 7.5, POM |
+| SauceDemoAutomation | Web UI | Java 17, Selenium 4.47, TestNG 7.10.2, POM |
 | WdioMobileAutomation | Mobile | Java 17, Appium java-client 10.1.1, TestNG 7.10.2 |
-| PetStoreRestAssured | API | Java 11, RestAssured 5.3.1, TestNG 7.10.2 |
+| PetStoreRestAssured | API | Java 17, RestAssured 5.3.1, TestNG 7.10.2 |
 
 > Los tres comparten Maven + TestNG, por lo que sus reportes de Surefire (`testng-results.xml`) se procesan con un único parser.
 
-## Uso local
+## Configuración del flujo automático
 
-### 1. Instalar dependencias del dashboard
+Cada repo de pruebas necesita el secreto **`DASHBOARD_TOKEN`** (Settings →
+Secrets and variables → Actions): un *fine-grained Personal Access Token*
+con permiso **Contents: Read and write** sobre este repositorio. Sin el
+secreto, el paso de publicación se omite gracefully y el pipeline no se ve
+afectado.
+
+## Uso local (opcional)
+
+### 1. Instalar dependencias
 
 ```bash
 pip install -r requirements.txt
@@ -73,21 +91,20 @@ python parser/results_parser.py \
 streamlit run dashboard/app.py
 ```
 
-## Pipeline de CI
-
-El workflow `.github/workflows/ci.yml`:
-
-1. Ejecuta los 3 proyectos en jobs paralelos (`mvn test`).
-2. Parsea los reportes de Surefire con `parser/results_parser.py`.
-3. Consolida todo en `data/results.json` y lo commitea al histórico.
-
-**Configuración previa:** reemplaza `<TU_USUARIO>` en `ci.yml` por tu usuario de GitHub en los 3 `actions/checkout` de los proyectos de pruebas.
-
 ## Indicadores del dashboard
 
 - **KPIs globales:** ejecuciones registradas, última tasa de éxito, tests, fallos y duración.
 - **Tendencia histórica** de tasa de éxito por proyecto.
+- **Comparativa entre suites** (éxito promedio, duración promedio).
 - **Distribución pass/fail/skip** por ejecución.
 - **Duración** de cada ejecución (detección de degradaciones).
 - **Top 10 tests más fallidos** (candidatos a estabilización).
+- **Matriz de causa raíz probable** (clasificación por patrones del mensaje de error).
+- **Top bottlenecks** (tests más lentos, Pareto).
+- **Pruebas inestables (flaky)** (tests que alternan entre éxito y fallo).
+- **Detalle por test** con filtros y búsqueda.
 - **Histórico completo** en tabla.
+
+## Autor
+
+Angélica Julieth Silva Pérez — College Trainee, Globant
