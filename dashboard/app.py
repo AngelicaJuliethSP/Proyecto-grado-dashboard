@@ -121,7 +121,10 @@ def load_data() -> pd.DataFrame:
     if not records:
         return pd.DataFrame()
     df = pd.json_normalize(records)
-    df["executed_at"] = pd.to_datetime(df["executed_at"])
+    # format="mixed": el almacén combina timestamps con/sin microsegundos y
+    # con distintas zonas horarias (+00:00, -05:00); sin esto pandas infiere
+    # el formato del primer registro y falla con los demás.
+    df["executed_at"] = pd.to_datetime(df["executed_at"], format="mixed", utc=True)
     return df.sort_values("executed_at")
 
 
