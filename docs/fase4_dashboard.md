@@ -167,3 +167,15 @@ consistente y no una alternancia éxito/fallo.
   2 registros (uno por paso del pipeline); corregido para publicar un solo
   registro combinado por corrida. Los registros históricos anteriores se
   conservan tal cual (no se reescriben datos ya publicados).
+- **Esquema del histórico móvil unificado (9-nov)**: las corridas del 8-nov ya
+  tenían un solo registro de 4 tests, pero las del 9-nov (10:18, 10:47 y 12:30)
+  seguían publicando 2 registros (uno de 2 tests al 100 % y otro de 2 tests al
+  0 %), y la corrida de las 12:32 publicó solo 2 tests (1/1) perdiendo Login y
+  Signup. Causa raíz: Surefire+TestNG nombra `TEST-TestSuite.xml` en ambos pasos
+  del pipeline y el `cp` sin prefijo hacía que el segundo sobrescribiera al
+  primero. Corregido en el workflow copiando con prefijo (`TEST-main-*`,
+  `TEST-known-*`). Los 7 registros incompletos del 9-nov se eliminaron y las 5
+  corridas se regeneraron con el parser a partir de los XML Surefire reales de
+  los artefactos del CI. Resultados reales: 2/4 en las 3 primeras corridas
+  (Login+Signup pasan, Swipe+Navigation fallan) y 3/4 en las 2 últimas
+  (Login+Signup+Swipe pasan, Navigation falla).
