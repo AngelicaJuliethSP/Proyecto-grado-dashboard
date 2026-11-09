@@ -28,6 +28,22 @@ mantener o extender la solución.
 
 **URL pública del dashboard:** https://proyecto-grado-dashboard.streamlit.app
 
+### 1.1 Declaración sobre el uso de herramientas de IA
+
+Durante el desarrollo de este proyecto se utilizó el asistente de código
+**CODA** (Globant) como herramienta de apoyo en tareas de programación:
+refactorización de los frameworks, configuración de los pipelines de CI,
+construcción del parser, del dashboard y de este documento. Cada commit
+asistido lleva la co-firma `Co-Authored-By: CODA <coda@globant.com>` en el
+historial de Git, como declaración explícita de la herramienta empleada.
+
+Las decisiones de arquitectura, el alcance de cada fase, la interpretación de
+resultados y la validación final son de la autora. La herramienta actuó como
+asistente de implementación bajo dirección humana, de forma análoga a un
+par de programación. Se declara este uso en cumplimiento de la transparencia
+académica; la autora verificó la política de la institución (UCC) sobre uso
+de IA en trabajos de grado antes de la entrega.
+
 ## 2. Arquitectura general
 
 ```
