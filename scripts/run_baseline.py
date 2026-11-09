@@ -18,7 +18,26 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-PILOTO = ROOT / "piloto"
+
+# Directorios con los clones locales de los 3 repos de pruebas.
+# Prioridad: variable de entorno REPOS_DIR > ./repos-github (clones locales).
+# La carpeta piloto/ (snapshot de Fase 0) fue eliminada del repo: sus copias
+# quedaron desincronizadas de los repos reales.
+def find_repos_dir() -> Path:
+    env_dir = subprocess.os.environ.get("REPOS_DIR")
+    if env_dir:
+        return Path(env_dir)
+    local = ROOT / "repos-github"
+    if (local / "SauceDemoAutomation").exists():
+        return local
+    legacy = ROOT / "piloto"
+    if (legacy / "SauceDemoAutomation").exists():
+        print("AVISO: usando snapshot piloto/ (Fase 0) — puede estar desincronizado.")
+        return legacy
+    sys.exit(
+        "ERROR: no se encontraron los repos de pruebas. Configure REPOS_DIR "
+        "o clone los repos en ./repos-github."
+    )
 
 ALL_PROJECTS = ["SauceDemoAutomation", "PetStoreRestAssured", "WdioMobileAutomation"]
 
@@ -98,7 +117,7 @@ def main() -> None:
     summary = []
 
     for project in args.projects:
-        project_dir = PILOTO / project
+        project_dir = find_repos_dir() / project
         allure_dir = project_dir / "target" / "allure-results"
         print(f"\n=== {project} — {args.runs} corridas ===")
         for run in range(1, args.runs + 1):
