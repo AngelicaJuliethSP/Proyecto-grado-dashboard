@@ -1,11 +1,11 @@
 # Tabla de comparación de suites — Evidencia de reportes
 
 Fuente: `data/results.json` (almacén consolidado de ejecuciones).
-Corte: 2026-11-09 22:00 UTC (17:00 Colombia, 57 registros).
+Corte: 2026-11-09 19:47 UTC (14:47 Colombia, 58 registros).
 
 | Suite | Ejecuciones | Tests | Pasados | Fallados | Skipped | % Éxito prom. | Duración prom. | Estabilidad |
 |---|---|---|---|---|---|---|---|---|
-| SauceDemoAutomation | 19 | 76 | 69 | 7 | 0 | 90.8% | 16.4 s | Intermitente |
+| SauceDemoAutomation | 20 | 80 | 73 | 7 | 0 | 91.2% | 16.3 s | Intermitente |
 | PetStoreRestAssured | 17 | 102 | 102 | 0 | 0 | 100.0% | 4.1 s | Estable |
 | WdioMobileAutomation | 21 | 80 | 39 | 29 | 12 | 49.6% | 97.5 s | Inestable |
 
@@ -70,3 +70,4 @@ Corte: 2026-11-09 22:00 UTC (17:00 Colombia, 57 registros).
 | SauceDemoAutomation | 2026-11-09T19:46:51 | 4 | 4 | 0 | 100.0% | 13.3 s |
 | PetStoreRestAssured | 2026-11-09T19:47:03 | 6 | 6 | 0 | 100.0% | 4.8 s |
 | WdioMobileAutomation | 2026-11-09T19:47:28 | 4 | 2 | 2 | 50.0% | 131.6 s |
+| SauceDemoAutomation | 2026-11-09T20:14:23 | 4 | 4 | 0 | 100.0% | 13.7 s |

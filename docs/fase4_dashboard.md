@@ -94,7 +94,7 @@ Dos refinamientos sobre la primera versión del clasificador:
    `SessionNotCreatedException` → infraestructura; `TimeoutException` →
    timeouts), ya que el tipo es más confiable que el texto del mensaje.
 
-Verificado con el histórico real al 9-nov 22:00 UTC (17:00 Colombia; 36 fallos
+Verificado con el histórico real al 9-nov 19:47 UTC (14:47 Colombia; 36 fallos
 en 57 registros):
 15 mobile de aserción (`navigateThroughBottomMenu`, contenido no visible por
 la limitación de renderizado del emulador), 11 mobile de aserción
@@ -114,8 +114,8 @@ corresponden a la fecha de corte indicada.
 
 Un test se marca como *flaky* si en el histórico aparece con estado `passed`
 y `failed` en ejecuciones distintas (agrupación por suite, clase y nombre).
-Con el criterio del propio dashboard, el histórico al 9-nov 22:00 UTC
-(17:00 Colombia) registra
+Con el criterio del propio dashboard, el histórico al 9-nov 19:47 UTC
+(14:47 Colombia) registra
 5 pruebas inestables:
 
 - `purchaseProductSuccessfully` (SauceDemo): pasó en la mayoría de corridas y
