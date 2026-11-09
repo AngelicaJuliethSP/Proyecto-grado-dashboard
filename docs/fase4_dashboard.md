@@ -94,7 +94,8 @@ Dos refinamientos sobre la primera versión del clasificador:
    `SessionNotCreatedException` → infraestructura; `TimeoutException` →
    timeouts), ya que el tipo es más confiable que el texto del mensaje.
 
-Verificado con el histórico real al 9-nov 19:00 (36 fallos en 57 registros):
+Verificado con el histórico real al 9-nov 22:00 UTC (17:00 Colombia; 36 fallos
+en 57 registros):
 15 mobile de aserción (`navigateThroughBottomMenu`, contenido no visible por
 la limitación de renderizado del emulador), 11 mobile de aserción
 (`swipeCardsAndFindHiddenText`, misma causa), 5 web de infraestructura
@@ -113,7 +114,8 @@ corresponden a la fecha de corte indicada.
 
 Un test se marca como *flaky* si en el histórico aparece con estado `passed`
 y `failed` en ejecuciones distintas (agrupación por suite, clase y nombre).
-Con el criterio del propio dashboard, el histórico al 9-nov 17:00 registra
+Con el criterio del propio dashboard, el histórico al 9-nov 22:00 UTC
+(17:00 Colombia) registra
 5 pruebas inestables:
 
 - `purchaseProductSuccessfully` (SauceDemo): pasó en la mayoría de corridas y
@@ -146,8 +148,8 @@ fallo consistente y no una alternancia éxito/fallo.
 ## 7. Verificación
 
 - Compilación sin errores (`py_compile`).
-- Lógica de datos validada con el almacén real (10 ejecuciones, 58 filas de
-  tests, 13 fallos clasificados).
+- Lógica de datos validada con el almacén real (57 ejecuciones, 258 filas de
+  tests, 36 fallos clasificados).
 - Verificación visual local del servidor (las 11 vistas renderizan).
 - Despliegue en la nube verificado en la URL pública.
 
@@ -180,8 +182,10 @@ fallo consistente y no una alternancia éxito/fallo.
   corridas locales y de CI tiene esa diferencia de origen.
 - **Duplicados móviles corregidos**: hasta el 9-nov cada corrida móvil generó
   2 registros (uno por paso del pipeline); corregido para publicar un solo
-  registro combinado por corrida. Los registros históricos anteriores se
-  conservan tal cual (no se reescriben datos ya publicados).
+  registro combinado por corrida. Los registros históricos afectados por este
+  defecto se identificaron y regeneraron con el parser a partir de los XML
+  Surefire originales de los artefactos del CI (nunca editados a mano), de
+  modo que todo el histórico refleja resultados reales de ejecución.
 - **Esquema del histórico móvil unificado (9-nov)**: las corridas del 8-nov ya
   tenían un solo registro de 4 tests, pero las del 9-nov (10:18, 10:47 y 12:30)
   seguían publicando 2 registros (uno de 2 tests al 100 % y otro de 2 tests al
