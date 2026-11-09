@@ -910,5 +910,53 @@
         "exception_message": null
       }
     ]
+  },
+  {
+    "project": "SauceDemoAutomation",
+    "executed_at": "2026-11-09T10:50:55-05:00",
+    "total": 4,
+    "passed": 2,
+    "failed": 2,
+    "skipped": 0,
+    "success_rate": 50.0,
+    "duration_ms": 13261,
+    "tests": [
+      {
+        "name": "purchaseProductSuccessfully",
+        "class": "com.saucedemo.tests.PurchaseTest",
+        "status": "failed",
+        "duration_ms": 294,
+        "started_at": "2026-11-09T15:51:18 UTC",
+        "exception_type": "org.openqa.selenium.NoSuchElementException",
+        "exception_message": "\n              no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\"#checkout\"}\n  (Session info: chrome=156.0.8078.79)\nFor documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception\nBuild info: version: '4.47.0', revision: '9175ed9 9175ed94d83e87cc3abeb7c9fd91367d17849d35'\nSystem info: os.name: 'Linux', os.arch: 'amd64', os.version: '7.0.0-1017-azure', java.version: '17.0.21'\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCommand: [50ecff798dcf4ba1d8fdf41f71b5b8d5, findElement {value=checkout, using=id}]\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 156.0.8078.79, chrome: {chromedriverVersion: 156.0.8078.80 (fb096c0011f9..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:41079}, goog:processID: 2460, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:41079/devtoo..., se:cdpVersion: 156.0.8078.79, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:cmtgKey: true, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: 50ecff798dcf4ba1d8fdf41f71b5b8d5\n            "
+      },
+      {
+        "name": "purchaseProductSuccessfully",
+        "class": "com.saucedemo.tests.PurchaseTest",
+        "status": "failed",
+        "duration_ms": 5856,
+        "started_at": "2026-11-09T15:51:19 UTC",
+        "exception_type": "org.openqa.selenium.NoSuchElementException",
+        "exception_message": "\n              no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\"#first\\-name\"}\n  (Session info: chrome=156.0.8078.79)\nFor documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception\nBuild info: version: '4.47.0', revision: '9175ed9 9175ed94d83e87cc3abeb7c9fd91367d17849d35'\nSystem info: os.name: 'Linux', os.arch: 'amd64', os.version: '7.0.0-1017-azure', java.version: '17.0.21'\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCommand: [171777b2977155a78c786ee5d69b2638, findElement {value=first-name, using=id}]\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 156.0.8078.79, chrome: {chromedriverVersion: 156.0.8078.80 (fb096c0011f9..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:42613}, goog:processID: 2626, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:42613/devtoo..., se:cdpVersion: 156.0.8078.79, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:cmtgKey: true, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: 171777b2977155a78c786ee5d69b2638\n            "
+      },
+      {
+        "name": "removeAllItemsFromCart",
+        "class": "com.saucedemo.tests.RemoveCartItemsTest",
+        "status": "passed",
+        "duration_ms": 863,
+        "started_at": "2026-11-09T15:51:16 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "logoutRedirectsToLoginPage",
+        "class": "com.saucedemo.tests.LogoutTest",
+        "status": "passed",
+        "duration_ms": 1364,
+        "started_at": "2026-11-09T15:51:26 UTC",
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
   }
 ]
