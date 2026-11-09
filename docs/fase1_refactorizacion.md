@@ -10,11 +10,11 @@ sin modificar código fuente, únicamente mediante propiedades o variables de en
 
 ## 2. Alcance
 
-| Proyecto | Tipo | Stack | Ubicación en el repositorio |
+| Proyecto | Tipo | Stack | Repositorio |
 |---|---|---|---|
-| SauceDemoAutomation | Web (UI) | Java 17, Selenium WebDriver, TestNG | `piloto/SauceDemoAutomation` |
-| PetStoreRestAssured | API (REST) | Java 17, Rest Assured, TestNG | `piloto/PetStoreRestAssured` |
-| WdioMobileAutomation | Mobile (Android) | Java 17, Appium (UiAutomator2), TestNG | `piloto/WdioMobileAutomation` |
+| SauceDemoAutomation | Web (UI) | Java 17, Selenium WebDriver, TestNG | `AngelicaJuliethSP/SauceDemoAutomation` |
+| PetStoreRestAssured | API (REST) | Java 17, Rest Assured, TestNG | `AngelicaJuliethSP/PetStoreRestAssured` |
+| WdioMobileAutomation | Mobile (Android) | Java 17, Appium (UiAutomator2), TestNG | `AngelicaJuliethSP/WdioMobileAutomation` |
 
 > **Nota:** las rutas `piloto/...` corresponden al snapshot monolítico donde se
 > hizo la refactorización. Ese snapshot fue eliminado del repositorio
