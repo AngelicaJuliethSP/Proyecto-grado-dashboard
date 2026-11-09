@@ -19,20 +19,29 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 PILOTO = ROOT / "piloto"
-JAVA_HOME = r"C:/Users/angelica.silva01/.jdks/temurin-17.0.20.1"
 
 ALL_PROJECTS = ["SauceDemoAutomation", "PetStoreRestAssured", "WdioMobileAutomation"]
 
 
+def find_mvn() -> str:
+    """Localiza mvn multiplataforma (mvn.cmd en Windows, mvn en Unix)."""
+    mvn = shutil.which("mvn") or shutil.which("mvn.cmd") or shutil.which("mvn.bat")
+    if not mvn:
+        sys.exit("ERROR: mvn no encontrado en PATH. Instale Maven y verifique `mvn -version`.")
+    return mvn
+
+
 def run_mvn_tests(project_dir: Path) -> tuple[bool, str]:
     """Ejecuta mvn clean test y retorna (exit_ok, salida_relevante)."""
-    env = {
-        **subprocess.os.environ,
-        "JAVA_HOME": JAVA_HOME,
-        "PATH": f"{JAVA_HOME}/bin;{subprocess.os.environ.get('PATH', '')}",
-    }
+    # JAVA_HOME: se respeta el del entorno; si no hay ninguno configurado,
+    # se intenta con el `java` del PATH (Maven lo requiere).
+    env = {**subprocess.os.environ}
+    path_sep = ";" if sys.platform == "win32" else ":"
+    java_home = subprocess.os.environ.get("JAVA_HOME")
+    if java_home:
+        env["PATH"] = f"{java_home}/bin{path_sep}{env.get('PATH', '')}"
     proc = subprocess.run(
-        ["mvn.cmd", "clean", "test", "-B"],
+        [find_mvn(), "clean", "test", "-B"],
         cwd=project_dir,
         env=env,
         capture_output=True,
