@@ -666,8 +666,8 @@
         "status": "failed",
         "duration_ms": 1954,
         "started_at": null,
-        "exception_type": "AssertionError",
-        "exception_message": "Falla conocida en CI: renderizado por software (SwiftShader) — WebView/gestos no procesados (ver README, Limitaciones conocidas)"
+        "exception_type": "java.lang.AssertionError",
+        "exception_message": "Texto WebdriverIO no visible expected [true] but found [false]"
       },
       {
         "name": "successfulSignUp",
@@ -684,8 +684,8 @@
         "status": "failed",
         "duration_ms": 712,
         "started_at": null,
-        "exception_type": "AssertionError",
-        "exception_message": "Falla conocida en CI: renderizado por software (SwiftShader) — WebView/gestos no procesados (ver README, Limitaciones conocidas)"
+        "exception_type": "java.lang.AssertionError",
+        "exception_message": "Swipe screen no se muestra expected [true] but found [false]"
       }
     ]
   },
@@ -711,11 +711,11 @@
       {
         "name": "navigateThroughBottomMenu",
         "class": "tests.NavigationTest",
-        "status": "passed",
+        "status": "failed",
         "duration_ms": 1531,
         "started_at": null,
-        "exception_type": null,
-        "exception_message": null
+        "exception_type": "java.lang.AssertionError",
+        "exception_message": "Texto WebdriverIO no visible expected [true] but found [false]"
       },
       {
         "name": "successfulSignUp",
@@ -729,11 +729,11 @@
       {
         "name": "swipeCardsAndFindHiddenText",
         "class": "tests.SwipeTest",
-        "status": "passed",
+        "status": "failed",
         "duration_ms": 583,
         "started_at": null,
-        "exception_type": null,
-        "exception_message": null
+        "exception_type": "java.lang.AssertionError",
+        "exception_message": "Swipe screen no se muestra expected [true] but found [false]"
       }
     ]
   },
