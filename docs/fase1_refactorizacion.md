@@ -16,6 +16,13 @@ sin modificar código fuente, únicamente mediante propiedades o variables de en
 | PetStoreRestAssured | API (REST) | Java 17, Rest Assured, TestNG | `piloto/PetStoreRestAssured` |
 | WdioMobileAutomation | Mobile (Android) | Java 17, Appium (UiAutomator2), TestNG | `piloto/WdioMobileAutomation` |
 
+> **Nota:** las rutas `piloto/...` corresponden al snapshot monolítico donde se
+> hizo la refactorización. Ese snapshot fue eliminado del repositorio
+> (120 MB de binarios); el código consolidado vive en los repositorios
+> independientes `AngelicaJuliethSP/SauceDemoAutomation`,
+> `AngelicaJuliethSP/PetStoreRestAssured` y
+> `AngelicaJuliethSP/WdioMobileAutomation`.
+
 Los tres proyectos comparten la misma base tecnológica (Maven + TestNG), lo que
 permitió aplicar un criterio de consolidación uniforme.
 
@@ -183,10 +190,10 @@ del archivo con un mensaje de error accionable.
 
 | Entregable | Descripción |
 |---|---|
-| `piloto/WdioMobileAutomation/src/test/java/drivers/DriverManager.java` | Driver Android con configuración externalizada y validación de APK |
-| `piloto/SauceDemoAutomation/src/test/java/com/saucedemo/base/BaseTest.java` | Base de tests web con URL y headless configurables |
-| `piloto/*/pom.xml` | Versiones unificadas (TestNG 7.10.2, surefire 3.1.2, JUnit removido) |
-| `piloto/WdioMobileAutomation/.gitignore` | Exclusión del APK (`apps/`, `*.apk`) del versionamiento |
+| `DriverManager.java` (repo WdioMobileAutomation) | Driver Android con configuración externalizada y validación de APK |
+| `BaseTest.java` (repo SauceDemoAutomation) | Base de tests web con URL y headless configurables |
+| `pom.xml` (los 3 repositorios) | Versiones unificadas (TestNG 7.10.2, surefire 3.1.2, JUnit removido) |
+| `.gitignore` (repo WdioMobileAutomation) | Exclusión del APK (`apps/`, `*.apk`) del versionamiento |
 | `README.md` (los 3 repositorios) | Documentación de arquitectura, configuración y ejecución de cada framework |
 | Repositorios GitHub `AngelicaJuliethSP/*` | Código refactorizado y READMEs publicados (commits `23e67d7`, `a38c69a`, `8073fe0`) |
 | `data/results.json` | Resultados de la corrida de verificación post-refactorización, consolidados con el parser |

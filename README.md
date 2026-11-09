@@ -12,7 +12,7 @@ Dashboard para la **visualización y análisis de reportes de ejecución de prue
 │  Selenium + TestNG  │     │  Appium + TestNG    │     │ RestAssured + TestNG│
 └──────────┬──────────┘     └──────────┬──────────┘     └──────────┬──────────┘
            │  GitHub Actions           │  GitHub Actions           │  GitHub Actions
-           │  (push/PR/cron L-V)       │  (push/PR/cron L-V)       │  (push/PR/cron L-V)
+           │  (push/PR/cron diario)    │  (push/PR/cron diario)    │  (push/PR/cron diario)
            ▼                           ▼                           ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │              Cada pipeline parsea sus XML de Surefire y hace push            │
@@ -27,7 +27,7 @@ Dashboard para la **visualización y análisis de reportes de ejecución de prue
 ```
 
 **El ciclo es 100% automático:** los 3 pipelines de CI (en sus repos
-respectivos) ejecutan las suites de lunes a viernes (cron 06:00 UTC =
+respectivos) ejecutan las suites a diario (cron 06:00 UTC =
 01:00 Colombia), parsean sus reportes y publican los resultados en
 `data/results.json` de este repositorio. Streamlit Community Cloud
 redespliega automáticamente con cada push, por lo que el dashboard siempre
@@ -65,7 +65,7 @@ proyecto-grado-dashboard/
 | WdioMobileAutomation | Mobile | Java 17, Appium java-client 10.1.1, TestNG 7.10.2 |
 | PetStoreRestAssured | API | Java 17, RestAssured 5.3.1, TestNG 7.10.2 |
 
-> Los tres comparten Maven + TestNG, por lo que sus reportes de Surefire (`testng-results.xml`) se procesan con un único parser.
+> Los tres comparten Maven + TestNG. Web y API generan `testng-results.xml` y Wdio genera `TEST-*.xml` estilo JUnit (combinados por clase), y todos se procesan con un único parser.
 
 > **Nota sobre la línea base:** las ejecuciones de la línea base (Fase 0) se ingirieron desde los JSON de **Allure** (`parser/allure_ingest.py`), no desde los XML de Surefire. El parser de Surefire se usa en el ciclo automático de CI; `allure_ingest.py` quedó como vía de ingesta para corridas locales con el adapter Allure activo.
 
