@@ -47,7 +47,7 @@ Metodología: cada suite se ejecutó localmente 3 veces consecutivas, sin modifi
 | 2 | 8* | 0 | 4 | 4 | 0% | Fallo de sesión Appium |
 | 3 | 8* | 0 | 4 | 4 | 0% | Fallo de sesión Appium |
 
-\* El conteo de 8 incluye resultados residuales del directorio Allure (4 tests + 4 configuraciones setUp/tearDown contadas como tests). En cada corrida, los 4 tests reales quedaron: 4 fallidos por el fallo de sesión (los 4 omitidos del conteo son los `tearDown` que no llegaron a ejecutarse).
+\* El conteo de 8 incluye resultados residuales del directorio Allure (4 tests + 4 configuraciones setUp/tearDown contadas como tests). En cada corrida, los 4 `setUp` fallaron al no poder crearse la sesión de Appium (fallo de sesión), por lo que los 4 tests reales (`successfulLogin`, `successfulSignUp`, `swipeCardsAndFindHiddenText`, `navigateThroughBottomMenu`) quedaron omitidos (skipped) sin llegar a ejecutarse.
 
 **Diagnóstico:** en la suite móvil, en cambio, ninguna de las tres ejecuciones pudo completarse: la sesión de Appium falló debido a una incompatibilidad entre el controlador (driver uiautomator2) y la imagen del emulador. En las ejecuciones previas a estas corridas, con el emulador en buen estado, la suite móvil había superado únicamente 2 de las 4 pruebas, ya que las dos restantes dependen del renderizado gráfico del emulador (véase el Anexo G). Se trata, por tanto, de fallos de infraestructura y no de fallos del framework de pruebas.
 

@@ -94,11 +94,13 @@ Dos refinamientos sobre la primera versión del clasificador:
    `SessionNotCreatedException` → infraestructura; `TimeoutException` →
    timeouts), ya que el tipo es más confiable que el texto del mensaje.
 
-Verificado con el histórico real (23 fallos): 12 mobile clasificados como
-infraestructura (fallos de sesión Appium, `adbExec` 500 — coherente con el
-diagnóstico de `linea_base.md`), 9 aserciones de contenido no visible
-(Navigation/Swipe, limitación de renderizado del emulador) y 2 web de
-infraestructura (`NoSuchElement` en checkout, resuelto con waits explícitos).
+Verificado con el histórico real al 9-nov 11:00 (27 fallos): 12 mobile
+clasificados como infraestructura (fallos de sesión Appium, `adbExec` 500 —
+coherente con el diagnóstico de `linea_base.md`), 13 aserciones de contenido
+no visible (Navigation/Swipe, limitación de renderizado del emulador) y 2 web
+de infraestructura (`NoSuchElement` en checkout, resuelto con waits
+explícitos). El histórico sigue creciendo con cada corrida del CI, por lo que
+estos conteos corresponden a la fecha de corte indicada.
 
 ### 5.3 Detección de pruebas inestables
 
@@ -110,8 +112,9 @@ inestables:
 - `purchaseProductSuccessfully` (SauceDemo): pasó en la mayoría de corridas y
   falló en el CI del 9-nov (`NoSuchElement` en checkout por clicks perdidos en
   React; corregido con waits explícitos).
-- `swipeCardsAndFindHiddenText` (Wdio): pasó en el piloto del 4-nov y falla en
-  CI por la limitación de renderizado del emulador (SwiftShader).
+- `swipeCardsAndFindHiddenText` (Wdio): falló en el piloto del 4-nov, pasó en la
+  corrida del 7-nov (emulador en mejor estado) y vuelve a fallar en CI por la
+  limitación de renderizado del emulador (SwiftShader).
 
 `navigateThroughBottomMenu`, en cambio, no es flaky bajo este criterio: nunca
 pasó en el histórico registrado (solo `failed`), por lo que es un fallo
