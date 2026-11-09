@@ -53,10 +53,18 @@ def summarize(df: pd.DataFrame) -> dict:
     df["status"] = df["status"].map(STATUS_MAP).fillna("skipped")
     df["duration_ms"] = (df["stop"] - df["start"]).fillna(0).astype("int64")
 
+    # Excluir configuraciones (setUp/tearDown/beforeAll/afterAll): Allure las
+    # reporta como resultados con el nombre del método de configuración de
+    # TestNG. No son tests y distorsionan los KPIs y la matriz de causa raíz.
+    config_names = {
+        "setUp", "tearDown", "setUpClass", "tearDownClass",
+        "beforeTest", "afterTest", "beforeClass", "afterClass",
+        "beforeSuite", "afterSuite", "beforeMethod", "afterMethod",
+        "springTestContextPrepareTestInstance",
+    }
+    df = df[~df["name"].astype(str).isin(config_names)]
+
     total = len(df)
-    passed = int((df["status"] == "passed").sum())
-    failed = int((df["status"] == "failed").sum())
-    skipped = int((df["status"] == "skipped").sum())
 
     tests = [
         {

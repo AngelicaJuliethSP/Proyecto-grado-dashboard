@@ -94,15 +94,18 @@ Dos refinamientos sobre la primera versión del clasificador:
    `SessionNotCreatedException` → infraestructura; `TimeoutException` →
    timeouts), ya que el tipo es más confiable que el texto del mensaje.
 
-Verificado con el histórico real al 9-nov 17:00 (50 fallos en 56 registros):
-12 mobile de infraestructura (fallos de sesión Appium, `adbExec` 500 —
-coherente con el diagnóstico de `linea_base.md`), 29 aserciones de contenido
-no visible (Navigation/Swipe, limitación de renderizado del emulador), 5 web
-de infraestructura (`NoSuchElement` en checkout, resuelto con waits
-explícitos), 3 timeouts (`TimeoutException` en la corrida de debugging del
-7-nov) y 1 error de código (`IllegalArgumentException: bound must be
-positive`). El histórico sigue creciendo con cada corrida del CI, por lo que
-estos conteos corresponden a la fecha de corte indicada.
+Verificado con el histórico real al 9-nov 18:00 (38 fallos en 56 registros):
+16 mobile de aserción (`navigateThroughBottomMenu`, contenido no visible por
+la limitación de renderizado del emulador), 13 mobile de aserción
+(`swipeCardsAndFindHiddenText`, misma causa), 6 web de infraestructura
+(`NoSuchElement` en checkout, resuelto con waits explícitos), 1 web de
+aserción (`removeAllItemsFromCart`), 1 timeout móvil (`TimeoutException` en
+la corrida de debugging del 7-nov) y 1 error de código
+(`IllegalArgumentException: bound must be positive`). Los 12 fallos de
+`setUp` de la línea base (sesión Appium no creada) ya no se cuentan como
+tests: se filtraron como configuraciones en la ingesta de Allure
+(`allure_ingest.py`). El histórico sigue creciendo con cada corrida del CI,
+por lo que estos conteos corresponden a la fecha de corte indicada.
 
 ### 5.3 Detección de pruebas inestables
 

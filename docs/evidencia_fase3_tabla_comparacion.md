@@ -7,7 +7,7 @@ Corte: 2026-11-09 17:00 (56 registros).
 |---|---|---|---|---|---|---|---|---|
 | SauceDemoAutomation | 18 | 72 | 65 | 7 | 0 | 90.3% | 16.6 s | Intermitente |
 | PetStoreRestAssured | 16 | 96 | 96 | 0 | 0 | 100.0% | 4.0 s | Estable |
-| WdioMobileAutomation | 22 | 96 | 41 | 43 | 12 | 49.6% | 96.5 s | Inestable |
+| WdioMobileAutomation | 22 | 84 | 41 | 31 | 12 | 49.6% | 96.5 s | Inestable |
 
 ## Detalle por ejecución
 
@@ -19,9 +19,9 @@ Corte: 2026-11-09 17:00 (56 registros).
 | PetStoreRestAssured | 2026-11-06T16:27:08 | 6 | 6 | 0 | 100.0% | 7.8 s |
 | PetStoreRestAssured | 2026-11-06T16:27:33 | 6 | 6 | 0 | 100.0% | 7.1 s |
 | PetStoreRestAssured | 2026-11-06T16:28:01 | 6 | 6 | 0 | 100.0% | 7.7 s |
-| WdioMobileAutomation | 2026-11-06T16:28:36 | 8 | 0 | 4 | 0.0% | 0.0 s |
-| WdioMobileAutomation | 2026-11-06T16:29:09 | 8 | 0 | 4 | 0.0% | 0.0 s |
-| WdioMobileAutomation | 2026-11-06T16:29:49 | 8 | 0 | 4 | 0.0% | 0.0 s |
+| WdioMobileAutomation | 2026-11-06T16:28:36 | 4 | 0 | 0 | 0.0% | 0.0 s |
+| WdioMobileAutomation | 2026-11-06T16:29:09 | 4 | 0 | 0 | 0.0% | 0.0 s |
+| WdioMobileAutomation | 2026-11-06T16:29:49 | 4 | 0 | 0 | 0.0% | 0.0 s |
 | SauceDemoAutomation | 2026-11-06T20:27:14 | 4 | 4 | 0 | 100.0% | 12.9 s |
 | PetStoreRestAssured | 2026-11-06T20:27:18 | 6 | 6 | 0 | 100.0% | 2.5 s |
 | WdioMobileAutomation | 2026-11-06T20:32:12 | 4 | 2 | 2 | 50.0% | 60.9 s |
