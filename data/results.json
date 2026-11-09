@@ -1144,5 +1144,89 @@
         "exception_message": null
       }
     ]
+  },
+  {
+    "project": "PetStoreRestAssured",
+    "executed_at": "2026-11-08T20:14:15-05:00",
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": 100.0,
+    "duration_ms": 0,
+    "tests": [
+      {
+        "name": "getPetByIdTest",
+        "class": "unknown",
+        "status": "passed",
+        "duration_ms": 503,
+        "started_at": "2026-11-09T01:14:37 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "createUserForLogin",
+        "class": "unknown",
+        "status": "passed",
+        "duration_ms": 174,
+        "started_at": "2026-11-09T01:14:37 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "loginUserTest",
+        "class": "unknown",
+        "status": "passed",
+        "duration_ms": 176,
+        "started_at": "2026-11-09T01:14:37 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "setUpEnvironment",
+        "class": "unknown",
+        "status": "passed",
+        "duration_ms": 6,
+        "started_at": "2026-11-09T01:14:35 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "createUserTest",
+        "class": "unknown",
+        "status": "passed",
+        "duration_ms": 1299,
+        "started_at": "2026-11-09T01:14:35 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "createOrderTest",
+        "class": "unknown",
+        "status": "passed",
+        "duration_ms": 475,
+        "started_at": "2026-11-09T01:14:38 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "getPetsByStatusTest",
+        "class": "unknown",
+        "status": "passed",
+        "duration_ms": 312,
+        "started_at": "2026-11-09T01:14:37 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "logoutUserTest",
+        "class": "unknown",
+        "status": "passed",
+        "duration_ms": 217,
+        "started_at": "2026-11-09T01:14:38 UTC",
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
   }
 ]
