@@ -238,7 +238,17 @@ def main() -> None:
     st.subheader("🧩 Matriz de causa raíz probable")
     st.caption("Clasificación automática de los fallos recurrentes según el mensaje de error (análisis por patrones).")
 
+    # Nota de orden: "Infraestructura" se evalúa ANTES que "Timeouts" porque
+    # fallos de sesión (Could not start a new session... adbExec timeout) y
+    # NoSuchElement (Command duration or timeout) contienen la palabra
+    # "timeout" en el mensaje de Selenium sin ser timeouts reales.
     CAUSE_PATTERNS = [
+        ("🖥️ Infraestructura / Entorno de ejecución", [
+            r"session\s*not\s*created", r"could\s*not\s*start\s*a\s*new\s*session",
+            r"webview", r"renderiz", r"swiftshader", r"emulator", r"device",
+            r"systemui", r"crash", r"no\s*such\s*element", r"adbexec",
+            r"could\s*not\s*start\s*a\s*new\s*session", r"response\s*code\s*500",
+        ]),
         ("⏱️ Timeouts / Asincronía", [
             r"timeout", r"timed?\s*out", r"time\s*elapsed.*<<<", r"timeoutexception",
             r"expected condition failed", r"waiting for", r"anr",
@@ -258,14 +268,18 @@ def main() -> None:
         ("🔍 Fallo de aserción (comportamiento)", [
             r"expected\s*\[", r"but\s*found", r"assertion", r"no\s*visible",
         ]),
-        ("🖥️ Infraestructura / Entorno de ejecución", [
-            r"session\s*not\s*created", r"could\s*not\s*start\s*a\s*new\s*session",
-            r"webview", r"renderiz", r"swiftshader", r"emulator", r"device",
-            r"systemui", r"crash", r"no\s*such\s*element",
-        ]),
     ]
 
-    def classify_cause(message: str) -> str:
+    def classify_cause(message: str, exception_type: str = "") -> str:
+        # El tipo de excepción tiene prioridad: es más confiable que el
+        # mensaje (p. ej. WebDriverTimeoutException es un timeout real,
+        # mientras que un mensaje de Selenium puede contener "timeout" sin
+        # que el fallo lo sea).
+        exc = (exception_type or "").lower()
+        if "nosuchelement" in exc or "sessionnotcreated" in exc:
+            return "🖥️ Infraestructura / Entorno de ejecución"
+        if "timeoutexception" in exc or "webdrivertimeout" in exc:
+            return "⏱️ Timeouts / Asincronía"
         text = (message or "").lower()
         for cause, patterns in CAUSE_PATTERNS:
             if any(re.search(p, text) for p in patterns):
@@ -279,7 +293,12 @@ def main() -> None:
             tests_df["project"] = test_rows["project"].values
             failed_tests = tests_df[tests_df["status"] == "failed"].copy()
             if not failed_tests.empty:
-                failed_tests["causa"] = failed_tests["exception_message"].apply(classify_cause)
+                failed_tests["causa"] = failed_tests.apply(
+                    lambda row: classify_cause(
+                        row.get("exception_message"), row.get("exception_type")
+                    ),
+                    axis=1,
+                )
                 cause_matrix = (
                     failed_tests.groupby(["project", "causa"])
                     .size().reset_index(name="fallos")

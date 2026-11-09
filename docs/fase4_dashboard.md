@@ -75,23 +75,47 @@ La matriz de causa raíz usa análisis de texto simple (regex) sobre el campo
 
 | Categoría | Patrones (ejemplos) |
 |---|---|
+| Infraestructura / Entorno | `session not created`, `could not start a new session`, `adbexec`, `no such element`, `emulator`, `webview` |
 | Timeouts / Asincronía | `timeout`, `expected condition failed`, `waiting for` |
 | Concurrencia | `stale element`, `not interactable` |
 | Red / Dependencias externas | `connection refused`, `502/503/504` |
 | Datos de prueba / Aislamiento | `duplicate`, `already exists`, `409` |
 | Aserción (comportamiento) | `expected [`, `but found` |
-| Infraestructura / Entorno | `session not created`, `webview`, `emulator`, `no such element` |
 
-Verificado con el histórico real: 13 fallos mobile clasificados (12
-timeouts/asincronía, 1 aserción de contenido no visible).
+Dos refinamientos sobre la primera versión del clasificador:
+
+1. **Orden de evaluación**: *Infraestructura* se evalúa antes que *Timeouts*.
+   Varios fallos de infraestructura contienen la palabra "timeout" en el
+   mensaje de Selenium (p. ej. `Could not start a new session... adbExec
+   timeout`, o `NoSuchElement` con `Command duration or timeout`) sin ser
+   timeouts reales; al evaluarse Timeouts primero, quedaban mal clasificados.
+2. **Tipo de excepción**: además del mensaje, el clasificador usa
+   `exception_type` con prioridad (`NoSuchElementException` /
+   `SessionNotCreatedException` → infraestructura; `TimeoutException` →
+   timeouts), ya que el tipo es más confiable que el texto del mensaje.
+
+Verificado con el histórico real (23 fallos): 12 mobile clasificados como
+infraestructura (fallos de sesión Appium, `adbExec` 500 — coherente con el
+diagnóstico de `linea_base.md`), 9 aserciones de contenido no visible
+(Navigation/Swipe, limitación de renderizado del emulador) y 2 web de
+infraestructura (`NoSuchElement` en checkout, resuelto con waits explícitos).
 
 ### 5.3 Detección de pruebas inestables
 
 Un test se marca como *flaky* si en el histórico aparece con estado `passed`
 y `failed` en ejecuciones distintas (agrupación por suite, clase y nombre).
-En los datos actuales no hay flaky: los fallos mobile fueron consistentes
-(limitación del entorno), lo cual es coherente con el diagnóstico de la línea
-base.
+Con el criterio del propio dashboard, el histórico actual registra 2 pruebas
+inestables:
+
+- `purchaseProductSuccessfully` (SauceDemo): pasó en la mayoría de corridas y
+  falló en el CI del 9-nov (`NoSuchElement` en checkout por clicks perdidos en
+  React; corregido con waits explícitos).
+- `swipeCardsAndFindHiddenText` (Wdio): pasó en el piloto del 4-nov y falla en
+  CI por la limitación de renderizado del emulador (SwiftShader).
+
+`navigateThroughBottomMenu`, en cambio, no es flaky bajo este criterio: nunca
+pasó en el histórico registrado (solo `failed`), por lo que es un fallo
+consistente y no una alternancia éxito/fallo.
 
 ## 6. Despliegue
 
