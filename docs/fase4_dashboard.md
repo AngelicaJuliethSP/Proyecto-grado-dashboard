@@ -94,18 +94,20 @@ Dos refinamientos sobre la primera versión del clasificador:
    `SessionNotCreatedException` → infraestructura; `TimeoutException` →
    timeouts), ya que el tipo es más confiable que el texto del mensaje.
 
-Verificado con el histórico real al 9-nov 18:00 (38 fallos en 54 registros):
-16 mobile de aserción (`navigateThroughBottomMenu`, contenido no visible por
-la limitación de renderizado del emulador), 13 mobile de aserción
-(`swipeCardsAndFindHiddenText`, misma causa), 6 web de infraestructura
-(`NoSuchElement` en checkout, resuelto con waits explícitos), 1 web de
-aserción (`removeAllItemsFromCart`), 1 timeout móvil (`TimeoutException` en
-la corrida de debugging del 7-nov) y 1 error de código
-(`IllegalArgumentException: bound must be positive`). Los 12 fallos de
-`setUp` de la línea base (sesión Appium no creada) ya no se cuentan como
-tests: se filtraron como configuraciones en la ingesta de Allure
-(`allure_ingest.py`). El histórico sigue creciendo con cada corrida del CI,
-por lo que estos conteos corresponden a la fecha de corte indicada.
+Verificado con el histórico real al 9-nov 19:00 (36 fallos en 57 registros):
+15 mobile de aserción (`navigateThroughBottomMenu`, contenido no visible por
+la limitación de renderizado del emulador), 11 mobile de aserción
+(`swipeCardsAndFindHiddenText`, misma causa), 5 web de infraestructura
+(`NoSuchElement` en checkout, resuelto con waits explícitos), 3 timeouts
+móviles (`TimeoutException` en Login, Signup y Swipe durante la corrida de
+debugging del 7-nov), 1 web de aserción (`removeAllItemsFromCart`) y 1 fallo
+sin categoría (`IllegalArgumentException: bound must be positive`): el
+dashboard lo muestra como *Sin clasificar* porque no existe una categoría
+para ese tipo de excepción. Los 12 fallos de `setUp` de la línea base (sesión
+Appium no creada) ya no se cuentan como tests: se filtraron como
+configuraciones en la ingesta de Allure (`allure_ingest.py`). El histórico
+sigue creciendo con cada corrida del CI, por lo que estos conteos
+corresponden a la fecha de corte indicada.
 
 ### 5.3 Detección de pruebas inestables
 
