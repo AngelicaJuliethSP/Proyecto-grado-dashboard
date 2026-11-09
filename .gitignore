@@ -19,3 +19,4 @@ target/
 Thumbs.db
 __pycache__/
 .pytest_cache/
+piloto/

@@ -1,1 +1,0 @@
-{"uuid":"a92303d6-593f-4288-b215-f2b1c64a3d02","name":"PerfDog PetStore API Suite","children":["c03ba6b9-4799-468d-baf8-fedfec3fe9b3"],"befores":[{"name":"setUpEnvironment","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1793982469884,"stop":1793982469891}],"afters":[],"start":1793982469857,"stop":1793982478495}
