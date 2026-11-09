@@ -50,7 +50,12 @@ def run_mvn_tests(project_dir: Path) -> tuple[bool, str]:
 
 def ingest_run(project: str, project_dir: Path, output: Path) -> None:
     """Ingiere la última corrida. Prefiere Allure JSON; respaldo: surefire XML."""
-    allure_dir = project_dir / "allure-results"
+    # allure.properties (src/test/resources) dirige el adapter a
+    # target/allure-results; se mantiene la raíz como respaldo de corridas
+    # anteriores al fix.
+    allure_dir = project_dir / "target" / "allure-results"
+    if not allure_dir.exists():
+        allure_dir = project_dir / "allure-results"
     try:
         subprocess.run(
             [
@@ -85,7 +90,7 @@ def main() -> None:
 
     for project in args.projects:
         project_dir = PILOTO / project
-        allure_dir = project_dir / "allure-results"
+        allure_dir = project_dir / "target" / "allure-results"
         print(f"\n=== {project} — {args.runs} corridas ===")
         for run in range(1, args.runs + 1):
             # limpiar resultados acumulados para que cada corrida sea independiente
