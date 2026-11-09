@@ -1306,5 +1306,35 @@
         "exception_message": "\n              Texto WebdriverIO no visible expected [true] but found [false]\n            "
       }
     ]
+  },
+  {
+    "project": "WdioMobileAutomation",
+    "executed_at": "2026-11-09T12:32:01-05:00",
+    "total": 2,
+    "passed": 1,
+    "failed": 1,
+    "skipped": 0,
+    "success_rate": 50.0,
+    "duration_ms": 90411,
+    "tests": [
+      {
+        "name": "swipeCardsAndFindHiddenText",
+        "class": "tests.SwipeTest",
+        "status": "passed",
+        "duration_ms": 41612,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "navigateThroughBottomMenu",
+        "class": "tests.NavigationTest",
+        "status": "failed",
+        "duration_ms": 1707,
+        "started_at": null,
+        "exception_type": "java.lang.AssertionError",
+        "exception_message": "Texto WebdriverIO no visible expected [true] but found [false]"
+      }
+    ]
   }
 ]
