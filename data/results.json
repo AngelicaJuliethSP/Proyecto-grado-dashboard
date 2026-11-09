@@ -1594,5 +1594,1457 @@
         "exception_message": null
       }
     ]
+  },
+  {
+    "project": "SauceDemoAutomation",
+    "executed_at": "2026-11-06T20:27:14-05:00",
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": 100.0,
+    "duration_ms": 12949,
+    "tests": [
+      {
+        "name": "purchaseProductSuccessfully",
+        "class": "com.saucedemo.tests.PurchaseTest",
+        "status": "passed",
+        "duration_ms": 621,
+        "started_at": "2026-11-07T01:27:35 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "purchaseProductSuccessfully",
+        "class": "com.saucedemo.tests.PurchaseTest",
+        "status": "passed",
+        "duration_ms": 5537,
+        "started_at": "2026-11-07T01:27:36 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "removeAllItemsFromCart",
+        "class": "com.saucedemo.tests.RemoveCartItemsTest",
+        "status": "passed",
+        "duration_ms": 644,
+        "started_at": "2026-11-07T01:27:34 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "logoutRedirectsToLoginPage",
+        "class": "com.saucedemo.tests.LogoutTest",
+        "status": "passed",
+        "duration_ms": 788,
+        "started_at": "2026-11-07T01:27:43 UTC",
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
+  },
+  {
+    "project": "PetStoreRestAssured",
+    "executed_at": "2026-11-06T20:27:18-05:00",
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": 100.0,
+    "duration_ms": 2462,
+    "tests": [
+      {
+        "name": "getPetByIdTest",
+        "class": "com.globant.automation.test.GetPetByIdTest",
+        "status": "passed",
+        "duration_ms": 320,
+        "started_at": "2026-11-07T01:27:34 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "loginUserTest",
+        "class": "com.globant.automation.test.LoginUserTest",
+        "status": "passed",
+        "duration_ms": 123,
+        "started_at": "2026-11-07T01:27:34 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "createUserTest",
+        "class": "com.globant.automation.test.CreateUserTest",
+        "status": "passed",
+        "duration_ms": 1235,
+        "started_at": "2026-11-07T01:27:33 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "createOrderTest",
+        "class": "com.globant.automation.test.CreateOrderTest",
+        "status": "passed",
+        "duration_ms": 307,
+        "started_at": "2026-11-07T01:27:35 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "getPetsByStatusTest",
+        "class": "com.globant.automation.test.GetPetsByStatusTest",
+        "status": "passed",
+        "duration_ms": 187,
+        "started_at": "2026-11-07T01:27:34 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "logoutUserTest",
+        "class": "com.globant.automation.test.LogoutUserTest",
+        "status": "passed",
+        "duration_ms": 108,
+        "started_at": "2026-11-07T01:27:35 UTC",
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
+  },
+  {
+    "project": "WdioMobileAutomation",
+    "executed_at": "2026-11-06T20:32:12-05:00",
+    "total": 4,
+    "passed": 2,
+    "failed": 2,
+    "skipped": 0,
+    "success_rate": 50.0,
+    "duration_ms": 60874,
+    "tests": [
+      {
+        "name": "successfulLogin",
+        "class": "tests.LoginTest",
+        "status": "passed",
+        "duration_ms": 13867,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "navigateThroughBottomMenu",
+        "class": "tests.NavigationTest",
+        "status": "failed",
+        "duration_ms": 1540,
+        "started_at": null,
+        "exception_type": "java.lang.AssertionError",
+        "exception_message": "Texto WebdriverIO no visible expected [true] but found [false]"
+      },
+      {
+        "name": "successfulSignUp",
+        "class": "tests.SignupTest",
+        "status": "passed",
+        "duration_ms": 8361,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "swipeCardsAndFindHiddenText",
+        "class": "tests.SwipeTest",
+        "status": "failed",
+        "duration_ms": 873,
+        "started_at": null,
+        "exception_type": "java.lang.AssertionError",
+        "exception_message": "Swipe screen no se muestra expected [true] but found [false]"
+      }
+    ]
+  },
+  {
+    "project": "WdioMobileAutomation",
+    "executed_at": "2026-11-06T20:43:15-05:00",
+    "total": 3,
+    "passed": 0,
+    "failed": 3,
+    "skipped": 0,
+    "success_rate": 0.0,
+    "duration_ms": 74545,
+    "tests": [
+      {
+        "name": "successfulLogin",
+        "class": "tests.LoginTest",
+        "status": "failed",
+        "duration_ms": 10055,
+        "started_at": null,
+        "exception_type": "org.openqa.selenium.TimeoutException",
+        "exception_message": "Expected condition failed: waiting for visibility of element found by AppiumBy.accessibilityId: Login, but... org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters..\n(tried for 10 seconds with 500 milliseconds interval)\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Linux', os.arch: 'amd64', os.version: '7.0.0-1017-azure', java.version: '17.0.21'\nDriver info: io.appium.java_client.android.AndroidDriver\nCapabilities {appium:app: /home/runner/work/WdioMobil..., appium:appActivity: com.wdiodemoapp.MainActivity, appium:appPackage: com.wdiodemoapp, appium:automationName: UIAutomator2, appium:databaseEnabled: false, appium:desired: {app: /home/runner/work/WdioMobil..., automationName: UIAutomator2, deviceName: Pixel_6, platformName: ANDROID, uiautomator2ServerInstallTimeout: 60000}, appium:deviceApiLevel: 34, appium:deviceManufacturer: Google, appium:deviceModel: sdk_gphone64_x86_64, appium:deviceName: emulator-5554, appium:deviceScreenDensity: 420, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: emulator-5554, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:pixelRatio: 2.625, appium:platformVersion: 14, appium:statBarHeight: 128, appium:takesScreenshot: true, appium:uiautomator2ServerInstallTimeout: 60000, appium:viewportRect: {height: 2272, left: 0, top: 128, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}\nSession ID: 2d9527d4-f28c-4ac8-81ee-bfd5a8eaeba1"
+      },
+      {
+        "name": "successfulSignUp",
+        "class": "tests.SignupTest",
+        "status": "failed",
+        "duration_ms": 10527,
+        "started_at": null,
+        "exception_type": "org.openqa.selenium.TimeoutException",
+        "exception_message": "Expected condition failed: waiting for visibility of element found by AppiumBy.accessibilityId: Login, but... org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters..\n(tried for 10 seconds with 500 milliseconds interval)\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Linux', os.arch: 'amd64', os.version: '7.0.0-1017-azure', java.version: '17.0.21'\nDriver info: io.appium.java_client.android.AndroidDriver\nCapabilities {appium:app: /home/runner/work/WdioMobil..., appium:appActivity: com.wdiodemoapp.MainActivity, appium:appPackage: com.wdiodemoapp, appium:automationName: UIAutomator2, appium:databaseEnabled: false, appium:desired: {app: /home/runner/work/WdioMobil..., automationName: UIAutomator2, deviceName: Pixel_6, platformName: ANDROID, uiautomator2ServerInstallTimeout: 60000}, appium:deviceApiLevel: 34, appium:deviceManufacturer: Google, appium:deviceModel: sdk_gphone64_x86_64, appium:deviceName: emulator-5554, appium:deviceScreenDensity: 420, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: emulator-5554, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:pixelRatio: 2.625, appium:platformVersion: 14, appium:statBarHeight: 128, appium:takesScreenshot: true, appium:uiautomator2ServerInstallTimeout: 60000, appium:viewportRect: {height: 2272, left: 0, top: 128, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}\nSession ID: 911bcfb7-b3c2-4084-ad51-99af23b4645c"
+      },
+      {
+        "name": "swipeCardsAndFindHiddenText",
+        "class": "tests.SwipeTest",
+        "status": "failed",
+        "duration_ms": 10122,
+        "started_at": null,
+        "exception_type": "org.openqa.selenium.TimeoutException",
+        "exception_message": "Expected condition failed: waiting for visibility of element found by AppiumBy.accessibilityId: Swipe, but... org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters..\n(tried for 10 seconds with 500 milliseconds interval)\nBuild info: version: '4.52.0', revision: '5b37fd4 5b37fd4d98c08d6a43a0790417f91b8f6f32fb5c'\nSystem info: os.name: 'Linux', os.arch: 'amd64', os.version: '7.0.0-1017-azure', java.version: '17.0.21'\nDriver info: io.appium.java_client.android.AndroidDriver\nCapabilities {appium:app: /home/runner/work/WdioMobil..., appium:appActivity: com.wdiodemoapp.MainActivity, appium:appPackage: com.wdiodemoapp, appium:automationName: UIAutomator2, appium:databaseEnabled: false, appium:desired: {app: /home/runner/work/WdioMobil..., automationName: UIAutomator2, deviceName: Pixel_6, platformName: ANDROID, uiautomator2ServerInstallTimeout: 60000}, appium:deviceApiLevel: 34, appium:deviceManufacturer: Google, appium:deviceModel: sdk_gphone64_x86_64, appium:deviceName: emulator-5554, appium:deviceScreenDensity: 420, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: emulator-5554, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:pixelRatio: 2.625, appium:platformVersion: 14, appium:statBarHeight: 128, appium:takesScreenshot: true, appium:uiautomator2ServerInstallTimeout: 60000, appium:viewportRect: {height: 2272, left: 0, top: 128, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}\nSession ID: c72cf50b-8b33-4174-a6f0-5fd88737d6bd"
+      }
+    ]
+  },
+  {
+    "project": "WdioMobileAutomation",
+    "executed_at": "2026-11-06T20:57:50-05:00",
+    "total": 3,
+    "passed": 2,
+    "failed": 1,
+    "skipped": 0,
+    "success_rate": 66.67,
+    "duration_ms": 58550,
+    "tests": [
+      {
+        "name": "successfulLogin",
+        "class": "tests.LoginTest",
+        "status": "passed",
+        "duration_ms": 11544,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "successfulSignUp",
+        "class": "tests.SignupTest",
+        "status": "passed",
+        "duration_ms": 8827,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "swipeCardsAndFindHiddenText",
+        "class": "tests.SwipeTest",
+        "status": "failed",
+        "duration_ms": 826,
+        "started_at": null,
+        "exception_type": "java.lang.AssertionError",
+        "exception_message": "Swipe screen no se muestra expected [true] but found [false]"
+      }
+    ]
+  },
+  {
+    "project": "WdioMobileAutomation",
+    "executed_at": "2026-11-06T21:07:47-05:00",
+    "total": 2,
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": 100.0,
+    "duration_ms": 63206,
+    "tests": [
+      {
+        "name": "successfulLogin",
+        "class": "tests.LoginTest",
+        "status": "passed",
+        "duration_ms": 14569,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "successfulSignUp",
+        "class": "tests.SignupTest",
+        "status": "passed",
+        "duration_ms": 8195,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
+  },
+  {
+    "project": "WdioMobileAutomation",
+    "executed_at": "2026-11-07T21:00:34-05:00",
+    "total": 4,
+    "passed": 3,
+    "failed": 1,
+    "skipped": 0,
+    "success_rate": 75.0,
+    "duration_ms": 116571,
+    "tests": [
+      {
+        "name": "successfulLogin",
+        "class": "tests.LoginTest",
+        "status": "passed",
+        "duration_ms": 13688,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "navigateThroughBottomMenu",
+        "class": "tests.NavigationTest",
+        "status": "failed",
+        "duration_ms": 4953,
+        "started_at": null,
+        "exception_type": "java.lang.AssertionError",
+        "exception_message": "Forms screen no se muestra expected [true] but found [false]"
+      },
+      {
+        "name": "successfulSignUp",
+        "class": "tests.SignupTest",
+        "status": "passed",
+        "duration_ms": 7083,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "swipeCardsAndFindHiddenText",
+        "class": "tests.SwipeTest",
+        "status": "passed",
+        "duration_ms": 39708,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
+  },
+  {
+    "project": "SauceDemoAutomation",
+    "executed_at": "2026-11-08T10:18:16-05:00",
+    "total": 4,
+    "passed": 2,
+    "failed": 2,
+    "skipped": 0,
+    "success_rate": 50.0,
+    "duration_ms": 18341,
+    "tests": [
+      {
+        "name": "purchaseProductSuccessfully",
+        "class": "com.saucedemo.tests.PurchaseTest",
+        "status": "failed",
+        "duration_ms": 225,
+        "started_at": "2026-11-08T15:18:40 UTC",
+        "exception_type": "org.openqa.selenium.NoSuchElementException",
+        "exception_message": "\n              no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\"#checkout\"}\n  (Session info: chrome=156.0.8078.79)\nFor documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception\nBuild info: version: '4.47.0', revision: '9175ed9 9175ed94d83e87cc3abeb7c9fd91367d17849d35'\nSystem info: os.name: 'Linux', os.arch: 'amd64', os.version: '7.0.0-1017-azure', java.version: '17.0.21'\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCommand: [0e5a8054d03ea9751ae9962edf282184, findElement {value=checkout, using=id}]\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 156.0.8078.79, chrome: {chromedriverVersion: 156.0.8078.80 (fb096c0011f9..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:46191}, goog:processID: 2462, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:46191/devtoo..., se:cdpVersion: 156.0.8078.79, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:cmtgKey: true, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: 0e5a8054d03ea9751ae9962edf282184\n            "
+      },
+      {
+        "name": "purchaseProductSuccessfully",
+        "class": "com.saucedemo.tests.PurchaseTest",
+        "status": "failed",
+        "duration_ms": 132,
+        "started_at": "2026-11-08T15:18:41 UTC",
+        "exception_type": "java.lang.IllegalArgumentException",
+        "exception_message": "\n              bound must be positive\n            "
+      },
+      {
+        "name": "removeAllItemsFromCart",
+        "class": "com.saucedemo.tests.RemoveCartItemsTest",
+        "status": "passed",
+        "duration_ms": 830,
+        "started_at": "2026-11-08T15:18:39 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "logoutRedirectsToLoginPage",
+        "class": "com.saucedemo.tests.LogoutTest",
+        "status": "passed",
+        "duration_ms": 733,
+        "started_at": "2026-11-08T15:18:47 UTC",
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
+  },
+  {
+    "project": "PetStoreRestAssured",
+    "executed_at": "2026-11-08T10:18:20-05:00",
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": 100.0,
+    "duration_ms": 2854,
+    "tests": [
+      {
+        "name": "getPetByIdTest",
+        "class": "com.globant.automation.test.GetPetByIdTest",
+        "status": "passed",
+        "duration_ms": 405,
+        "started_at": "2026-11-08T15:18:37 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "loginUserTest",
+        "class": "com.globant.automation.test.LoginUserTest",
+        "status": "passed",
+        "duration_ms": 164,
+        "started_at": "2026-11-08T15:18:37 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "createUserTest",
+        "class": "com.globant.automation.test.CreateUserTest",
+        "status": "passed",
+        "duration_ms": 1230,
+        "started_at": "2026-11-08T15:18:35 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "createOrderTest",
+        "class": "com.globant.automation.test.CreateOrderTest",
+        "status": "passed",
+        "duration_ms": 387,
+        "started_at": "2026-11-08T15:18:38 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "getPetsByStatusTest",
+        "class": "com.globant.automation.test.GetPetsByStatusTest",
+        "status": "passed",
+        "duration_ms": 243,
+        "started_at": "2026-11-08T15:18:37 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "logoutUserTest",
+        "class": "com.globant.automation.test.LogoutUserTest",
+        "status": "passed",
+        "duration_ms": 172,
+        "started_at": "2026-11-08T15:18:38 UTC",
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
+  },
+  {
+    "project": "SauceDemoAutomation",
+    "executed_at": "2026-11-08T12:24:25-05:00",
+    "total": 4,
+    "passed": 2,
+    "failed": 2,
+    "skipped": 0,
+    "success_rate": 50.0,
+    "duration_ms": 12824,
+    "tests": [
+      {
+        "name": "purchaseProductSuccessfully",
+        "class": "com.saucedemo.tests.PurchaseTest",
+        "status": "passed",
+        "duration_ms": 729,
+        "started_at": "2026-11-08T17:24:42 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "purchaseProductSuccessfully",
+        "class": "com.saucedemo.tests.PurchaseTest",
+        "status": "failed",
+        "duration_ms": 5777,
+        "started_at": "2026-11-08T17:24:43 UTC",
+        "exception_type": "org.openqa.selenium.NoSuchElementException",
+        "exception_message": "\n              no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\"[data-test='complete-header']\"}\n  (Session info: chrome=156.0.8078.79)\nFor documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception\nBuild info: version: '4.47.0', revision: '9175ed9 9175ed94d83e87cc3abeb7c9fd91367d17849d35'\nSystem info: os.name: 'Linux', os.arch: 'amd64', os.version: '7.0.0-1017-azure', java.version: '17.0.21'\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCommand: [ab0de8442b8650302c250ac163782721, findElement {value=[data-test='complete-header'], using=css selector}]\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 156.0.8078.79, chrome: {chromedriverVersion: 156.0.8078.80 (fb096c0011f9..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:34151}, goog:processID: 2821, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:34151/devtoo..., se:cdpVersion: 156.0.8078.79, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:cmtgKey: true, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: ab0de8442b8650302c250ac163782721\n            "
+      },
+      {
+        "name": "removeAllItemsFromCart",
+        "class": "com.saucedemo.tests.RemoveCartItemsTest",
+        "status": "failed",
+        "duration_ms": 487,
+        "started_at": "2026-11-08T17:24:41 UTC",
+        "exception_type": "java.lang.AssertionError",
+        "exception_message": "\n              Expected 3 items in the cart before removal. expected [3] but found [0]\n            "
+      },
+      {
+        "name": "logoutRedirectsToLoginPage",
+        "class": "com.saucedemo.tests.LogoutTest",
+        "status": "passed",
+        "duration_ms": 948,
+        "started_at": "2026-11-08T17:24:50 UTC",
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
+  },
+  {
+    "project": "SauceDemoAutomation",
+    "executed_at": "2026-11-08T12:40:46-05:00",
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": 100.0,
+    "duration_ms": 13547,
+    "tests": [
+      {
+        "name": "purchaseProductSuccessfully",
+        "class": "com.saucedemo.tests.PurchaseTest",
+        "status": "passed",
+        "duration_ms": 796,
+        "started_at": "2026-11-08T17:41:03 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "purchaseProductSuccessfully",
+        "class": "com.saucedemo.tests.PurchaseTest",
+        "status": "passed",
+        "duration_ms": 5838,
+        "started_at": "2026-11-08T17:41:04 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "removeAllItemsFromCart",
+        "class": "com.saucedemo.tests.RemoveCartItemsTest",
+        "status": "passed",
+        "duration_ms": 741,
+        "started_at": "2026-11-08T17:41:01 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "logoutRedirectsToLoginPage",
+        "class": "com.saucedemo.tests.LogoutTest",
+        "status": "passed",
+        "duration_ms": 947,
+        "started_at": "2026-11-08T17:41:11 UTC",
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
+  },
+  {
+    "project": "SauceDemoAutomation",
+    "executed_at": "2026-11-08T13:20:22-05:00",
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": 100.0,
+    "duration_ms": 13795,
+    "tests": [
+      {
+        "name": "purchaseProductSuccessfully",
+        "class": "com.saucedemo.tests.PurchaseTest",
+        "status": "passed",
+        "duration_ms": 756,
+        "started_at": "2026-11-08T18:20:44 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "purchaseProductSuccessfully",
+        "class": "com.saucedemo.tests.PurchaseTest",
+        "status": "passed",
+        "duration_ms": 5840,
+        "started_at": "2026-11-08T18:20:45 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "removeAllItemsFromCart",
+        "class": "com.saucedemo.tests.RemoveCartItemsTest",
+        "status": "passed",
+        "duration_ms": 695,
+        "started_at": "2026-11-08T18:20:42 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "logoutRedirectsToLoginPage",
+        "class": "com.saucedemo.tests.LogoutTest",
+        "status": "passed",
+        "duration_ms": 936,
+        "started_at": "2026-11-08T18:20:52 UTC",
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
+  },
+  {
+    "project": "PetStoreRestAssured",
+    "executed_at": "2026-11-08T13:20:26-05:00",
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": 100.0,
+    "duration_ms": 3492,
+    "tests": [
+      {
+        "name": "getPetByIdTest",
+        "class": "com.globant.automation.test.GetPetByIdTest",
+        "status": "passed",
+        "duration_ms": 563,
+        "started_at": "2026-11-08T18:20:41 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "loginUserTest",
+        "class": "com.globant.automation.test.LoginUserTest",
+        "status": "passed",
+        "duration_ms": 163,
+        "started_at": "2026-11-08T18:20:41 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "createUserTest",
+        "class": "com.globant.automation.test.CreateUserTest",
+        "status": "passed",
+        "duration_ms": 1399,
+        "started_at": "2026-11-08T18:20:39 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "createOrderTest",
+        "class": "com.globant.automation.test.CreateOrderTest",
+        "status": "passed",
+        "duration_ms": 570,
+        "started_at": "2026-11-08T18:20:42 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "getPetsByStatusTest",
+        "class": "com.globant.automation.test.GetPetsByStatusTest",
+        "status": "passed",
+        "duration_ms": 397,
+        "started_at": "2026-11-08T18:20:41 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "logoutUserTest",
+        "class": "com.globant.automation.test.LogoutUserTest",
+        "status": "passed",
+        "duration_ms": 177,
+        "started_at": "2026-11-08T18:20:43 UTC",
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
+  },
+  {
+    "project": "WdioMobileAutomation",
+    "executed_at": "2026-11-08T13:20:31-05:00",
+    "total": 4,
+    "passed": 2,
+    "failed": 2,
+    "skipped": 0,
+    "success_rate": 50.0,
+    "duration_ms": 120942,
+    "tests": [
+      {
+        "name": "successfulLogin",
+        "class": "tests.LoginTest",
+        "status": "passed",
+        "duration_ms": 13758,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "navigateThroughBottomMenu",
+        "class": "tests.NavigationTest",
+        "status": "failed",
+        "duration_ms": 1741,
+        "started_at": null,
+        "exception_type": "java.lang.AssertionError",
+        "exception_message": "Texto WebdriverIO no visible expected [true] but found [false]"
+      },
+      {
+        "name": "successfulSignUp",
+        "class": "tests.SignupTest",
+        "status": "passed",
+        "duration_ms": 7738,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "swipeCardsAndFindHiddenText",
+        "class": "tests.SwipeTest",
+        "status": "failed",
+        "duration_ms": 547,
+        "started_at": null,
+        "exception_type": "java.lang.AssertionError",
+        "exception_message": "Swipe screen no se muestra expected [true] but found [false]"
+      }
+    ]
+  },
+  {
+    "project": "SauceDemoAutomation",
+    "executed_at": "2026-11-08T13:39:19-05:00",
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": 100.0,
+    "duration_ms": 13502,
+    "tests": [
+      {
+        "name": "purchaseProductSuccessfully",
+        "class": "com.saucedemo.tests.PurchaseTest",
+        "status": "passed",
+        "duration_ms": 766,
+        "started_at": "2026-11-08T18:39:37 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "purchaseProductSuccessfully",
+        "class": "com.saucedemo.tests.PurchaseTest",
+        "status": "passed",
+        "duration_ms": 5759,
+        "started_at": "2026-11-08T18:39:38 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "removeAllItemsFromCart",
+        "class": "com.saucedemo.tests.RemoveCartItemsTest",
+        "status": "passed",
+        "duration_ms": 734,
+        "started_at": "2026-11-08T18:39:35 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "logoutRedirectsToLoginPage",
+        "class": "com.saucedemo.tests.LogoutTest",
+        "status": "passed",
+        "duration_ms": 898,
+        "started_at": "2026-11-08T18:39:45 UTC",
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
+  },
+  {
+    "project": "PetStoreRestAssured",
+    "executed_at": "2026-11-08T13:39:23-05:00",
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": 100.0,
+    "duration_ms": 3776,
+    "tests": [
+      {
+        "name": "getPetByIdTest",
+        "class": "com.globant.automation.test.GetPetByIdTest",
+        "status": "passed",
+        "duration_ms": 580,
+        "started_at": "2026-11-08T18:39:42 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "loginUserTest",
+        "class": "com.globant.automation.test.LoginUserTest",
+        "status": "passed",
+        "duration_ms": 205,
+        "started_at": "2026-11-08T18:39:41 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "createUserTest",
+        "class": "com.globant.automation.test.CreateUserTest",
+        "status": "passed",
+        "duration_ms": 1615,
+        "started_at": "2026-11-08T18:39:40 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "createOrderTest",
+        "class": "com.globant.automation.test.CreateOrderTest",
+        "status": "passed",
+        "duration_ms": 537,
+        "started_at": "2026-11-08T18:39:43 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "getPetsByStatusTest",
+        "class": "com.globant.automation.test.GetPetsByStatusTest",
+        "status": "passed",
+        "duration_ms": 393,
+        "started_at": "2026-11-08T18:39:42 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "logoutUserTest",
+        "class": "com.globant.automation.test.LogoutUserTest",
+        "status": "passed",
+        "duration_ms": 169,
+        "started_at": "2026-11-08T18:39:43 UTC",
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
+  },
+  {
+    "project": "WdioMobileAutomation",
+    "executed_at": "2026-11-08T13:39:27-05:00",
+    "total": 4,
+    "passed": 2,
+    "failed": 2,
+    "skipped": 0,
+    "success_rate": 50.0,
+    "duration_ms": 120682,
+    "tests": [
+      {
+        "name": "successfulLogin",
+        "class": "tests.LoginTest",
+        "status": "passed",
+        "duration_ms": 12435,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "navigateThroughBottomMenu",
+        "class": "tests.NavigationTest",
+        "status": "failed",
+        "duration_ms": 1616,
+        "started_at": null,
+        "exception_type": "java.lang.AssertionError",
+        "exception_message": "Texto WebdriverIO no visible expected [true] but found [false]"
+      },
+      {
+        "name": "successfulSignUp",
+        "class": "tests.SignupTest",
+        "status": "passed",
+        "duration_ms": 8218,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "swipeCardsAndFindHiddenText",
+        "class": "tests.SwipeTest",
+        "status": "failed",
+        "duration_ms": 675,
+        "started_at": null,
+        "exception_type": "java.lang.AssertionError",
+        "exception_message": "Swipe screen no se muestra expected [true] but found [false]"
+      }
+    ]
+  },
+  {
+    "project": "SauceDemoAutomation",
+    "executed_at": "2026-11-08T13:49:11-05:00",
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": 100.0,
+    "duration_ms": 19666,
+    "tests": [
+      {
+        "name": "purchaseProductSuccessfully",
+        "class": "com.saucedemo.tests.PurchaseTest",
+        "status": "passed",
+        "duration_ms": 632,
+        "started_at": "2026-11-08T18:49:35 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "purchaseProductSuccessfully",
+        "class": "com.saucedemo.tests.PurchaseTest",
+        "status": "passed",
+        "duration_ms": 6079,
+        "started_at": "2026-11-08T18:49:37 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "removeAllItemsFromCart",
+        "class": "com.saucedemo.tests.RemoveCartItemsTest",
+        "status": "passed",
+        "duration_ms": 877,
+        "started_at": "2026-11-08T18:49:34 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "logoutRedirectsToLoginPage",
+        "class": "com.saucedemo.tests.LogoutTest",
+        "status": "passed",
+        "duration_ms": 803,
+        "started_at": "2026-11-08T18:49:43 UTC",
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
+  },
+  {
+    "project": "PetStoreRestAssured",
+    "executed_at": "2026-11-08T13:49:15-05:00",
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": 100.0,
+    "duration_ms": 3335,
+    "tests": [
+      {
+        "name": "getPetByIdTest",
+        "class": "com.globant.automation.test.GetPetByIdTest",
+        "status": "passed",
+        "duration_ms": 495,
+        "started_at": "2026-11-08T18:49:31 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "loginUserTest",
+        "class": "com.globant.automation.test.LoginUserTest",
+        "status": "passed",
+        "duration_ms": 163,
+        "started_at": "2026-11-08T18:49:31 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "createUserTest",
+        "class": "com.globant.automation.test.CreateUserTest",
+        "status": "passed",
+        "duration_ms": 1368,
+        "started_at": "2026-11-08T18:49:29 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "createOrderTest",
+        "class": "com.globant.automation.test.CreateOrderTest",
+        "status": "passed",
+        "duration_ms": 494,
+        "started_at": "2026-11-08T18:49:32 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "getPetsByStatusTest",
+        "class": "com.globant.automation.test.GetPetsByStatusTest",
+        "status": "passed",
+        "duration_ms": 402,
+        "started_at": "2026-11-08T18:49:31 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "logoutUserTest",
+        "class": "com.globant.automation.test.LogoutUserTest",
+        "status": "passed",
+        "duration_ms": 173,
+        "started_at": "2026-11-08T18:49:32 UTC",
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
+  },
+  {
+    "project": "WdioMobileAutomation",
+    "executed_at": "2026-11-08T13:49:19-05:00",
+    "total": 4,
+    "passed": 2,
+    "failed": 2,
+    "skipped": 0,
+    "success_rate": 50.0,
+    "duration_ms": 102562,
+    "tests": [
+      {
+        "name": "successfulLogin",
+        "class": "tests.LoginTest",
+        "status": "passed",
+        "duration_ms": 12423,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "navigateThroughBottomMenu",
+        "class": "tests.NavigationTest",
+        "status": "failed",
+        "duration_ms": 1760,
+        "started_at": null,
+        "exception_type": "java.lang.AssertionError",
+        "exception_message": "Texto WebdriverIO no visible expected [true] but found [false]"
+      },
+      {
+        "name": "successfulSignUp",
+        "class": "tests.SignupTest",
+        "status": "passed",
+        "duration_ms": 8432,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "swipeCardsAndFindHiddenText",
+        "class": "tests.SwipeTest",
+        "status": "failed",
+        "duration_ms": 602,
+        "started_at": null,
+        "exception_type": "java.lang.AssertionError",
+        "exception_message": "Swipe screen no se muestra expected [true] but found [false]"
+      }
+    ]
+  },
+  {
+    "project": "SauceDemoAutomation",
+    "executed_at": "2026-11-08T13:58:23-05:00",
+    "total": 4,
+    "passed": 3,
+    "failed": 1,
+    "skipped": 0,
+    "success_rate": 75.0,
+    "duration_ms": 21004,
+    "tests": [
+      {
+        "name": "purchaseProductSuccessfully",
+        "class": "com.saucedemo.tests.PurchaseTest",
+        "status": "passed",
+        "duration_ms": 699,
+        "started_at": "2026-11-08T18:58:45 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "purchaseProductSuccessfully",
+        "class": "com.saucedemo.tests.PurchaseTest",
+        "status": "failed",
+        "duration_ms": 5793,
+        "started_at": "2026-11-08T18:58:46 UTC",
+        "exception_type": "org.openqa.selenium.NoSuchElementException",
+        "exception_message": "\n              no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\"#checkout\"}\n  (Session info: chrome=156.0.8078.79)\nFor documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception\nBuild info: version: '4.47.0', revision: '9175ed9 9175ed94d83e87cc3abeb7c9fd91367d17849d35'\nSystem info: os.name: 'Linux', os.arch: 'amd64', os.version: '7.0.0-1017-azure', java.version: '17.0.21'\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCommand: [205d8b364120ae3b1ea150477ee88854, findElement {value=checkout, using=id}]\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 156.0.8078.79, chrome: {chromedriverVersion: 156.0.8078.80 (fb096c0011f9..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:43451}, goog:processID: 2626, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:43451/devtoo..., se:cdpVersion: 156.0.8078.79, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:cmtgKey: true, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: 205d8b364120ae3b1ea150477ee88854\n            "
+      },
+      {
+        "name": "removeAllItemsFromCart",
+        "class": "com.saucedemo.tests.RemoveCartItemsTest",
+        "status": "passed",
+        "duration_ms": 1001,
+        "started_at": "2026-11-08T18:58:43 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "logoutRedirectsToLoginPage",
+        "class": "com.saucedemo.tests.LogoutTest",
+        "status": "passed",
+        "duration_ms": 796,
+        "started_at": "2026-11-08T18:58:53 UTC",
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
+  },
+  {
+    "project": "PetStoreRestAssured",
+    "executed_at": "2026-11-08T13:58:27-05:00",
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": 100.0,
+    "duration_ms": 2819,
+    "tests": [
+      {
+        "name": "getPetByIdTest",
+        "class": "com.globant.automation.test.GetPetByIdTest",
+        "status": "passed",
+        "duration_ms": 251,
+        "started_at": "2026-11-08T18:58:44 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "loginUserTest",
+        "class": "com.globant.automation.test.LoginUserTest",
+        "status": "passed",
+        "duration_ms": 63,
+        "started_at": "2026-11-08T18:58:44 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "createUserTest",
+        "class": "com.globant.automation.test.CreateUserTest",
+        "status": "passed",
+        "duration_ms": 1750,
+        "started_at": "2026-11-08T18:58:42 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "createOrderTest",
+        "class": "com.globant.automation.test.CreateOrderTest",
+        "status": "passed",
+        "duration_ms": 313,
+        "started_at": "2026-11-08T18:58:45 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "getPetsByStatusTest",
+        "class": "com.globant.automation.test.GetPetsByStatusTest",
+        "status": "passed",
+        "duration_ms": 232,
+        "started_at": "2026-11-08T18:58:44 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "logoutUserTest",
+        "class": "com.globant.automation.test.LogoutUserTest",
+        "status": "passed",
+        "duration_ms": 46,
+        "started_at": "2026-11-08T18:58:45 UTC",
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
+  },
+  {
+    "project": "WdioMobileAutomation",
+    "executed_at": "2026-11-08T13:58:30-05:00",
+    "total": 4,
+    "passed": 2,
+    "failed": 2,
+    "skipped": 0,
+    "success_rate": 50.0,
+    "duration_ms": 126851,
+    "tests": [
+      {
+        "name": "successfulLogin",
+        "class": "tests.LoginTest",
+        "status": "passed",
+        "duration_ms": 14020,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "navigateThroughBottomMenu",
+        "class": "tests.NavigationTest",
+        "status": "failed",
+        "duration_ms": 1954,
+        "started_at": null,
+        "exception_type": "java.lang.AssertionError",
+        "exception_message": "Texto WebdriverIO no visible expected [true] but found [false]"
+      },
+      {
+        "name": "successfulSignUp",
+        "class": "tests.SignupTest",
+        "status": "passed",
+        "duration_ms": 7947,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "swipeCardsAndFindHiddenText",
+        "class": "tests.SwipeTest",
+        "status": "failed",
+        "duration_ms": 712,
+        "started_at": null,
+        "exception_type": "java.lang.AssertionError",
+        "exception_message": "Swipe screen no se muestra expected [true] but found [false]"
+      }
+    ]
+  },
+  {
+    "project": "SauceDemoAutomation",
+    "executed_at": "2026-11-08T17:03:02-05:00",
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": 100.0,
+    "duration_ms": 22481,
+    "tests": [
+      {
+        "name": "purchaseProductSuccessfully",
+        "class": "com.saucedemo.tests.PurchaseTest",
+        "status": "passed",
+        "duration_ms": 883,
+        "started_at": "2026-11-08T22:03:36 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "purchaseProductSuccessfully",
+        "class": "com.saucedemo.tests.PurchaseTest",
+        "status": "passed",
+        "duration_ms": 5568,
+        "started_at": "2026-11-08T22:03:37 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "removeAllItemsFromCart",
+        "class": "com.saucedemo.tests.RemoveCartItemsTest",
+        "status": "passed",
+        "duration_ms": 1281,
+        "started_at": "2026-11-08T22:03:34 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "logoutRedirectsToLoginPage",
+        "class": "com.saucedemo.tests.LogoutTest",
+        "status": "passed",
+        "duration_ms": 1319,
+        "started_at": "2026-11-08T22:03:43 UTC",
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
+  },
+  {
+    "project": "PetStoreRestAssured",
+    "executed_at": "2026-11-08T17:18:14-05:00",
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": 100.0,
+    "duration_ms": 3208,
+    "tests": [
+      {
+        "name": "getPetByIdTest",
+        "class": "com.globant.automation.test.GetPetByIdTest",
+        "status": "passed",
+        "duration_ms": 430,
+        "started_at": "2026-11-08T22:18:33 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "loginUserTest",
+        "class": "com.globant.automation.test.LoginUserTest",
+        "status": "passed",
+        "duration_ms": 206,
+        "started_at": "2026-11-08T22:18:33 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "createUserTest",
+        "class": "com.globant.automation.test.CreateUserTest",
+        "status": "passed",
+        "duration_ms": 1535,
+        "started_at": "2026-11-08T22:18:31 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "createOrderTest",
+        "class": "com.globant.automation.test.CreateOrderTest",
+        "status": "passed",
+        "duration_ms": 386,
+        "started_at": "2026-11-08T22:18:34 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "getPetsByStatusTest",
+        "class": "com.globant.automation.test.GetPetsByStatusTest",
+        "status": "passed",
+        "duration_ms": 242,
+        "started_at": "2026-11-08T22:18:33 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "logoutUserTest",
+        "class": "com.globant.automation.test.LogoutUserTest",
+        "status": "passed",
+        "duration_ms": 146,
+        "started_at": "2026-11-08T22:18:34 UTC",
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
+  },
+  {
+    "project": "WdioMobileAutomation",
+    "executed_at": "2026-11-08T17:18:18-05:00",
+    "total": 4,
+    "passed": 2,
+    "failed": 2,
+    "skipped": 0,
+    "success_rate": 50.0,
+    "duration_ms": 81397,
+    "tests": [
+      {
+        "name": "successfulLogin",
+        "class": "tests.LoginTest",
+        "status": "passed",
+        "duration_ms": 13732,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "navigateThroughBottomMenu",
+        "class": "tests.NavigationTest",
+        "status": "failed",
+        "duration_ms": 1531,
+        "started_at": null,
+        "exception_type": "java.lang.AssertionError",
+        "exception_message": "Texto WebdriverIO no visible expected [true] but found [false]"
+      },
+      {
+        "name": "successfulSignUp",
+        "class": "tests.SignupTest",
+        "status": "passed",
+        "duration_ms": 6818,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "swipeCardsAndFindHiddenText",
+        "class": "tests.SwipeTest",
+        "status": "failed",
+        "duration_ms": 583,
+        "started_at": null,
+        "exception_type": "java.lang.AssertionError",
+        "exception_message": "Swipe screen no se muestra expected [true] but found [false]"
+      }
+    ]
+  },
+  {
+    "project": "WdioMobileAutomation",
+    "executed_at": "2026-11-08T20:14:16-05:00",
+    "total": 4,
+    "passed": 3,
+    "failed": 1,
+    "skipped": 0,
+    "success_rate": 75.0,
+    "duration_ms": 126518,
+    "tests": [
+      {
+        "name": "successfulLogin",
+        "class": "tests.LoginTest",
+        "status": "passed",
+        "duration_ms": 14074,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "navigateThroughBottomMenu",
+        "class": "tests.NavigationTest",
+        "status": "failed",
+        "duration_ms": 6345,
+        "started_at": null,
+        "exception_type": "java.lang.AssertionError",
+        "exception_message": "Swipe screen no se muestra expected [true] but found [false]"
+      },
+      {
+        "name": "successfulSignUp",
+        "class": "tests.SignupTest",
+        "status": "passed",
+        "duration_ms": 7254,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "swipeCardsAndFindHiddenText",
+        "class": "tests.SwipeTest",
+        "status": "passed",
+        "duration_ms": 40535,
+        "started_at": null,
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
+  },
+  {
+    "project": "PetStoreRestAssured",
+    "executed_at": "2026-11-08T20:14:20-05:00",
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": 100.0,
+    "duration_ms": 3205,
+    "tests": [
+      {
+        "name": "getPetByIdTest",
+        "class": "com.globant.automation.test.GetPetByIdTest",
+        "status": "passed",
+        "duration_ms": 503,
+        "started_at": "2026-11-09T01:14:37 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "loginUserTest",
+        "class": "com.globant.automation.test.LoginUserTest",
+        "status": "passed",
+        "duration_ms": 176,
+        "started_at": "2026-11-09T01:14:37 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "createUserTest",
+        "class": "com.globant.automation.test.CreateUserTest",
+        "status": "passed",
+        "duration_ms": 1299,
+        "started_at": "2026-11-09T01:14:35 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "createOrderTest",
+        "class": "com.globant.automation.test.CreateOrderTest",
+        "status": "passed",
+        "duration_ms": 475,
+        "started_at": "2026-11-09T01:14:38 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "getPetsByStatusTest",
+        "class": "com.globant.automation.test.GetPetsByStatusTest",
+        "status": "passed",
+        "duration_ms": 312,
+        "started_at": "2026-11-09T01:14:37 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "logoutUserTest",
+        "class": "com.globant.automation.test.LogoutUserTest",
+        "status": "passed",
+        "duration_ms": 217,
+        "started_at": "2026-11-09T01:14:38 UTC",
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
   }
 ]
