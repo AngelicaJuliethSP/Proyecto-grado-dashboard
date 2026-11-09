@@ -94,31 +94,38 @@ Dos refinamientos sobre la primera versión del clasificador:
    `SessionNotCreatedException` → infraestructura; `TimeoutException` →
    timeouts), ya que el tipo es más confiable que el texto del mensaje.
 
-Verificado con el histórico real al 9-nov 11:00 (27 fallos): 12 mobile
-clasificados como infraestructura (fallos de sesión Appium, `adbExec` 500 —
-coherente con el diagnóstico de `linea_base.md`), 13 aserciones de contenido
-no visible (Navigation/Swipe, limitación de renderizado del emulador) y 2 web
+Verificado con el histórico real al 9-nov 17:00 (50 fallos en 56 registros):
+12 mobile de infraestructura (fallos de sesión Appium, `adbExec` 500 —
+coherente con el diagnóstico de `linea_base.md`), 29 aserciones de contenido
+no visible (Navigation/Swipe, limitación de renderizado del emulador), 5 web
 de infraestructura (`NoSuchElement` en checkout, resuelto con waits
-explícitos). El histórico sigue creciendo con cada corrida del CI, por lo que
+explícitos), 3 timeouts (`TimeoutException` en la corrida de debugging del
+7-nov) y 1 error de código (`IllegalArgumentException: bound must be
+positive`). El histórico sigue creciendo con cada corrida del CI, por lo que
 estos conteos corresponden a la fecha de corte indicada.
 
 ### 5.3 Detección de pruebas inestables
 
 Un test se marca como *flaky* si en el histórico aparece con estado `passed`
 y `failed` en ejecuciones distintas (agrupación por suite, clase y nombre).
-Con el criterio del propio dashboard, el histórico actual registra 2 pruebas
-inestables:
+Con el criterio del propio dashboard, el histórico al 9-nov 17:00 registra
+5 pruebas inestables:
 
 - `purchaseProductSuccessfully` (SauceDemo): pasó en la mayoría de corridas y
-  falló en el CI del 9-nov (`NoSuchElement` en checkout por clicks perdidos en
-  React; corregido con waits explícitos).
-- `swipeCardsAndFindHiddenText` (Wdio): falló en el piloto del 4-nov, pasó en la
-  corrida del 7-nov (emulador en mejor estado) y vuelve a fallar en CI por la
-  limitación de renderizado del emulador (SwiftShader).
+  falló en varias del 8-nov y 9-nov (`NoSuchElement` en checkout por clicks
+  perdidos en React; corregido con waits explícitos).
+- `removeAllItemsFromCart` (SauceDemo): falló una vez en el CI del 8-nov
+  (`Expected 3 items in the cart before removal`); en el resto pasó.
+- `successfulLogin` y `successfulSignUp` (Wdio): pasan en casi todas las
+  corridas; fallaron solo en la corrida de debugging del 7-nov
+  (`TimeoutException` esperando visibilidad de elementos).
+- `swipeCardsAndFindHiddenText` (Wdio): falló en el piloto del 4-nov, pasó en
+  la corrida del 7-nov (emulador en mejor estado) y vuelve a fallar en CI por
+  la limitación de renderizado del emulador (SwiftShader).
 
 `navigateThroughBottomMenu`, en cambio, no es flaky bajo este criterio: nunca
-pasó en el histórico registrado (solo `failed`), por lo que es un fallo
-consistente y no una alternancia éxito/fallo.
+pasó en el histórico registrado (solo `failed` y `skipped`), por lo que es un
+fallo consistente y no una alternancia éxito/fallo.
 
 ## 6. Despliegue
 
