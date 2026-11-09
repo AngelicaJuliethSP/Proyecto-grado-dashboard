@@ -146,3 +146,24 @@ consistente y no una alternancia éxito/fallo.
 | Análisis de fallos recurrentes | ✅ (matriz de causa raíz) |
 | Acceso público al dashboard | ✅ (Streamlit Community Cloud) |
 | Cambios versionados y publicados | ✅ (GitHub + redespliegue automático) |
+
+## 9. Limitaciones conocidas
+
+- **Histórico corto**: el almacén acumula ~20 ejecuciones de 4 días (6 al 9 de
+  noviembre de 2026). Es suficiente para validar el mecanismo, pero las
+  "tendencias" que muestra el dashboard deben leerse como **tendencia inicial**
+  y no como comportamiento estable: se requieren más corridas acumuladas antes
+  de la sustentación para afirmaciones de tendencia robustas.
+- **Fuentes de reportes mezcladas**: la línea base se registró parseando
+  resultados de Allure y el CI parsea XML de Surefire; los campos disponibles
+  difieren (p. ej. `started_at` solo existe en TestNG/Surefire). Los registros
+  se normalizan al mismo esquema, pero conviene declarar la diferencia de
+  origen al interpretar duraciones y timestamps.
+- **Zonas horarias heterogéneas**: los timestamps combinan UTC (CI) y hora
+  local Colombia (corridas locales, -05:00). El dashboard los normaliza a UTC
+  con `pd.to_datetime(..., utc=True)`, pero la comparación horaria entre
+  corridas locales y de CI tiene esa diferencia de origen.
+- **Duplicados móviles corregidos**: hasta el 9-nov cada corrida móvil generó
+  2 registros (uno por paso del pipeline); corregido para publicar un solo
+  registro combinado por corrida. Los registros históricos anteriores se
+  conservan tal cual (no se reescriben datos ya publicados).
