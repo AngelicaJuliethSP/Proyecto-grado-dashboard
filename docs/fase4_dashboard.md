@@ -94,7 +94,7 @@ Dos refinamientos sobre la primera versión del clasificador:
    `SessionNotCreatedException` → infraestructura; `TimeoutException` →
    timeouts), ya que el tipo es más confiable que el texto del mensaje.
 
-Verificado con el histórico real al 9-nov 18:00 (38 fallos en 56 registros):
+Verificado con el histórico real al 9-nov 18:00 (38 fallos en 54 registros):
 16 mobile de aserción (`navigateThroughBottomMenu`, contenido no visible por
 la limitación de renderizado del emulador), 13 mobile de aserción
 (`swipeCardsAndFindHiddenText`, misma causa), 6 web de infraestructura

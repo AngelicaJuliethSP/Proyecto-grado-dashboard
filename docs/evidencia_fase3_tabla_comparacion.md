@@ -1,13 +1,13 @@
 # Tabla de comparación de suites — Evidencia de reportes
 
 Fuente: `data/results.json` (almacén consolidado de ejecuciones).
-Corte: 2026-11-09 17:00 (56 registros).
+Corte: 2026-11-09 18:00 (54 registros).
 
 | Suite | Ejecuciones | Tests | Pasados | Fallados | Skipped | % Éxito prom. | Duración prom. | Estabilidad |
 |---|---|---|---|---|---|---|---|---|
 | SauceDemoAutomation | 18 | 72 | 65 | 7 | 0 | 90.3% | 16.6 s | Intermitente |
 | PetStoreRestAssured | 16 | 96 | 96 | 0 | 0 | 100.0% | 4.0 s | Estable |
-| WdioMobileAutomation | 22 | 84 | 41 | 31 | 12 | 49.6% | 96.5 s | Inestable |
+| WdioMobileAutomation | 20 | 76 | 37 | 27 | 12 | 49.6% | 95.8 s | Inestable |
 
 ## Detalle por ejecución
 
@@ -46,11 +46,9 @@ Corte: 2026-11-09 17:00 (56 registros).
 | SauceDemoAutomation | 2026-11-08T13:58:23 | 4 | 3 | 1 | 75.0% | 21.0 s |
 | WdioMobileAutomation | 2026-11-08T13:58:27 | 4 | 2 | 2 | 50.0% | 126.9 s |
 | PetStoreRestAssured | 2026-11-08T13:58:27 | 6 | 6 | 0 | 100.0% | 2.8 s |
-| WdioMobileAutomation | 2026-11-08T13:58:30 | 4 | 2 | 2 | 50.0% | 126.9 s |
 | SauceDemoAutomation | 2026-11-08T17:03:02 | 4 | 4 | 0 | 100.0% | 22.5 s |
 | WdioMobileAutomation | 2026-11-08T17:18:13 | 4 | 2 | 2 | 50.0% | 81.4 s |
 | PetStoreRestAssured | 2026-11-08T17:18:14 | 6 | 6 | 0 | 100.0% | 3.2 s |
-| WdioMobileAutomation | 2026-11-08T17:18:18 | 4 | 2 | 2 | 50.0% | 81.4 s |
 | WdioMobileAutomation | 2026-11-08T20:14:16 | 4 | 3 | 1 | 75.0% | 126.5 s |
 | PetStoreRestAssured | 2026-11-08T20:14:20 | 6 | 6 | 0 | 100.0% | 3.2 s |
 | WdioMobileAutomation | 2026-11-09T10:18:13 | 4 | 2 | 2 | 50.0% | 145.8 s |
