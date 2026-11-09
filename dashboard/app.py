@@ -149,13 +149,23 @@ def main() -> None:
             df = df[df["project"] == selected_project]
 
     # ---- KPIs globales ----
-    last_run = df.iloc[-1]
+    # Con filtro "Todos", la última ejecución de CADA proyecto se consolida
+    # en un valor global (antes: df.iloc[-1] tomaba la última fila de un
+    # solo proyecto arbitrario y presentaba ese valor como global).
+    last_per_project = df.groupby("project").last().reset_index()
+    global_passed = int(last_per_project["passed"].sum())
+    global_total = int(last_per_project["total"].sum())
+    global_failed = int(last_per_project["failed"].sum())
+    global_rate = round(global_passed / global_total * 100, 1) if global_total else 0.0
+    last_ts = df["executed_at"].max().strftime("%d-%b %H:%M UTC")
     col1, col2, col3, col4, col5 = st.columns(5)
     col1.metric("Ejecuciones registradas", len(df))
-    col2.metric("Última tasa de éxito", f"{last_run['success_rate']}%")
-    col3.metric("Tests (última ejecución)", int(last_run["total"]))
-    col4.metric("Fallos (última ejecución)", int(last_run["failed"]))
-    col5.metric("Duración (última ejec.)", f"{last_run['duration_ms'] / 1000:.1f}s")
+    col2.metric("Última tasa de éxito (global)", f"{global_rate}%",
+                help=f"Consolidado de la última ejecución de cada proyecto ({last_ts}).")
+    col3.metric("Tests (última ejec. por suite)", global_total)
+    col4.metric("Fallos (última ejec. por suite)", global_failed)
+    col5.metric("Duración (última ejec. por suite)",
+                f"{last_per_project['duration_ms'].sum() / 1000:.1f}s")
 
     st.divider()
 
@@ -201,14 +211,29 @@ def main() -> None:
 
     with col_left:
         st.subheader("🧪 Resultados por ejecución")
+        # Una serie por proyecto: sin esto, las barras mezclaban ejecuciones
+        # de proyectos distintos sin distinguirlos.
         stacked = df[["executed_at", "project", "passed", "failed", "skipped"]].copy()
-        stacked = stacked.set_index("executed_at")[["passed", "failed", "skipped"]]
-        st.bar_chart(stacked)
+        stacked_melt = stacked.melt(
+            id_vars=["executed_at", "project"],
+            value_vars=["passed", "failed", "skipped"],
+            var_name="estado", value_name="tests",
+        )
+        stacked_melt["serie"] = stacked_melt["project"] + " · " + stacked_melt["estado"]
+        stacked_pivot = stacked_melt.pivot_table(
+            index="executed_at", columns="serie", values="tests", aggfunc="sum"
+        ).fillna(0)
+        st.bar_chart(stacked_pivot)
 
     with col_right:
         st.subheader("⏱️ Duración de ejecuciones (segundos)")
-        duration = df.set_index("executed_at")["duration_ms"] / 1000
-        st.bar_chart(duration)
+        # Una serie por proyecto para comparar duraciones entre suites.
+        duration = df[["executed_at", "project", "duration_ms"]].copy()
+        duration["duracion_s"] = duration["duration_ms"] / 1000
+        duration_pivot = duration.pivot_table(
+            index="executed_at", columns="project", values="duracion_s", aggfunc="last"
+        )
+        st.bar_chart(duration_pivot)
 
     st.divider()
 
