@@ -197,4 +197,6 @@ fallo consistente y no una alternancia éxito/fallo.
   corridas se regeneraron con el parser a partir de los XML Surefire reales de
   los artefactos del CI. Resultados reales: 2/4 en las 3 primeras corridas
   (Login+Signup pasan, Swipe+Navigation fallan) y 3/4 en las 2 últimas
-  (Login+Signup+Swipe pasan, Navigation falla).
+  (Login+Signup+Swipe pasan, Navigation falla). Las corridas sin artefactos
+  (fallidas antes de ejecutar tests, p. ej. por fallo al arrancar el emulador)
+  no generan registro en el histórico.
