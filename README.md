@@ -12,7 +12,7 @@ Dashboard para la **visualización y análisis de reportes de ejecución de prue
 │  Selenium + TestNG  │     │  Appium + TestNG    │     │ RestAssured + TestNG│
 └──────────┬──────────┘     └──────────┬──────────┘     └──────────┬──────────┘
            │  GitHub Actions           │  GitHub Actions           │  GitHub Actions
-           │  (push/PR/cron diario)    │  (push/PR/cron diario)    │  (push/PR/cron diario)
+           │  (push/PR/cron L-V)       │  (push/PR/cron L-V)       │  (push/PR/cron L-V)
            ▼                           ▼                           ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │              Cada pipeline parsea sus XML de Surefire y hace push            │
@@ -27,11 +27,11 @@ Dashboard para la **visualización y análisis de reportes de ejecución de prue
 ```
 
 **El ciclo es 100% automático:** los 3 pipelines de CI (en sus repos
-respectivos) ejecutan las suites a diario (cron 06:00 UTC = 01:00 Colombia),
-parsean sus reportes y publican los resultados en `data/results.json` de este
-repositorio. Streamlit Community Cloud redespliega automáticamente con cada
-push, por lo que el dashboard siempre refleja el histórico actualizado — sin
-ningún paso manual.
+respectivos) ejecutan las suites de lunes a viernes (cron 06:00 UTC =
+01:00 Colombia), parsean sus reportes y publican los resultados en
+`data/results.json` de este repositorio. Streamlit Community Cloud
+redespliega automáticamente con cada push, por lo que el dashboard siempre
+refleja el histórico actualizado — sin ningún paso manual.
 
 ## Estructura del repositorio
 
@@ -40,13 +40,22 @@ proyecto-grado-dashboard/
 ├── dashboard/
 │   └── app.py                  # Dashboard Streamlit (11 vistas)
 ├── parser/
-│   └── results_parser.py       # Parser de testng-results.xml / TEST-*.xml
+│   ├── results_parser.py       # Parser de testng-results.xml / TEST-*.xml
+│   └── allure_ingest.py        # Ingesta de resultados Allure (JSON)
+├── scripts/
+│   └── run_baseline.py         # Ejecuta la línea base N veces e ingiere cada corrida
+├── .streamlit/
+│   └── config.toml             # Tema del dashboard (paleta azul)
 ├── data/
-│   └── results.json            # Histórico de ejecuciones (actualizado por CI)
+│   ├── results.json            # Histórico de ejecuciones (actualizado por CI)
+│   └── results_backup.json     # Respaldo pre-línea-base (piloto, 4 ejecuciones)
+├── tests/                      # Pruebas pytest del parser (14 casos)
 ├── docs/                       # Documentación técnica por fases
 ├── requirements.txt
 └── README.md
 ```
+
+> **Requisito:** Python 3.10 o superior (`allure_ingest.py` usa la sintaxis `int | None`, disponible desde 3.10). El despliegue en Streamlit Community Cloud usa Python 3.12.
 
 ## Proyectos de pruebas (repositorios independientes)
 
@@ -57,6 +66,8 @@ proyecto-grado-dashboard/
 | PetStoreRestAssured | API | Java 17, RestAssured 5.3.1, TestNG 7.10.2 |
 
 > Los tres comparten Maven + TestNG, por lo que sus reportes de Surefire (`testng-results.xml`) se procesan con un único parser.
+
+> **Nota sobre la línea base:** las ejecuciones de la línea base (Fase 0) se ingirieron desde los JSON de **Allure** (`parser/allure_ingest.py`), no desde los XML de Surefire. El parser de Surefire se usa en el ciclo automático de CI; `allure_ingest.py` quedó como vía de ingesta para corridas locales con el adapter Allure activo.
 
 ## Configuración del flujo automático
 
