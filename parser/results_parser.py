@@ -36,32 +36,40 @@ def parse_testng_results(xml_path: Path) -> dict:
     source = summary if summary is not None else root
     total = int(source.get("total", "0"))
     passed = int(source.get("passed", "0"))
-    failures = int(source.get("failures", "0"))
+    # TestNG nombra el atributo "failed" (no "failures"); se soporta el
+    # alias por si algún formato alternativo lo usa.
+    failures = int(source.get("failed", source.get("failures", "0")))
     skipped = int(source.get("skipped", "0"))
-    duration_ms = int(source.get("duration-ms", "0"))
+    # El atributo duration-ms está en cada <suite>, no en el raíz.
+    duration_ms = sum(int(s.get("duration-ms", "0")) for s in root.iter("suite"))
 
     tests = []
-    for method in root.iter("test-method"):
-        raw_status = method.get("status", "SKIP").upper()
-        status = STATUS_MAP.get(raw_status, "skipped")
-        exception_type = None
-        exception_msg = None
+    # test-method no tiene classname: la clase está en el elemento padre <class>.
+    for cls in root.iter("class"):
+        for method in cls.iter("test-method"):
+            # Los métodos de configuración (@Before*/@After*) no son tests.
+            if method.get("is-config") == "true":
+                continue
+            raw_status = method.get("status", "SKIP").upper()
+            status = STATUS_MAP.get(raw_status, "skipped")
+            exception_type = None
+            exception_msg = None
 
-        exception = method.find("exception")
-        if exception is not None:
-            exception_type = exception.get("class")
-            message = exception.find("message")
-            exception_msg = message.text if message is not None else None
+            exception = method.find("exception")
+            if exception is not None:
+                exception_type = exception.get("class")
+                message = exception.find("message")
+                exception_msg = message.text if message is not None else None
 
-        tests.append({
-            "name": method.get("name", "unknown"),
-            "class": method.get("classname", "unknown"),
-            "status": status,
-            "duration_ms": int(method.get("duration-ms", "0")),
-            "started_at": method.get("started-at"),
-            "exception_type": exception_type,
-            "exception_message": exception_msg,
-        })
+            tests.append({
+                "name": method.get("name", "unknown"),
+                "class": cls.get("name", "unknown"),
+                "status": status,
+                "duration_ms": int(method.get("duration-ms", "0")),
+                "started_at": method.get("started-at"),
+                "exception_type": exception_type,
+                "exception_message": exception_msg,
+            })
 
     return {
         "total": total,
