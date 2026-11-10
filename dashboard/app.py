@@ -294,18 +294,24 @@ def main() -> None:
             r"expected\s*\[", r"but\s*found", r"assertion", r"no\s*visible",
         ]),
     ]
-
+    def _texto(valor) -> str:
+        # pandas representa los campos vacíos como NaN (float), no como None;
+        # "NaN or ''" devuelve NaN y .lower() falla. Se normaliza a texto.
+        if valor is None or (isinstance(valor, float) and pd.isna(valor)):
+            return ""
+        return str(valor)
+        
     def classify_cause(message: str, exception_type: str = "") -> str:
         # El tipo de excepción tiene prioridad: es más confiable que el
         # mensaje (p. ej. WebDriverTimeoutException es un timeout real,
         # mientras que un mensaje de Selenium puede contener "timeout" sin
         # que el fallo lo sea).
-        exc = (exception_type or "").lower()
+        exc = _texto(exception_type).lower()
         if "nosuchelement" in exc or "sessionnotcreated" in exc:
             return "🖥️ Infraestructura / Entorno de ejecución"
         if "timeoutexception" in exc or "webdrivertimeout" in exc:
             return "⏱️ Timeouts / Asincronía"
-        text = (message or "").lower()
+        text = _texto(message).lower()
         for cause, patterns in CAUSE_PATTERNS:
             if any(re.search(p, text) for p in patterns):
                 return cause
