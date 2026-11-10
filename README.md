@@ -55,7 +55,7 @@ proyecto-grado-dashboard/
 └── README.md
 ```
 
-> **Requisito:** Python 3.10 o superior (`allure_ingest.py` usa la sintaxis `int | None`, disponible desde 3.10). El despliegue en Streamlit Community Cloud usa Python 3.12.
+> **Requisito:** Python 3.10 o superior (`allure_ingest.py` usa la sintaxis `int | None`, disponible desde 3.10). El despliegue en Streamlit Community Cloud usa Python 3.14.
 
 ## Proyectos de pruebas (repositorios independientes)
 
