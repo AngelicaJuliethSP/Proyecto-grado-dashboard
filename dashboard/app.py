@@ -370,11 +370,20 @@ def main() -> None:
         st.plotly_chart(fig_comp, width="stretch")
     with col_comp_table:
         st.caption("Resumen agregado por suite")
+        # "Fallidos" en rojo cuando exceden la meta de fallos de la suite
+        def _pintar_fallidos(col):
+            # col.index = nombre del proyecto de cada fila
+            return [
+                f"color: {COLOR_BAD}; font-weight: bold" if v > goal_for(idx)["fallos_max"] else ""
+                for idx, v in col.items()
+            ]
         st.dataframe(
             by_suite.drop(columns=["cumple_meta"]).rename(columns={
                 "exito_prom": "Éxito % prom.",
                 "duracion_prom": "Duración prom. (s)",
-            }),
+            }).style.apply(
+                _pintar_fallidos, subset=["fallidos"]
+            ),
             width="stretch",
         )
 
@@ -392,24 +401,25 @@ def main() -> None:
         stacked_df = df if suite_sel == "Todas" else df[df["project"] == suite_sel]
         stacked_df = stacked_df.sort_values("executed_at").reset_index(drop=True)
         stacked_df["etiqueta"] = stacked_df["executed_at"].dt.strftime("%d-%b %H:%M")
+        stacked_df["total"] = stacked_df["passed"] + stacked_df["failed"] + stacked_df["skipped"]
         fig_stack = go.Figure()
         fig_stack.add_bar(
             x=stacked_df["etiqueta"], y=stacked_df["passed"],
             name="Pasados", marker_color="#1a7f37",
-            customdata=stacked_df["project"],
-            hovertemplate="%{customdata}<br>%{x}<br>Pasados: %{y}<extra></extra>",
+            customdata=stacked_df[["project", "total"]],
+            hovertemplate="%{customdata[0]}<br>%{x}<br>Pasados: %{y}<br>Total: %{customdata[1]}<extra></extra>",
         )
         fig_stack.add_bar(
             x=stacked_df["etiqueta"], y=stacked_df["failed"],
             name="Fallidos", marker_color="#c62828",
-            customdata=stacked_df["project"],
-            hovertemplate="%{customdata}<br>%{x}<br>Fallidos: %{y}<extra></extra>",
+            customdata=stacked_df[["project", "total"]],
+            hovertemplate="%{customdata[0]}<br>%{x}<br>Fallidos: %{y}<br>Total: %{customdata[1]}<extra></extra>",
         )
         fig_stack.add_bar(
             x=stacked_df["etiqueta"], y=stacked_df["skipped"],
             name="Omitidos", marker_color="#9aa4b2",
-            customdata=stacked_df["project"],
-            hovertemplate="%{customdata}<br>%{x}<br>Omitidos: %{y}<extra></extra>",
+            customdata=stacked_df[["project", "total"]],
+            hovertemplate="%{customdata[0]}<br>%{x}<br>Omitidos: %{y}<br>Total: %{customdata[1]}<extra></extra>",
         )
         fig_stack.update_layout(
             barmode="stack", height=380,
