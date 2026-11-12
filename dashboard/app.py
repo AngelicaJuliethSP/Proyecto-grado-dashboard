@@ -14,9 +14,51 @@ import re
 from pathlib import Path
 
 import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
 import streamlit as st
 
 DATA_PATH = Path(__file__).resolve().parent.parent / "data" / "results.json"
+
+# ---- Metas de calidad por suite (acordadas con el equipo) ----
+# fallos_max: fallos permitidos por ejecución
+# exito_min: tasa de éxito mínima (%)
+# duracion_suite_max_s: duración máxima de la suite (segundos)
+# duracion_test_max_s: duración máxima por test individual (segundos)
+# flaky_max: máximo de pruebas inestables permitidas
+GOALS = {
+    "PetStoreRestAssured": {
+        "label": "PetStore (API)",
+        "fallos_max": 0,
+        "exito_min": 100.0,
+        "duracion_suite_max_s": 10,
+        "duracion_test_max_s": 5,
+        "flaky_max": 0,
+    },
+    "SauceDemoAutomation": {
+        "label": "SauceDemo (Web)",
+        "fallos_max": 1,
+        "exito_min": 90.0,
+        "duracion_suite_max_s": 30,
+        "duracion_test_max_s": 10,
+        "flaky_max": 0,
+    },
+    "WdioMobileAutomation": {
+        "label": "WdioMobile (Mobile)",
+        "fallos_max": 1,
+        "exito_min": 80.0,
+        "duracion_suite_max_s": 240,
+        "duracion_test_max_s": 30,
+        "flaky_max": 0,
+    },
+}
+DEFAULT_GOAL = {"label": "", "fallos_max": 1, "exito_min": 90.0,
+                "duracion_suite_max_s": 60, "duracion_test_max_s": 15,
+                "flaky_max": 0}
+
+COLOR_OK = "#1a7f37"      # verde: cumple la meta
+COLOR_BAD = "#c62828"     # rojo: no cumple la meta
+COLOR_WARN = "#e6a700"    # amarillo: advertencia (duración por test)
 
 # ---- Estilos personalizados ----
 CUSTOM_CSS = """
@@ -128,6 +170,50 @@ def load_data() -> pd.DataFrame:
     return df.sort_values("executed_at")
 
 
+def goal_for(project: str) -> dict:
+    """Devuelve la meta de una suite, o valores por defecto si no está definida."""
+    return GOALS.get(project, DEFAULT_GOAL)
+
+
+def _badge(text: str, color: str) -> str:
+    """Chip HTML con fondo de color para señalar cumplimiento de metas."""
+    return (f'<span style="background:{color};color:#fff;border-radius:12px;'
+            f'padding:2px 10px;font-size:0.85rem;font-weight:600;">{text}</span>')
+
+
+def eval_metric(cumple: bool, ok_text: str, bad_text: str) -> str:
+    """HTML de badge verde/rojo según cumpla la meta."""
+    return _badge(ok_text if cumple else bad_text,
+                  COLOR_OK if cumple else COLOR_BAD)
+
+
+def metric_html(value: str, cumple: bool, meta_text: str) -> str:
+    """Tarjeta de métrica con borde verde/rojo según la meta."""
+    color = COLOR_OK if cumple else COLOR_BAD
+    estado = "✔ cumple" if cumple else "✘ no cumple"
+    return (f'<div style="background:#f8fafd;border:1.5px solid {color};'
+            f'border-radius:10px;padding:0.9rem 1rem;">'
+            f'<div style="font-size:0.85rem;color:#57606a;margin-bottom:0.2rem;">{meta_text}</div>'
+            f'<div style="font-size:1.6rem;font-weight:700;color:{color};">{value}</div>'
+            f'<div style="font-size:0.8rem;color:{color};margin-top:0.2rem;">{estado}</div>'
+            f'</div>')
+
+
+def flaky_count(df: pd.DataFrame, project: str) -> int:
+    """Número de pruebas inestables (alternan éxito/fallo) de una suite."""
+    sub = df[df["project"] == project]
+    if "tests" not in sub.columns or sub.empty:
+        return 0
+    rows = sub.explode("tests").dropna(subset=["tests"])
+    if rows.empty:
+        return 0
+    tdf = pd.json_normalize(rows["tests"])
+    statuses = tdf.groupby(["class", "name"])["status"].agg(
+        lambda s: set(s.dropna()))
+    return int(statuses.apply(
+        lambda st_: "passed" in st_ and "failed" in st_).sum())
+
+
 def main() -> None:
     df = load_data()
 
@@ -158,14 +244,50 @@ def main() -> None:
     global_failed = int(last_per_project["failed"].sum())
     global_rate = round(global_passed / global_total * 100, 1) if global_total else 0.0
     last_ts = df["executed_at"].max().strftime("%d-%b %H:%M UTC")
+
+    # Evaluación contra metas: la peor suite define el estado global
+    # (si una suite no cumple, el consolidado global se marca en rojo).
+    goals = {p: goal_for(p) for p in last_per_project["project"]}
+    cumple_global = all(
+        int(row["failed"]) <= goals[p]["fallos_max"]
+        and float(row["success_rate"]) >= goals[p]["exito_min"]
+        and row["duration_ms"] / 1000 <= goals[p]["duracion_suite_max_s"]
+        for p, row in last_per_project.set_index("project").iterrows()
+    )
+    cumple_flaky_global = all(
+        flaky_count(df, p) <= goals[p]["flaky_max"] for p in last_per_project["project"]
+    )
+
+    st.subheader("🎯 Estado global vs metas de calidad")
+    with st.expander("📋 Ver metas definidas por suite", expanded=False):
+        goals_rows = []
+        for p, g in GOALS.items():
+            goals_rows.append({
+                "Suite": g["label"],
+                "Fallos máx./ejecución": g["fallos_max"],
+                "Éxito mínimo (%)": g["exito_min"],
+                "Duración máx. suite (s)": g["duracion_suite_max_s"],
+                "Duración máx. test (s)": g["duracion_test_max_s"],
+                "Flaky máx.": g["flaky_max"],
+            })
+        st.dataframe(pd.DataFrame(goals_rows), width="stretch", hide_index=True)
+
     col1, col2, col3, col4, col5 = st.columns(5)
-    col1.metric("Ejecuciones registradas", len(df))
-    col2.metric("Última tasa de éxito (global)", f"{global_rate}%",
-                help=f"Consolidado de la última ejecución de cada proyecto ({last_ts}).")
-    col3.metric("Tests (última ejec. por suite)", global_total)
-    col4.metric("Fallos (última ejec. por suite)", global_failed)
-    col5.metric("Duración (última ejec. por suite)",
-                f"{last_per_project['duration_ms'].sum() / 1000:.1f}s")
+    with col1:
+        st.markdown(metric_html(str(len(df)), True, "Ejecuciones registradas"), unsafe_allow_html=True)
+    with col2:
+        st.markdown(metric_html(f"{global_rate}%", cumple_global, "Última tasa de éxito (global)"), unsafe_allow_html=True)
+    with col3:
+        st.markdown(metric_html(str(global_total), True, "Tests (última ejec. por suite)"), unsafe_allow_html=True)
+    with col4:
+        st.markdown(metric_html(str(global_failed), global_failed == 0, "Fallos (última ejec. por suite)"), unsafe_allow_html=True)
+    with col5:
+        dur_total = last_per_project["duration_ms"].sum() / 1000
+        st.markdown(metric_html(f"{dur_total:.1f}s", cumple_global, "Duración (última ejec. por suite)"), unsafe_allow_html=True)
+    if not cumple_global:
+        st.error("⚠️ La última ejecución de una o más suites no cumple las metas de calidad definidas (fallos, éxito o duración).")
+    if not cumple_flaky_global:
+        st.error("⚠️ Una o más suites superan el máximo de pruebas inestables (flaky) permitido.")
 
     st.divider()
 
@@ -191,12 +313,40 @@ def main() -> None:
     ).round({"exito_prom": 1, "duracion_prom": 0})
     by_suite["duracion_prom"] = (by_suite["duracion_prom"] / 1000).round(1)
 
+    # Badges de cumplimiento por suite (fallos, éxito promedio y duración promedio)
+    by_suite["Estado"] = by_suite.index.map(lambda p: eval_metric(
+        int(by_suite.loc[p, "fallidos"]) <= goal_for(p)["fallos_max"]
+        and float(by_suite.loc[p, "exito_prom"]) >= goal_for(p)["exito_min"]
+        and float(by_suite.loc[p, "duracion_prom"]) <= goal_for(p)["duracion_suite_max_s"],
+        "✔ cumple metas", "✘ no cumple",
+    ))
+    by_suite["Fallos vs meta"] = by_suite.index.map(lambda p: eval_metric(
+        int(by_suite.loc[p, "fallidos"]) <= goal_for(p)["fallos_max"],
+        "✔ dentro de meta", "✘ excedido",
+    ))
+
     col_comp_chart, col_comp_table = st.columns(2)
     with col_comp_chart:
-        st.caption("% de éxito promedio por suite")
-        st.bar_chart(by_suite["exito_prom"])
+        st.caption("% de éxito promedio por suite (línea = meta mínima)")
+        fig_comp = px.bar(
+            by_suite.reset_index(), x="project", y="exito_prom",
+            color="exito_prom", color_continuous_scale=["#c62828", "#e6a700", "#1a7f37"],
+            range_color=[0, 100],
+        )
+        meta_lines = {p: goal_for(p)["exito_min"] for p in by_suite.index}
+        for p, meta in meta_lines.items():
+            fig_comp.add_hline(
+                y=meta, line_dash="dot", line_color="#1f3b73",
+                annotation_text=f"meta {p.split('Automation')[0]}: {meta}%",
+                annotation_position="top left",
+            )
+        fig_comp.update_layout(
+            xaxis_title="", yaxis_title="Éxito % prom.",
+            coloraxis_showscale=False, height=380,
+        )
+        st.plotly_chart(fig_comp, width="stretch")
     with col_comp_table:
-        st.caption("Resumen agregado por suite")
+        st.caption("Resumen agregado por suite (con estado vs metas)")
         st.dataframe(
             by_suite.rename(columns={
                 "exito_prom": "Éxito % prom.",
@@ -211,29 +361,93 @@ def main() -> None:
 
     with col_left:
         st.subheader("🧪 Resultados por ejecución")
-        # Una serie por proyecto: sin esto, las barras mezclaban ejecuciones
-        # de proyectos distintos sin distinguirlos.
-        stacked = df[["executed_at", "project", "passed", "failed", "skipped"]].copy()
-        stacked_melt = stacked.melt(
-            id_vars=["executed_at", "project"],
-            value_vars=["passed", "failed", "skipped"],
-            var_name="estado", value_name="tests",
+        st.caption("Cada punto = una ejecución. Verde = tests pasados, rojo = fallidos, gris = omitidos. Usa el selector para enfocarte en una suite.")
+        # Selector de suite para no mezclar ejecuciones de proyectos distintos
+        # en un mismo eje (antes: 12 series apiladas ilegibles).
+        suite_options = ["Todas"] + sorted(df["project"].unique().tolist())
+        suite_sel = st.selectbox("Suite a visualizar", suite_options, key="stacked_suite")
+        stacked_df = df if suite_sel == "Todas" else df[df["project"] == suite_sel]
+        stacked_df = stacked_df.sort_values("executed_at").reset_index(drop=True)
+        stacked_df["etiqueta"] = stacked_df["executed_at"].dt.strftime("%d-%b %H:%M")
+        fig_stack = go.Figure()
+        fig_stack.add_bar(
+            x=stacked_df["etiqueta"], y=stacked_df["passed"],
+            name="Pasados", marker_color="#1a7f37",
+            customdata=stacked_df["project"],
+            hovertemplate="%{customdata}<br>%{x}<br>Pasados: %{y}<extra></extra>",
         )
-        stacked_melt["serie"] = stacked_melt["project"] + " · " + stacked_melt["estado"]
-        stacked_pivot = stacked_melt.pivot_table(
-            index="executed_at", columns="serie", values="tests", aggfunc="sum"
-        ).fillna(0)
-        st.bar_chart(stacked_pivot)
+        fig_stack.add_bar(
+            x=stacked_df["etiqueta"], y=stacked_df["failed"],
+            name="Fallidos", marker_color="#c62828",
+            customdata=stacked_df["project"],
+            hovertemplate="%{customdata}<br>%{x}<br>Fallidos: %{y}<extra></extra>",
+        )
+        fig_stack.add_bar(
+            x=stacked_df["etiqueta"], y=stacked_df["skipped"],
+            name="Omitidos", marker_color="#9aa4b2",
+            customdata=stacked_df["project"],
+            hovertemplate="%{customdata}<br>%{x}<br>Omitidos: %{y}<extra></extra>",
+        )
+        fig_stack.update_layout(
+            barmode="stack", height=380,
+            xaxis_title="", yaxis_title="Tests",
+            legend=dict(orientation="h", y=-0.25),
+            margin=dict(l=10, r=10, t=10, b=10),
+        )
+        st.plotly_chart(fig_stack, width="stretch")
 
     with col_right:
         st.subheader("⏱️ Duración de ejecuciones (segundos)")
-        # Una serie por proyecto para comparar duraciones entre suites.
+        st.caption("Barras coloreadas según la meta de duración de cada suite. Rojo = la suite tardó más de lo esperado.")
         duration = df[["executed_at", "project", "duration_ms"]].copy()
         duration["duracion_s"] = duration["duration_ms"] / 1000
-        duration_pivot = duration.pivot_table(
-            index="executed_at", columns="project", values="duracion_s", aggfunc="last"
+        duration["cumple"] = duration.apply(
+            lambda r: r["duracion_s"] <= goal_for(r["project"])["duracion_suite_max_s"], axis=1)
+        duration["etiqueta"] = duration["executed_at"].dt.strftime("%d-%b %H:%M")
+        fig_dur = go.Figure()
+        for project in sorted(duration["project"].unique()):
+            sub = duration[duration["project"] == project]
+            meta = goal_for(project)["duracion_suite_max_s"]
+            fig_dur.add_bar(
+                x=sub["etiqueta"], y=sub["duracion_s"],
+                name=f"{goal_for(project)['label']} (meta ≤{meta}s)",
+                marker_color=sub["cumple"].map({True: COLOR_OK, False: COLOR_BAD}),
+                customdata=sub["cumple"].map(
+                    {True: "✔ dentro de la meta", False: "✘ tardó más de lo esperado"}),
+                hovertemplate="%{x}<br>%{y:.1f}s<br>%{customdata}<extra></extra>",
+            )
+        # Línea de meta por suite (solo si hay una suite en el filtro)
+        if df["project"].nunique() == 1:
+            meta_suite = goal_for(df["project"].iloc[0])["duracion_suite_max_s"]
+            fig_dur.add_hline(y=meta_suite, line_dash="dot", line_color="#1f3b73",
+                              annotation_text=f"meta: {meta_suite}s")
+        fig_dur.update_layout(
+            barmode="group", height=380,
+            xaxis_title="", yaxis_title="Duración (s)",
+            legend=dict(orientation="h", y=-0.25),
+            margin=dict(l=10, r=10, t=10, b=10),
         )
-        st.bar_chart(duration_pivot)
+        st.plotly_chart(fig_dur, width="stretch")
+        # Alerta de duración por test individual
+        if "tests" in df.columns:
+            rows = df.explode("tests").dropna(subset=["tests"])
+            if not rows.empty:
+                tdf = pd.json_normalize(rows["tests"])
+                tdf["project"] = rows["project"].values
+                tdf["duracion_s"] = tdf["duration_ms"] / 1000
+                lentos = tdf[tdf.apply(
+                    lambda r: r["duracion_s"] > goal_for(r["project"])["duracion_test_max_s"],
+                    axis=1)]
+                if not lentos.empty:
+                    resumen = (lentos.groupby("project")
+                               .agg(tests_lentos=("name", "count"),
+                                    peor=("duracion_s", "max"))
+                               .reset_index())
+                    for _, r in resumen.iterrows():
+                        st.warning(
+                            f"⏱️ **{goal_for(r['project'])['label']}**: {r['tests_lentos']} tests tardaron más de "
+                            f"{goal_for(r['project'])['duracion_test_max_s']}s (el más lento: {r['peor']:.1f}s). "
+                            f"Revisa la sección 'Top bottlenecks'.")
 
     st.divider()
 
@@ -333,7 +547,7 @@ def main() -> None:
                 cause_matrix = (
                     failed_tests.groupby(["project", "causa"])
                     .size().reset_index(name="fallos")
-                    .sort_values(["project", "fallos"], ascending=[True, False])
+                    .sort_values("fallos", ascending=False)
                 )
                 st.dataframe(cause_matrix, width="stretch", hide_index=True)
             else:
