@@ -360,13 +360,14 @@ def main() -> None:
 
     def _estado_suite(p):
         # verde: cumple la meta; naranja: cerca (dentro de 10 puntos de la
-        # meta de éxito y sin exceder la meta de fallos); rojo: lejos.
+        # meta de éxito); rojo: lejos. Solo mira el éxito promedio: la suma
+        # histórica de fallidos casi siempre es > 0 y mandaría todo a rojo
+        # (los fallos se señalan aparte, en la tabla).
         goal = goal_for(p)
         exito = float(by_suite.loc[p, "exito_prom"])
-        fallidos_ok = int(by_suite.loc[p, "fallidos"]) <= goal["fallos_max"]
-        if fallidos_ok and exito >= goal["exito_min"]:
+        if exito >= goal["exito_min"]:
             return "cumple"
-        if fallidos_ok and exito >= goal["exito_min"] - 10:
+        if exito >= goal["exito_min"] - 10:
             return "cerca"
         return "lejos"
 
