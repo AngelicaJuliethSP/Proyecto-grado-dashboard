@@ -293,10 +293,34 @@ def main() -> None:
 
     # ---- Tendencia histórica ----
     st.subheader("📈 Tendencia de tasa de éxito por ejecución")
-    trend = df[["executed_at", "project", "success_rate"]].copy()
-    trend_pivot = trend.pivot_table(index="executed_at", columns="project",
-                                    values="success_rate", aggfunc="last")
-    st.line_chart(trend_pivot)
+    st.caption("Eje X = número de ejecución de cada suite (de la más antigua a la más reciente). "
+               "Pasa el cursor sobre cada punto para ver la fecha exacta. "
+               "Línea punteada = meta de éxito de cada suite.")
+    trend = df[["executed_at", "project", "success_rate"]].copy().sort_values("executed_at")
+    trend["ejecucion_n"] = trend.groupby("project").cumcount() + 1
+    trend["suite"] = trend["project"].map(lambda p: goal_for(p)["label"])
+    trend["fecha"] = trend["executed_at"].dt.strftime("%d-%b %H:%M")
+    fig_trend = px.line(
+        trend, x="ejecucion_n", y="success_rate", color="suite",
+        markers=True,
+        hover_data={
+            "fecha": True, "success_rate": ":.1f",
+            "ejecucion_n": False, "suite": False,
+        },
+    )
+    # Una línea de meta por suite (100/90/80%): quedan bien separadas en el eje
+    for project in sorted(trend["project"].unique()):
+        meta = goal_for(project)["exito_min"]
+        fig_trend.add_hline(y=meta, line_dash="dot", line_color="#1f3b73",
+                            annotation_text=f"meta {goal_for(project)['label']}: {meta}%",
+                            annotation_position="right")
+    fig_trend.update_layout(
+        height=380, xaxis_title="Número de ejecución", yaxis_title="Éxito %",
+        yaxis_range=[0, 108],
+        legend=dict(orientation="h", y=-0.3),
+        margin=dict(l=10, r=10, t=10, b=10),
+    )
+    st.plotly_chart(fig_trend, width="stretch")
 
     st.divider()
 
@@ -313,42 +337,41 @@ def main() -> None:
     ).round({"exito_prom": 1, "duracion_prom": 0})
     by_suite["duracion_prom"] = (by_suite["duracion_prom"] / 1000).round(1)
 
-    # Badges de cumplimiento por suite (fallos, éxito promedio y duración promedio)
-    by_suite["Estado"] = by_suite.index.map(lambda p: eval_metric(
-        int(by_suite.loc[p, "fallidos"]) <= goal_for(p)["fallos_max"]
-        and float(by_suite.loc[p, "exito_prom"]) >= goal_for(p)["exito_min"]
-        and float(by_suite.loc[p, "duracion_prom"]) <= goal_for(p)["duracion_suite_max_s"],
-        "✔ cumple metas", "✘ no cumple",
-    ))
-    by_suite["Fallos vs meta"] = by_suite.index.map(lambda p: eval_metric(
-        int(by_suite.loc[p, "fallidos"]) <= goal_for(p)["fallos_max"],
-        "✔ dentro de meta", "✘ excedido",
-    ))
+    # Badges "Estado" y "Fallos vs meta" eliminados: no aportaban información
+    # (redundantes con la gráfica) y el HTML no se renderiza en st.dataframe.
+    # El cumplimiento se lee directamente en la gráfica (verde/rojo) y en las
+    # columnas numéricas "Éxito % prom." y "Duración prom. (s)".
+
 
     col_comp_chart, col_comp_table = st.columns(2)
     with col_comp_chart:
-        st.caption("% de éxito promedio por suite (línea = meta mínima)")
+        st.caption("% de éxito promedio por suite (verde = cumple meta, rojo = no cumple)")
+        by_suite["cumple_meta"] = by_suite.index.map(lambda p: (
+            int(by_suite.loc[p, "fallidos"]) <= goal_for(p)["fallos_max"]
+            and float(by_suite.loc[p, "exito_prom"]) >= goal_for(p)["exito_min"]
+            and float(by_suite.loc[p, "duracion_prom"]) <= goal_for(p)["duracion_suite_max_s"]
+        ))
         fig_comp = px.bar(
             by_suite.reset_index(), x="project", y="exito_prom",
-            color="exito_prom", color_continuous_scale=["#c62828", "#e6a700", "#1a7f37"],
-            range_color=[0, 100],
+            color="cumple_meta",
+            color_discrete_map={True: COLOR_OK, False: COLOR_BAD},
         )
-        meta_lines = {p: goal_for(p)["exito_min"] for p in by_suite.index}
-        for p, meta in meta_lines.items():
+        for p in by_suite.index:
+            meta = goal_for(p)["exito_min"]
             fig_comp.add_hline(
                 y=meta, line_dash="dot", line_color="#1f3b73",
-                annotation_text=f"meta {p.split('Automation')[0]}: {meta}%",
+                annotation_text=f"meta {goal_for(p)['label']}: {meta}%",
                 annotation_position="top left",
             )
         fig_comp.update_layout(
             xaxis_title="", yaxis_title="Éxito % prom.",
-            coloraxis_showscale=False, height=380,
+            showlegend=False, height=380,
         )
         st.plotly_chart(fig_comp, width="stretch")
     with col_comp_table:
-        st.caption("Resumen agregado por suite (con estado vs metas)")
+        st.caption("Resumen agregado por suite")
         st.dataframe(
-            by_suite.rename(columns={
+            by_suite.drop(columns=["cumple_meta"]).rename(columns={
                 "exito_prom": "Éxito % prom.",
                 "duracion_prom": "Duración prom. (s)",
             }),
@@ -398,24 +421,34 @@ def main() -> None:
 
     with col_right:
         st.subheader("⏱️ Duración de ejecuciones (segundos)")
-        st.caption("Barras coloreadas según la meta de duración de cada suite. Rojo = la suite tardó más de lo esperado.")
+        st.caption("Barras coloreadas según la meta de duración de cada suite. "
+                   "Rojo = la suite tardó más de lo esperado. "
+                   "Escala logarítmica para que las suites rápidas (API ~3s) no queden invisibles junto a la móvil (~200s).")
         duration = df[["executed_at", "project", "duration_ms"]].copy()
         duration["duracion_s"] = duration["duration_ms"] / 1000
         duration["cumple"] = duration.apply(
             lambda r: r["duracion_s"] <= goal_for(r["project"])["duracion_suite_max_s"], axis=1)
-        duration["etiqueta"] = duration["executed_at"].dt.strftime("%d-%b %H:%M")
-        fig_dur = go.Figure()
-        for project in sorted(duration["project"].unique()):
-            sub = duration[duration["project"] == project]
+        duration["suite"] = duration["project"].map(lambda p: goal_for(p)["label"])
+        duration["estado"] = duration["cumple"].map(
+            {True: "✔ dentro de la meta", False: "✘ tardó más de lo esperado"})
+        duration["ejecucion_n"] = duration.groupby("project").cumcount() + 1
+        fig_dur = px.bar(
+            duration, x="ejecucion_n", y="duracion_s", color="suite",
+            color_discrete_sequence=px.colors.qualitative.Safe,
+            custom_data=["suite", "estado"],
+        )
+        # Colorear por cumplimiento (verde/rojo) dentro de cada suite
+        label_to_project = {g["label"]: p for p, g in GOALS.items()}
+        for trace in fig_dur.data:
+            project = label_to_project.get(trace.name, trace.name)
             meta = goal_for(project)["duracion_suite_max_s"]
-            fig_dur.add_bar(
-                x=sub["etiqueta"], y=sub["duracion_s"],
-                name=f"{goal_for(project)['label']} (meta ≤{meta}s)",
-                marker_color=sub["cumple"].map({True: COLOR_OK, False: COLOR_BAD}),
-                customdata=sub["cumple"].map(
-                    {True: "✔ dentro de la meta", False: "✘ tardó más de lo esperado"}),
-                hovertemplate="%{x}<br>%{y:.1f}s<br>%{customdata}<extra></extra>",
-            )
+            trace.marker.color = [
+                COLOR_OK if c else COLOR_BAD for c in duration[duration["project"] == project]["cumple"]
+            ]
+            trace.name = f"{goal_for(project)['label']} (meta ≤{meta}s)"
+            trace.hovertemplate = (
+                "%{customdata[0]}<br>Ejecución %{x}<br>Duración: %{y:.1f}s<br>"
+                "%{customdata[1]}<extra></extra>")
         # Línea de meta por suite (solo si hay una suite en el filtro)
         if df["project"].nunique() == 1:
             meta_suite = goal_for(df["project"].iloc[0])["duracion_suite_max_s"]
@@ -423,7 +456,8 @@ def main() -> None:
                               annotation_text=f"meta: {meta_suite}s")
         fig_dur.update_layout(
             barmode="group", height=380,
-            xaxis_title="", yaxis_title="Duración (s)",
+            xaxis_title="Número de ejecución", yaxis_title="Duración (s)",
+            yaxis_type="log",
             legend=dict(orientation="h", y=-0.25),
             margin=dict(l=10, r=10, t=10, b=10),
         )
