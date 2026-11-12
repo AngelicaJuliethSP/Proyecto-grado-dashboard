@@ -37,22 +37,22 @@ GOALS = {
     },
     "SauceDemoAutomation": {
         "label": "SauceDemo (Web)",
-        "fallos_max": 1,
-        "exito_min": 90.0,
+        "fallos_max": 0,
+        "exito_min": 100.0,
         "duracion_suite_max_s": 30,
         "duracion_test_max_s": 10,
         "flaky_max": 0,
     },
     "WdioMobileAutomation": {
         "label": "WdioMobile (Mobile)",
-        "fallos_max": 1,
-        "exito_min": 80.0,
+        "fallos_max": 0,
+        "exito_min": 100.0,
         "duracion_suite_max_s": 240,
         "duracion_test_max_s": 30,
         "flaky_max": 0,
     },
 }
-DEFAULT_GOAL = {"label": "", "fallos_max": 1, "exito_min": 90.0,
+DEFAULT_GOAL = {"label": "", "fallos_max": 0, "exito_min": 100.0,
                 "duracion_suite_max_s": 60, "duracion_test_max_s": 15,
                 "flaky_max": 0}
 
