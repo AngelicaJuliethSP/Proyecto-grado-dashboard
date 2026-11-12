@@ -94,14 +94,17 @@ Dos refinamientos sobre la primera versión del clasificador:
    `SessionNotCreatedException` → infraestructura; `TimeoutException` →
    timeouts), ya que el tipo es más confiable que el texto del mensaje.
 
-Verificado con el histórico real al 9-nov 19:47 UTC (14:47 Colombia; 36 fallos
-en 57 registros):
-15 mobile de aserción (`navigateThroughBottomMenu`, contenido no visible por
-la limitación de renderizado del emulador), 11 mobile de aserción
-(`swipeCardsAndFindHiddenText`, misma causa), 5 web de infraestructura
-(`NoSuchElement` en checkout, resuelto con waits explícitos), 3 timeouts
-móviles (`TimeoutException` en Login, Signup y Swipe durante la corrida de
-debugging del 7-nov), 1 web de aserción (`removeAllItemsFromCart`) y 1 fallo
+Verificado con el histórico real al **12-nov 23:43 UTC** (18:47 Colombia;
+40 fallos en 73 registros — corte que excluye las corridas locales del
+11-nov y solo contiene línea base, verificación de la Fase 1 y ejecuciones
+de CI):
+26 mobile de aserción (`navigateThroughBottomMenu` 17 + `swipeCardsAndFindHiddenText` 14,
+menos 1 sin tipo de excepción; contenido no visible — causa real: aserciones
+ejecutadas antes de que la pantalla terminara de cargar, corregido el 11-nov
+con esperas explícitas), 5 web de infraestructura (`NoSuchElement` en
+checkout, resuelto con waits explícitos), 3 timeouts móviles
+(`TimeoutException` en Login, Signup y Swipe durante la corrida de debugging
+del 7-nov), 1 web de aserción (`removeAllItemsFromCart`) y 1 fallo
 sin categoría (`IllegalArgumentException: bound must be positive`): el
 dashboard lo muestra como *Sin clasificar* porque no existe una categoría
 para ese tipo de excepción. Los 12 fallos de `setUp` de la línea base (sesión
@@ -114,9 +117,8 @@ corresponden a la fecha de corte indicada.
 
 Un test se marca como *flaky* si en el histórico aparece con estado `passed`
 y `failed` en ejecuciones distintas (agrupación por suite, clase y nombre).
-Con el criterio del propio dashboard, el histórico al 9-nov 19:47 UTC
-(14:47 Colombia) registra
-5 pruebas inestables:
+Con el criterio del propio dashboard, el histórico al **12-nov 23:43 UTC**
+(corte del informe) registra **6 pruebas inestables** sobre todo el histórico:
 
 - `purchaseProductSuccessfully` (SauceDemo): pasó en la mayoría de corridas y
   falló en varias del 8-nov y 9-nov (`NoSuchElement` en checkout por clicks
@@ -126,13 +128,18 @@ Con el criterio del propio dashboard, el histórico al 9-nov 19:47 UTC
 - `successfulLogin` y `successfulSignUp` (Wdio): pasan en casi todas las
   corridas; fallaron solo en la corrida de debugging del 7-nov
   (`TimeoutException` esperando visibilidad de elementos).
-- `swipeCardsAndFindHiddenText` (Wdio): falló en el piloto del 4-nov, pasó en
-  la corrida del 7-nov (emulador en mejor estado) y vuelve a fallar en CI por
-  la limitación de renderizado del emulador (SwiftShader).
+- `navigateThroughBottomMenu` y `swipeCardsAndFindHiddenText` (Wdio): fallaron
+  de forma intermitente hasta el 11-nov (aserciones prematuras y gesto de
+  swipe insuficiente) y pasan de forma estable desde entonces.
 
-`navigateThroughBottomMenu`, en cambio, no es flaky bajo este criterio: nunca
-pasó en el histórico registrado (solo `failed` y `skipped`), por lo que es un
-fallo consistente y no una alternancia éxito/fallo.
+**Nota sobre la ventana de evaluación:** en el dashboard, el máximo de
+pruebas inestables (flaky_max = 0) se evalúa sobre las **últimas 10
+ejecuciones** de cada suite, no sobre todo el histórico — con el criterio
+histórico, una sola prueba inestable quedaría marcada para siempre y la meta
+nunca podría cumplirse. Con la ventana actual, SauceDemo y PetStore tienen 0
+pruebas inestables; WdioMobile registra 2 (`navigateThroughBottomMenu` y
+`swipeCardsAndFindHiddenText`, que alternaron éxito/fallo en las corridas de
+CI previas al 11-nov y pasan de forma estable desde entonces).
 
 ## 6. Despliegue
 
@@ -148,8 +155,8 @@ fallo consistente y no una alternancia éxito/fallo.
 ## 7. Verificación
 
 - Compilación sin errores (`py_compile`).
-- Lógica de datos validada con el almacén real (57 ejecuciones, 258 filas de
-  tests, 36 fallos clasificados).
+- Lógica de datos validada con el almacén real (73 registros al corte del
+  12-nov, 330 filas de tests, 40 fallos clasificados).
 - Verificación visual local del servidor (las 11 vistas renderizan).
 - Despliegue en la nube verificado en la URL pública.
 

@@ -90,30 +90,30 @@ un emulador Android, un servidor Appium y el APK de la aplicación bajo prueba.
 4. **Ejecución de la suite** dentro del `android-emulator-runner`, que crea el
    emulador, espera el boot y ejecuta el script de Maven contra él.
 
-### 6.3 Escenarios con falla conocida
+### 6.3 Evolución de los escenarios mobile (antecedente y estado final)
 
-Dos escenarios mobile presentan fallas conocidas en el entorno de CI (emulador
-headless con renderizado por software). En lugar de excluirlos, se ejecutan en
-un **paso separado** con `-Dmaven.test.failure.ignore=true`, de modo que la
-falla queda **registrada en los reportes Surefire/Allure como evidencia
-documentada**, sin romper el pipeline:
+Durante la puesta a punto inicial, dos escenarios mobile (`NavigationTest`,
+`SwipeTest`) fallaban de forma intermitente en el emulador de CI. En su
+momento se implementó una estrategia de dos pasos: un paso principal
+(`LoginTest`, `SignupTest`, CI estricto) y un paso de "fallas conocidas" con
+`-Dmaven.test.failure.ignore=true` que registraba la falla en los reportes
+sin romper el pipeline. Esa etapa se conservó como antecedente; la hipótesis
+de entonces (limitación del renderizado por software del emulador) quedó
+**refutada** en el diagnóstico posterior.
 
-| Escenario | Falla conocida | Comportamiento fuera de CI |
-|---|---|---|
-| `NavigationTest` | El WebView de la aplicación no renderiza contenido en emuladores headless con renderizado por software (SwiftShader). | Pasa en emulador con aceleración por hardware. |
-| `SwipeTest` | Los gestos de swipe no siempre se procesan bajo renderizado por software; comportamiento intermitente. | Pasa en emulador con aceleración por hardware (verificado en la Fase 1). |
+**Causa real** (diagnosticada el 11-nov con logs de Appium y dumps de
+uiautomator): no era el entorno de CI, sino dos defectos del propio framework
+de pruebas — aserciones ejecutadas antes de que la pantalla terminara de
+cargar (fix: esperas explícitas tras cada tap, commit `6b17dae`) y un gesto
+de swipe que no alcanzaba a mover el carrusel o caía en la zona del gesto
+"atrás" de Android (fix: gesto nativo `mobile: swipeGesture` de uiautomator2
+y margen del 10%, commit `b6383ef`).
 
-La estrategia de dos pasos distingue claramente:
-
-- **Paso principal** (`LoginTest`, `SignupTest`): escenarios estables que deben
-  pasar siempre; su falla rompe el pipeline (CI estricto).
-- **Paso de fallas conocidas** (`NavigationTest`, `SwipeTest`): su falla se
-  registra en los reportes como evidencia documentada, pero no rompe el
-  pipeline.
-
-Ambas limitaciones están justificadas en comentarios dentro del workflow y en
-el README del repositorio. Se trata de limitaciones del entorno de ejecución
-(CI headless sin GPU), no de defectos del framework de pruebas.
+**Estado final (desde el 11-nov-2026):** las 4 pruebas mobile pasan de forma
+estable y el workflow quedó **unificado en un solo paso** (`mvn clean test -B`
+sin exclusiones ni tolerancia de fallas), con un único directorio de reportes
+Surefire y publicación simplificada al dashboard. El emulador lento de CI solo
+actuó como amplificador de un problema que existía en el código de pruebas.
 
 ## 7. Incidencias y depuración
 
@@ -147,7 +147,7 @@ Estado final de los tres pipelines (verificado tras la última ejecución):
 |---|---|---|
 | `SauceDemoAutomation` | CI - SauceDemo Web Tests | ✅ success |
 | `PetStoreRestAssured` | CI - PetStore API Tests | ✅ success |
-| `WdioMobileAutomation` | CI - WdioMobile Android Tests | ✅ success (Login, Signup estables; Navigation y Swipe ejecutados como fallas conocidas documentadas) |
+| `WdioMobileAutomation` | CI - WdioMobile Android Tests | ✅ success (las 4 pruebas en un solo paso, desde el 11-nov) |
 
 Cada ejecución genera como artefactos los reportes Surefire y los resultados
 Allure de la suite, con 7 días de retención.
@@ -173,10 +173,11 @@ Allure de la suite, con 7 días de retención.
 - La depuración del pipeline mobile dejó documentadas tres lecciones
   reutilizables: registro de drivers de Appium, sensibilidad de la app a la
   versión de API, y ajuste de waits para renderizado por software.
-- Las fallas conocidas de mobile (Navigation, Swipe) están **documentadas y
-  registradas en los reportes** como evidencia, mediante una estrategia de dos
-  pasos que separa escenarios estables (CI estricto) de escenarios con falla
-  conocida (registrados sin romper el pipeline).
+- La intermitencia mobile (Navigation, Swipe) quedó **resuelta y documentada**:
+  la causa real eran defectos del código de pruebas (aserciones prematuras y
+  gesto de swipe insuficiente), corregidos con esperas explícitas y el gesto
+  nativo `mobile: swipeGesture`; el workflow se unificó en un solo paso con
+  CI estricto para las 4 pruebas.
 
 ## 11. Criterios de salida cumplidos
 
@@ -185,5 +186,5 @@ Allure de la suite, con 7 días de retención.
 | Pipeline automático por push/PR en los 3 repositorios | ✅ |
 | Ejecución en verde de los pipelines | ✅ (Web, API y Mobile) |
 | Evidencia de ejecución publicada como artefactos | ✅ (Surefire + Allure) |
-| Fallas conocidas documentadas y registradas en los reportes | ✅ (Navigation, Swipe — workflow + README) |
+| Intermitencia mobile diagnosticada, resuelta y documentada | ✅ (Navigation, Swipe — workflow unificado + README) |
 | Cambios versionados y publicados en los repositorios | ✅ |

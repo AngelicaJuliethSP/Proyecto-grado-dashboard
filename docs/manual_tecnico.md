@@ -36,6 +36,10 @@ refactorización de los frameworks, configuración de los pipelines de CI,
 construcción del parser, del dashboard y de este documento. Cada commit
 asistido lleva la co-firma `Co-Authored-By: CODA <coda@globant.com>` en el
 historial de Git, como declaración explícita de la herramienta empleada.
+Al corte del 12-nov-2026, los commits co-firmados con CODA son:
+`SauceDemoAutomation` 17 de 39, `PetStoreRestAssured` 14 de 30,
+`WdioMobileAutomation` 24 de 47 y `Proyecto-grado-dashboard` 64 de 111
+(122 de 227 en total).
 
 Las decisiones de arquitectura, el alcance de cada fase, la interpretación de
 resultados y la validación final son de la autora. La herramienta actuó como
@@ -91,9 +95,10 @@ de IA en trabajos de grado antes de la entrega.
 | Maven Surefire | 3.1.2 | Plugin de ejecución y generación de XML |
 | Allure TestNG | 2.29.1 | Adaptador de resultados para reportes |
 | GitHub Actions | — | Pipeline de integración continua |
-| Python | 3.12+ | Parser y dashboard |
-| pandas | 2.x | Transformación de datos |
-| Streamlit | 1.40+ | Dashboard web |
+| Python | 3.10+ | Parser y dashboard (`allure_ingest.py` usa `int | None`, disponible desde 3.10; el despliegue en Streamlit Cloud usa 3.14) |
+| pandas | 3.1.1 | Transformación de datos |
+| Streamlit | 1.67.0 | Dashboard web |
+| plotly | 7.1.0 | Gráficas interactivas del dashboard |
 
 ## 4. Framework Web UI — SauceDemoAutomation
 
@@ -308,6 +313,28 @@ Secrets and variables → Actions → New repository secret → nombre
 **Despliegue:** Streamlit Community Cloud, conectado al repositorio de
 GitHub — cada push a `main` redespliega automáticamente. Configuración de
 tema en `.streamlit/config.toml`.
+
+### 9.1 Metas de calidad y semaforización
+
+Las metas se definieron con el criterio: duraciones calibradas con los
+tiempos habituales de cada suite en CI; web y API (entornos deterministas)
+exigen 0 fallos y 100% de éxito; la móvil tolera 1 fallo (emulador de CI
+intermitente) con éxito mínimo 75%, coherente con sus 4 pruebas. El máximo
+de pruebas inestables (flaky_max = 0) se evalúa sobre las últimas 10
+ejecuciones de cada suite.
+
+| Métrica | PetStore (API) | SauceDemo (Web) | WdioMobile (Mobile) |
+|---|---|---|---|
+| Fallos por ejecución | 0 | 0 | ≤ 1 |
+| Tasa de éxito mínima | 100% | 100% | 75% |
+| Duración máx. suite | 10 s | 30 s | 240 s |
+| Duración máx. por test | 5 s | 10 s | 30 s |
+| Flaky máx. (ventana 10) | 0 | 0 | 0 |
+
+**Semáforo de la comparativa entre suites:** 🟢 verde = cumple la meta de
+éxito; 🟠 naranja = cerca de la meta (dentro de 10 puntos porcentuales);
+🔴 rojo = lejos de la meta. Los fallidos que exceden la meta se pintan en
+rojo en la tabla de resumen.
 
 ## 10. Mantenimiento y extensión
 
