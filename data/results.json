@@ -3490,5 +3490,53 @@
         "exception_message": null
       }
     ]
+  },
+  {
+    "project": "SauceDemoAutomation",
+    "executed_at": "2026-11-12T01:46:51+00:00",
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": 100.0,
+    "duration_ms": 20019,
+    "tests": [
+      {
+        "name": "purchaseProductSuccessfully",
+        "class": "com.saucedemo.tests.PurchaseTest",
+        "status": "passed",
+        "duration_ms": 1160,
+        "started_at": "2026-11-12T01:46:35 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "purchaseProductSuccessfully",
+        "class": "com.saucedemo.tests.PurchaseTest",
+        "status": "passed",
+        "duration_ms": 6015,
+        "started_at": "2026-11-12T01:46:37 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "removeAllItemsFromCart",
+        "class": "com.saucedemo.tests.RemoveCartItemsTest",
+        "status": "passed",
+        "duration_ms": 890,
+        "started_at": "2026-11-12T01:46:33 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "logoutRedirectsToLoginPage",
+        "class": "com.saucedemo.tests.LogoutTest",
+        "status": "passed",
+        "duration_ms": 731,
+        "started_at": "2026-11-12T01:46:43 UTC",
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
   }
 ]
