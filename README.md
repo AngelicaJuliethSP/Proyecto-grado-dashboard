@@ -33,6 +33,12 @@ respectivos) ejecutan las suites a diario (cron 06:00 UTC =
 redespliega automáticamente con cada push, por lo que el dashboard siempre
 refleja el histórico actualizado — sin ningún paso manual.
 
+> **Sobre el cron:** está programado a las **06:00 UTC** (01:00 Colombia),
+> pero GitHub Actions puede iniciarlo **con horas de retraso** en momentos
+> de alta carga (los eventos `schedule` no tienen garantía de puntualidad).
+> El horario de cada registro del histórico es el de la ejecución real,
+> no el del cron teórico.
+
 ## Estructura del repositorio
 
 ```
@@ -115,6 +121,46 @@ streamlit run dashboard/app.py
 - **Pruebas inestables (flaky)** (tests que alternan entre éxito y fallo).
 - **Detalle por test** con filtros y búsqueda.
 - **Histórico completo** en tabla.
+
+## Metas de calidad y semaforización
+
+Las metas se definieron con el criterio: duraciones calibradas con los
+tiempos habituales de cada suite en CI; web y API (entornos deterministas)
+exigen 0 fallos y 100% de éxito; la móvil tolera 1 fallo (emulador de CI
+intermitente) con éxito mínimo 75%, coherente con sus 4 pruebas. El máximo
+de pruebas inestables (flaky) se evalúa sobre las **últimas 10 ejecuciones**
+de cada suite, no sobre todo el histórico.
+
+| Métrica | PetStore (API) | SauceDemo (Web) | WdioMobile (Mobile) |
+|---|---|---|---|
+| Fallos por ejecución | 0 | 0 | ≤ 1 |
+| Tasa de éxito mínima | 100% | 100% | 75% |
+| Duración máx. suite | 10 s | 30 s | 240 s |
+| Duración máx. por test | 5 s | 10 s | 30 s |
+| Flaky máx. (ventana 10) | 0 | 0 | 0 |
+
+**Semáforo de la comparativa entre suites** (gráfica de éxito promedio):
+
+| Color | Significado |
+|---|---|
+| 🟢 Verde | Cumple la meta de éxito |
+| 🟠 Naranja | Cerca de la meta (dentro de 10 puntos porcentuales) |
+| 🔴 Rojo | Lejos de la meta |
+
+Adicionalmente: los fallidos que exceden la meta de la suite se pintan en
+rojo en la tabla de resumen, y las duraciones que exceden su meta se marcan
+con borde rojo conservando el color de la suite.
+
+## Dependencias
+
+Versiones fijadas en `requirements.txt`:
+
+| Paquete | Versión | Uso |
+|---|---|---|
+| streamlit | 1.67.0 | Framework del dashboard |
+| pandas | 3.1.1 | Manipulación del histórico |
+| plotly | 7.1.0 | Gráficas interactivas |
+| pytest | (sin fijar) | Pruebas del parser |
 
 ## Autor
 
