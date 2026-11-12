@@ -421,8 +421,8 @@ def main() -> None:
 
     with col_right:
         st.subheader("⏱️ Duración de ejecuciones (segundos)")
-        st.caption("Barras coloreadas según la meta de duración de cada suite. "
-                   "Rojo = la suite tardó más de lo esperado. "
+        st.caption("Cada suite tiene su propio color. "
+                   "Borde rojo = esa ejecución tardó más de lo esperado (meta en el hover). "
                    "Escala logarítmica para que las suites rápidas (API ~3s) no queden invisibles junto a la móvil (~200s).")
         duration = df[["executed_at", "project", "duration_ms"]].copy()
         duration["duracion_s"] = duration["duration_ms"] / 1000
@@ -432,19 +432,28 @@ def main() -> None:
         duration["estado"] = duration["cumple"].map(
             {True: "✔ dentro de la meta", False: "✘ tardó más de lo esperado"})
         duration["ejecucion_n"] = duration.groupby("project").cumcount() + 1
+        # Un color distintivo por suite para identificarlas de un vistazo
+        SUITE_COLORS = {
+            "PetStore (API)": "#1f77b4",     # azul
+            "SauceDemo (Web)": "#ff7f0e",    # naranja
+            "WdioMobile (Mobile)": "#9467bd",  # morado
+        }
         fig_dur = px.bar(
             duration, x="ejecucion_n", y="duracion_s", color="suite",
-            color_discrete_sequence=px.colors.qualitative.Safe,
+            color_discrete_map=SUITE_COLORS,
             custom_data=["suite", "estado"],
         )
-        # Colorear por cumplimiento (verde/rojo) dentro de cada suite
+        # Borde rojo en las barras que exceden la meta (la barra conserva
+        # el color de su suite; el incumplimiento no pasa desapercibido)
         label_to_project = {g["label"]: p for p, g in GOALS.items()}
         for trace in fig_dur.data:
             project = label_to_project.get(trace.name, trace.name)
             meta = goal_for(project)["duracion_suite_max_s"]
-            trace.marker.color = [
-                COLOR_OK if c else COLOR_BAD for c in duration[duration["project"] == project]["cumple"]
-            ]
+            cumple_trace = duration[duration["project"] == project]["cumple"].tolist()
+            trace.marker.line = dict(
+                width=2,
+                color=[COLOR_BAD if not c else "rgba(0,0,0,0)" for c in cumple_trace],
+            )
             trace.name = f"{goal_for(project)['label']} (meta ≤{meta}s)"
             trace.hovertemplate = (
                 "%{customdata[0]}<br>Ejecución %{x}<br>Duración: %{y:.1f}s<br>"
