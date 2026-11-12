@@ -20,7 +20,13 @@ import streamlit as st
 
 DATA_PATH = Path(__file__).resolve().parent.parent / "data" / "results.json"
 
-# ---- Metas de calidad por suite (acordadas con el equipo) ----
+# ---- Metas de calidad por suite ----
+# Criterio de definición: las duraciones se calibraron con los tiempos
+# habituales de cada suite en CI (percentil alto de ejecuciones en verde);
+# web y API, al ser entornos deterministas, exigen 0 fallos y 100% de
+# éxito; la móvil tolera 1 fallo (con éxito mínimo 75%, coherente con 4
+# pruebas) porque el emulador de CI es intermitente. flaky_max se evalúa
+# sobre una ventana reciente (ver FLAKY_WINDOW).
 # fallos_max: fallos permitidos por ejecución
 # exito_min: tasa de éxito mínima (%)
 # duracion_suite_max_s: duración máxima de la suite (segundos)
@@ -46,12 +52,15 @@ GOALS = {
     "WdioMobileAutomation": {
         "label": "WdioMobile (Mobile)",
         "fallos_max": 1,
-        "exito_min": 90.0,
+        "exito_min": 75.0,
         "duracion_suite_max_s": 240,
         "duracion_test_max_s": 30,
         "flaky_max": 0,
     },
 }
+# Ventana (en ejecuciones) sobre la que se evalúa flaky_max: con todo el
+# histórico una sola prueba inestable quedaría marcada para siempre.
+FLAKY_WINDOW = 10
 DEFAULT_GOAL = {"label": "", "fallos_max": 0, "exito_min": 100.0,
                 "duracion_suite_max_s": 60, "duracion_test_max_s": 15,
                 "flaky_max": 0}
@@ -199,9 +208,11 @@ def metric_html(value: str, cumple: bool, meta_text: str) -> str:
             f'</div>')
 
 
-def flaky_count(df: pd.DataFrame, project: str) -> int:
-    """Número de pruebas inestables (alternan éxito/fallo) de una suite."""
-    sub = df[df["project"] == project]
+def flaky_count(df: pd.DataFrame, project: str, window: int = FLAKY_WINDOW) -> int:
+    """Número de pruebas inestables (alternan éxito/fallo) de una suite,
+    evaluado sobre las últimas `window` ejecuciones (no todo el histórico:
+    una prueba inestable quedaría marcada para siempre)."""
+    sub = df[df["project"] == project].sort_values("executed_at").tail(window)
     if "tests" not in sub.columns or sub.empty:
         return 0
     rows = sub.explode("tests").dropna(subset=["tests"])
@@ -319,7 +330,7 @@ def main() -> None:
             "ejecucion_n": False, "suite": False,
         },
     )
-    # Una línea de meta por suite (100/90/80%): quedan bien separadas en el eje
+    # Una línea de meta por suite (100/100/75%): quedan bien separadas en el eje
     for project in sorted(trend["project"].unique()):
         meta = goal_for(project)["exito_min"]
         fig_trend.add_hline(y=meta, line_dash="dot", line_color="#1f3b73",
