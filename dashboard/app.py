@@ -354,49 +354,49 @@ def main() -> None:
     # columnas numéricas "Éxito % prom." y "Duración prom. (s)".
 
 
-    col_comp_chart, col_comp_table = st.columns(2)
-    with col_comp_chart:
-        st.caption("% de éxito promedio por suite (verde = cumple meta, rojo = no cumple)")
-        by_suite["cumple_meta"] = by_suite.index.map(lambda p: (
-            int(by_suite.loc[p, "fallidos"]) <= goal_for(p)["fallos_max"]
-            and float(by_suite.loc[p, "exito_prom"]) >= goal_for(p)["exito_min"]
-            and float(by_suite.loc[p, "duracion_prom"]) <= goal_for(p)["duracion_suite_max_s"]
-        ))
-        fig_comp = px.bar(
-            by_suite.reset_index(), x="project", y="exito_prom",
-            color="cumple_meta",
-            color_discrete_map={True: COLOR_OK, False: COLOR_BAD},
+    # Gráfica a todo el ancho (centrada) y la tabla debajo, en lugar de
+    # dos columnas a la mitad del ancho.
+    st.caption("% de éxito promedio por suite (verde = cumple meta, rojo = no cumple)")
+    by_suite["cumple_meta"] = by_suite.index.map(lambda p: (
+        int(by_suite.loc[p, "fallidos"]) <= goal_for(p)["fallos_max"]
+        and float(by_suite.loc[p, "exito_prom"]) >= goal_for(p)["exito_min"]
+        and float(by_suite.loc[p, "duracion_prom"]) <= goal_for(p)["duracion_suite_max_s"]
+    ))
+    fig_comp = px.bar(
+        by_suite.reset_index(), x="project", y="exito_prom",
+        color="cumple_meta",
+        color_discrete_map={True: COLOR_OK, False: COLOR_BAD},
+    )
+    for p in by_suite.index:
+        meta = goal_for(p)["exito_min"]
+        fig_comp.add_hline(
+            y=meta, line_dash="dot", line_color="#1f3b73",
+            annotation_text=f"meta {goal_for(p)['label']}: {meta}%",
+            annotation_position="top left",
         )
-        for p in by_suite.index:
-            meta = goal_for(p)["exito_min"]
-            fig_comp.add_hline(
-                y=meta, line_dash="dot", line_color="#1f3b73",
-                annotation_text=f"meta {goal_for(p)['label']}: {meta}%",
-                annotation_position="top left",
-            )
-        fig_comp.update_layout(
-            xaxis_title="", yaxis_title="Éxito % prom.",
-            showlegend=False, height=380,
-        )
-        st.plotly_chart(fig_comp, width="stretch")
-    with col_comp_table:
-        st.caption("Resumen agregado por suite")
-        # "Fallidos" en rojo cuando exceden la meta de fallos de la suite
-        def _pintar_fallidos(col):
-            # col.index = nombre del proyecto de cada fila
-            return [
-                f"color: {COLOR_BAD}; font-weight: bold" if v > goal_for(idx)["fallos_max"] else ""
-                for idx, v in col.items()
-            ]
-        st.dataframe(
-            by_suite.drop(columns=["cumple_meta"]).rename(columns={
-                "exito_prom": "Éxito % prom.",
-                "duracion_prom": "Duración prom. (s)",
-            }).style.apply(
-                _pintar_fallidos, subset=["fallidos"]
-            ),
-            width="stretch",
-        )
+    fig_comp.update_layout(
+        xaxis_title="", yaxis_title="Éxito % prom.",
+        showlegend=False, height=380,
+    )
+    st.plotly_chart(fig_comp, width="stretch")
+
+    st.caption("Resumen agregado por suite")
+    # "Fallidos" en rojo cuando exceden la meta de fallos de la suite
+    def _pintar_fallidos(col):
+        # col.index = nombre del proyecto de cada fila
+        return [
+            f"color: {COLOR_BAD}; font-weight: bold" if v > goal_for(idx)["fallos_max"] else ""
+            for idx, v in col.items()
+        ]
+    st.dataframe(
+        by_suite.drop(columns=["cumple_meta"]).rename(columns={
+            "exito_prom": "Éxito % prom.",
+            "duracion_prom": "Duración prom. (s)",
+        }).style.apply(
+            _pintar_fallidos, subset=["fallidos"]
+        ),
+        width="stretch",
+    )
 
     st.divider()
 
