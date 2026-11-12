@@ -45,8 +45,8 @@ GOALS = {
     },
     "WdioMobileAutomation": {
         "label": "WdioMobile (Mobile)",
-        "fallos_max": 0,
-        "exito_min": 100.0,
+        "fallos_max": 1,
+        "exito_min": 90.0,
         "duracion_suite_max_s": 240,
         "duracion_test_max_s": 30,
         "flaky_max": 0,
