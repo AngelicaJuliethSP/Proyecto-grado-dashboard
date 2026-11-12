@@ -257,6 +257,17 @@ def main() -> None:
     cumple_flaky_global = all(
         flaky_count(df, p) <= goals[p]["flaky_max"] for p in last_per_project["project"]
     )
+    # Cada KPI se evalúa con su propio criterio (no con el consolidado
+    # global): así una duración excedida no pinta en rojo la tarjeta de
+    # tasa de éxito, por ejemplo.
+    cumple_exito_global = all(
+        float(row["success_rate"]) >= goals[p]["exito_min"]
+        for p, row in last_per_project.set_index("project").iterrows()
+    )
+    cumple_duracion_global = all(
+        row["duration_ms"] / 1000 <= goals[p]["duracion_suite_max_s"]
+        for p, row in last_per_project.set_index("project").iterrows()
+    )
 
     st.subheader("🎯 Estado global vs metas de calidad")
     with st.expander("📋 Ver metas definidas por suite", expanded=False):
@@ -276,14 +287,14 @@ def main() -> None:
     with col1:
         st.markdown(metric_html(str(len(df)), True, "Ejecuciones registradas"), unsafe_allow_html=True)
     with col2:
-        st.markdown(metric_html(f"{global_rate}%", cumple_global, "Última tasa de éxito (global)"), unsafe_allow_html=True)
+        st.markdown(metric_html(f"{global_rate}%", cumple_exito_global, "Última tasa de éxito (global)"), unsafe_allow_html=True)
     with col3:
         st.markdown(metric_html(str(global_total), True, "Tests (última ejec. por suite)"), unsafe_allow_html=True)
     with col4:
         st.markdown(metric_html(str(global_failed), global_failed == 0, "Fallos (última ejec. por suite)"), unsafe_allow_html=True)
     with col5:
         dur_total = last_per_project["duration_ms"].sum() / 1000
-        st.markdown(metric_html(f"{dur_total:.1f}s", cumple_global, "Duración (última ejec. por suite)"), unsafe_allow_html=True)
+        st.markdown(metric_html(f"{dur_total:.1f}s", cumple_duracion_global, "Duración (última ejec. por suite)"), unsafe_allow_html=True)
     if not cumple_global:
         st.error("⚠️ La última ejecución de una o más suites no cumple las metas de calidad definidas (fallos, éxito o duración).")
     if not cumple_flaky_global:
