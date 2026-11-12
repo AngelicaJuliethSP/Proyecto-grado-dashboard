@@ -356,16 +356,26 @@ def main() -> None:
 
     # Gráfica a todo el ancho (centrada) y la tabla debajo, en lugar de
     # dos columnas a la mitad del ancho.
-    st.caption("% de éxito promedio por suite (verde = cumple meta, rojo = no cumple)")
-    by_suite["cumple_meta"] = by_suite.index.map(lambda p: (
-        int(by_suite.loc[p, "fallidos"]) <= goal_for(p)["fallos_max"]
-        and float(by_suite.loc[p, "exito_prom"]) >= goal_for(p)["exito_min"]
-        and float(by_suite.loc[p, "duracion_prom"]) <= goal_for(p)["duracion_suite_max_s"]
-    ))
+    st.caption("% de éxito promedio por suite (verde = cumple meta, naranja = cerca de la meta, rojo = no cumple)")
+
+    def _estado_suite(p):
+        # verde: cumple la meta; naranja: cerca (dentro de 10 puntos de la
+        # meta de éxito y sin exceder la meta de fallos); rojo: lejos.
+        goal = goal_for(p)
+        exito = float(by_suite.loc[p, "exito_prom"])
+        fallidos_ok = int(by_suite.loc[p, "fallidos"]) <= goal["fallos_max"]
+        if fallidos_ok and exito >= goal["exito_min"]:
+            return "cumple"
+        if fallidos_ok and exito >= goal["exito_min"] - 10:
+            return "cerca"
+        return "lejos"
+
+    by_suite["estado"] = by_suite.index.map(_estado_suite)
     fig_comp = px.bar(
         by_suite.reset_index(), x="project", y="exito_prom",
-        color="cumple_meta",
-        color_discrete_map={True: COLOR_OK, False: COLOR_BAD},
+        color="estado",
+        color_discrete_map={"cumple": COLOR_OK, "cerca": COLOR_WARN, "lejos": COLOR_BAD},
+        category_orders={"estado": ["cumple", "cerca", "lejos"]},
     )
     # Una sola línea por meta única: si dos suites comparten meta (p. ej.
     # Web y API al 100%), sus textos se encimaban sobre la misma línea.
@@ -392,7 +402,7 @@ def main() -> None:
             for idx, v in col.items()
         ]
     st.dataframe(
-        by_suite.drop(columns=["cumple_meta"]).rename(columns={
+        by_suite.drop(columns=["estado"]).rename(columns={
             "exito_prom": "Éxito % prom.",
             "duracion_prom": "Duración prom. (s)",
         }).style.format({
