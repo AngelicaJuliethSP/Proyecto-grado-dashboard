@@ -367,12 +367,15 @@ def main() -> None:
         color="cumple_meta",
         color_discrete_map={True: COLOR_OK, False: COLOR_BAD},
     )
-    for p in by_suite.index:
-        meta = goal_for(p)["exito_min"]
+    # Una sola línea por meta única: si dos suites comparten meta (p. ej.
+    # Web y API al 100%), sus textos se encimaban sobre la misma línea.
+    metas_exito = sorted({goal_for(p)["exito_min"] for p in by_suite.index}, reverse=True)
+    for meta in metas_exito:
+        suites = [goal_for(p)["label"] for p in by_suite.index if goal_for(p)["exito_min"] == meta]
         fig_comp.add_hline(
             y=meta, line_dash="dot", line_color="#1f3b73",
-            annotation_text=f"meta {goal_for(p)['label']}: {meta}%",
-            annotation_position="top left",
+            annotation_text=f"meta {' y '.join(suites)}: {meta}%",
+            annotation_position="bottom right" if meta == min(metas_exito) else "top left",
         )
     fig_comp.update_layout(
         xaxis_title="", yaxis_title="Éxito % prom.",
@@ -392,7 +395,10 @@ def main() -> None:
         by_suite.drop(columns=["cumple_meta"]).rename(columns={
             "exito_prom": "Éxito % prom.",
             "duracion_prom": "Duración prom. (s)",
-        }).style.apply(
+        }).style.format({
+            "Éxito % prom.": "{:.2f}",
+            "Duración prom. (s)": "{:.2f}",
+        }).apply(
             _pintar_fallidos, subset=["fallidos"]
         ),
         width="stretch",
