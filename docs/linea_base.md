@@ -81,6 +81,7 @@ la variabilidad del entorno móvil.
 
 ## 5. Evidencia
 
-- Almacén de datos: `data/results.json` (20 ejecuciones registradas)
+- Almacén de datos: `data/results.json` (20 ejecuciones registradas al cierre
+  de la Fase 0)
 - Respaldo pre-línea-base: `data/results_backup.json`
 - Script reproducible: `scripts/run_baseline.py --runs 3`

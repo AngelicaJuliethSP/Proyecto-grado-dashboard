@@ -14,6 +14,7 @@ proyecto.
 | **Python** | Lenguaje principal | Ecosistema de análisis de datos (pandas) y despliegue sencillo |
 | **pandas** | Transformación de datos | Lectura del almacén JSON, agregaciones, detección de patrones |
 | **Streamlit** | Framework de visualización | Desarrollo rápido, sin frontend, despliegue gratuito en Streamlit Community Cloud |
+| **Plotly** | Gráficas interactivas | Gráficos con zoom y tooltips integrados en Streamlit |
 
 ## 3. Arquitectura
 
@@ -48,7 +49,7 @@ dashboard/app.py (Streamlit)  ──►  URL pública
 | 4 | **Resultados por ejecución** | Barras apiladas pasados/fallidos/omitidos | Comportamiento por corrida |
 | 5 | **Duración de ejecuciones** | Barras de duración por corrida (execution drift) | Degradación de tiempos |
 | 6 | **Tests más fallidos** | Top 10 histórico por número de fallos | Puntos críticos de las suites |
-| 7 | **Matriz de causa raíz probable** | Clasificación automática de fallos por patrones del mensaje de error (regex): timeouts/asincronía, concurrencia, red, datos de prueba, aserciones, infraestructura | Análisis de fallos recurrentes |
+| 7 | **Matriz de causa raíz probable** | Clasificación automática de fallos por tipo de excepción (con prioridad) y patrones del mensaje de error (regex): timeouts/asincronía, concurrencia, red, datos de prueba, aserciones, infraestructura | Análisis de fallos recurrentes |
 | 8 | **Top bottlenecks** | Ranking de tests más lentos con % del tiempo total (Pareto) | Optimización de tiempos de CI |
 | 9 | **Pruebas inestables (flaky)** | Tests que alternaron entre éxito y fallo entre ejecuciones | Identificación de inestabilidad |
 | 10 | **Detalle por test** | Tabla filtrable por estado, suite y búsqueda por nombre/clase | Trazabilidad completa |
@@ -153,7 +154,7 @@ CI previas al 11-nov y pasan de forma estable desde entonces).
 | Repositorio | `AngelicaJuliethSP/Proyecto-grado-dashboard` |
 | URL pública | **https://proyecto-grado-dashboard.streamlit.app** |
 | Redespliegue | Automático por push a `main` |
-| Dependencias | `requirements.txt` (streamlit, pandas) |
+| Dependencias | `requirements.txt` (streamlit, pandas, plotly, pytest) |
 | Tema | `.streamlit/config.toml` (paleta azul corporativa) |
 
 ## 7. Verificación
@@ -177,8 +178,9 @@ CI previas al 11-nov y pasan de forma estable desde entonces).
 
 ## 9. Limitaciones conocidas
 
-- **Histórico corto**: el almacén acumula ~20 ejecuciones de 4 días (6 al 9 de
-  noviembre de 2026). Es suficiente para validar el mecanismo, pero las
+- **Histórico corto**: al corte del 12-nov el almacén acumula 73 ejecuciones
+  de 7 días (6 al 12 de noviembre de 2026). Es suficiente para validar el
+  mecanismo, pero las
   "tendencias" que muestra el dashboard deben leerse como **tendencia inicial**
   y no como comportamiento estable: se requieren más corridas acumuladas antes
   de la sustentación para afirmaciones de tendencia robustas.
@@ -187,10 +189,10 @@ CI previas al 11-nov y pasan de forma estable desde entonces).
   difieren (p. ej. `started_at` solo existe en TestNG/Surefire). Los registros
   se normalizan al mismo esquema, pero conviene declarar la diferencia de
   origen al interpretar duraciones y timestamps.
-- **Zonas horarias heterogéneas**: los timestamps combinan UTC (CI) y hora
-  local Colombia (corridas locales, -05:00). El dashboard los normaliza a UTC
-  con `pd.to_datetime(..., utc=True)`, pero la comparación horaria entre
-  corridas locales y de CI tiene esa diferencia de origen.
+- **Zonas horarias heterogéneas**: los timestamps combinan dos formatos según
+  el disparador del CI: las corridas por push toman la hora del commit
+  (-05:00) y las programadas o manuales usan UTC (+00:00). El dashboard los
+  normaliza a UTC con `pd.to_datetime(..., utc=True)`.
 - **Duplicados móviles corregidos**: hasta el 9-nov cada corrida móvil generó
   2 registros (uno por paso del pipeline); corregido para publicar un solo
   registro combinado por corrida. Los registros históricos afectados por este

@@ -68,7 +68,7 @@ Cada ejecución del pipeline archiva ahora **tres artefactos** de reportes:
 ## 5. Incidencia y depuración: waits explícitos en la suite web
 
 Durante la verificación de esta fase, el pipeline web presentó **fallos
-consistentes** (2 ejecuciones consecutivas con los mismos 2 tests fallidos):
+consistentes** (2 ejecuciones consecutivas con 2 fallos cada una):
 
 | Test | Síntoma | Causa raíz |
 |---|---|---|
@@ -100,7 +100,7 @@ elimina la duplicación y hace el comportamiento uniforme en todas las páginas.
 |---|---|
 | Reportes HTML archivados por ejecución | Artefactos `allure-report-web`, `allure-report-api`, `allure-report-mobile` en cada run (7 días) |
 | Tabla de comparación de suites | `docs/evidencia_fase3_tabla_comparacion.md` |
-| Almacén consolidado | `data/results.json` (10 ejecuciones registradas) |
+| Almacén consolidado | `data/results.json` (10 ejecuciones registradas al cierre de la Fase 3) |
 | Fix de waits | Commits de `SauceDemoAutomation` (BasePage, LoginPage, CartPage, CheckoutCompletePage) |
 
 ### Tabla de comparación (resumen)
@@ -138,7 +138,9 @@ entorno headless).
   variaciones de red y renderizado — hallazgo con valor directo para el
   informe.
 - La tabla de comparación consolida la evidencia entre suites y deja
-  documentada la situación mobile (dependiente del entorno de ejecución).
+  documentada la situación mobile (dependiente del entorno de ejecución;
+  diagnóstico posterior: defectos del código de pruebas, resueltos el 11-nov;
+  ver fase2 §6.3).
 
 ## 9. Criterios de salida cumplidos
 

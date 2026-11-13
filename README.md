@@ -118,7 +118,7 @@ streamlit run dashboard/app.py
 - **Distribución pass/fail/skip** por ejecución.
 - **Duración** de cada ejecución (detección de degradaciones).
 - **Top 10 tests más fallidos** (candidatos a estabilización).
-- **Matriz de causa raíz probable** (clasificación por patrones del mensaje de error).
+- **Matriz de causa raíz probable** (clasificación por tipo de excepción, con prioridad, y patrones del mensaje de error).
 - **Top bottlenecks** (tests más lentos, Pareto).
 - **Pruebas inestables (flaky)** (tests que alternan entre éxito y fallo).
 - **Detalle por test** con filtros y búsqueda.

@@ -36,7 +36,7 @@ refactorización de los frameworks, configuración de los pipelines de CI,
 construcción del parser, del dashboard y de este documento. Cada commit
 asistido lleva la co-firma `Co-Authored-By: CODA <coda@globant.com>` en el
 historial de Git, como declaración explícita de la herramienta empleada.
-Al corte del 12-nov-2026, los commits co-firmados con CODA son:
+Al 12-nov-2026, 18:54 (hora Colombia), los commits co-firmados con CODA son:
 `SauceDemoAutomation` 17 de 39, `PetStoreRestAssured` 14 de 30,
 `WdioMobileAutomation` 24 de 47 y `Proyecto-grado-dashboard` 64 de 111
 (122 de 227 en total).
