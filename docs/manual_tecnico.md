@@ -205,21 +205,26 @@ src/test/java/
 ### 6.3 Decisiones de diseño
 
 - **Screen Object Model** (equivalente mobile del POM).
-- **DriverManager externalizado**: plataforma, device name, versión de Android
-  y ruta del APK con prioridad `-Dprop` > env var > default; el APK se
+- **DriverManager externalizado**: tres propiedades — `appium.url`, `device.name`
+  y `app.path` — con prioridad `-Dprop` > env var > default; el APK se
   resuelve a ruta absoluta y se valida su existencia (las rutas relativas se
   resuelven contra el CWD del servidor Appium, no del proyecto).
-- **Escenarios de renderizado excluidos del CI**: `NavigationTest` y
-  `SwipeTest` son intermitentes en emuladores con renderizado por software
-  (SwiftShader); se ejecutan en paso separado con
-  `maven.test.failure.ignore=true` para registrarlos como fallos conocidos sin
-  romper el pipeline.
+- **Workflow CI unificado en un solo paso**: las 4 pruebas (`LoginTest`,
+  `SignupTest`, `NavigationTest`, `SwipeTest`) se ejecutan con CI estricto
+  (`mvn clean test -B`, sin exclusiones ni tolerancia de fallas). La
+  intermitencia previa de Navigation y Swipe no era del entorno (emulador con
+  renderizado por software) sino del código de pruebas: aserciones ejecutadas
+  antes de que la pantalla terminara de cargar (fix: esperas explícitas tras
+  cada tap, commit `6b17dae`) y un gesto de swipe que no alcanzaba a mover el
+  carrusel o caía en la zona del gesto "atrás" de Android (fix: gesto nativo
+  `mobile: swipeGesture` de uiautomator2 y margen del 10%, commit `b6383ef`).
+  Desde el 11-nov-2026 las 4 pruebas pasan de forma estable en CI.
 
 ### 6.4 Ejecución
 
 ```bash
 # con emulador Android corriendo y Appium activo:
-mvn clean test -Dplatform.name=Android -Ddevice.name=Pixel_6 -Dapk.path=/ruta/app.apk
+mvn clean test -Dappium.url=http://127.0.0.1:4723 -Ddevice.name=Pixel_6 -Dapp.path=/ruta/app.apk
 ```
 
 ## 7. Pipeline de integración continua

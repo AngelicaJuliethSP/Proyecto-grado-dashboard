@@ -132,10 +132,17 @@ por su valor de aprendizaje:
    insuficiente bajo el renderizado por software del runner (más lento que un
    emulador local con GPU). Se aumentó a 25 segundos.
 4. **Intermitencia de Swipe**: los gestos de swipe no se procesan de forma
-   confiable bajo SwiftShader. Como decisión final, Navigation y Swipe se
-   ejecutan en un paso separado con `maven.test.failure.ignore=true`, dejando
-   la falla registrada en los reportes como **falla conocida documentada**
-   (sección 6.3) en lugar de excluirlos del CI.
+   confiable bajo SwiftShader. Como decisión **temporal** (hasta el
+   11-nov-2026), Navigation y Swipe se ejecutaron en un paso separado con
+   `maven.test.failure.ignore=true`, dejando la falla registrada en los
+   reportes como **falla conocida documentada** (sección 6.3) en lugar de
+   excluirlos del CI. El diagnóstico posterior (11-nov) determinó que la
+   causa real no era el renderizado por software sino dos defectos del código
+   de pruebas — aserciones ejecutadas antes de que la pantalla terminara de
+   cargar y un gesto de swipe insuficiente —, corregidos con esperas
+   explícitas (commit `6b17dae`) y el gesto nativo `mobile: swipeGesture`
+   (commit `b6383ef`); desde entonces el workflow está **unificado en un solo
+   paso** con CI estricto para las 4 pruebas.
 
 Los pipelines web y API quedaron en verde en su primera ejecución.
 

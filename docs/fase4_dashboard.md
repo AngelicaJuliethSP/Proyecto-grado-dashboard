@@ -98,10 +98,12 @@ Verificado con el histórico real al **12-nov 23:43 UTC** (18:47 Colombia;
 40 fallos en 73 registros — corte que excluye las corridas locales del
 11-nov y solo contiene línea base, verificación de la Fase 1 y ejecuciones
 de CI):
-26 mobile de aserción (`navigateThroughBottomMenu` 17 + `swipeCardsAndFindHiddenText` 14,
-menos 1 sin tipo de excepción; contenido no visible — causa real: aserciones
-ejecutadas antes de que la pantalla terminara de cargar, corregido el 11-nov
-con esperas explícitas), 5 web de infraestructura (`NoSuchElement` en
+30 mobile de aserción (`navigateThroughBottomMenu` 17 —incluido el único sin
+tipo de excepción, clasificado por su mensaje— + `swipeCardsAndFindHiddenText` 13;
+contenido no visible — causa real: aserciones ejecutadas antes de que la
+pantalla terminara de cargar, corregido el 11-nov con esperas explícitas;
+el 14º fallo de Swipe es `TimeoutException` y ya está contado en los 3
+timeouts), 5 web de infraestructura (`NoSuchElement` en
 checkout, resuelto con waits explícitos), 3 timeouts móviles
 (`TimeoutException` en Login, Signup y Swipe durante la corrida de debugging
 del 7-nov), 1 web de aserción (`removeAllItemsFromCart`) y 1 fallo
