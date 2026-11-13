@@ -18,10 +18,10 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: '3.14'
 
-      - name: Install test dependencies
-        run: pip install pytest pandas
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
       - name: Run parser tests
         run: python -m pytest tests/ -v

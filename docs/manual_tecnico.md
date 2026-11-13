@@ -353,10 +353,10 @@ rojo en la tabla de resumen.
 
 ### 10.2 Agregar una vista al dashboard
 
-1. Agregar la función de render en `dashboard/app.py` (patrón: función
-   `render_xxx(df)` con `st.subheader` + gráfico de Plotly).
-2. Agregar su llamada en `main()`, en el orden en que debe aparecer.
-3. El push redespliega el dashboard automáticamente.
+1. Agregar un bloque en `main()` de `dashboard/app.py`, en la posición donde
+   debe aparecer la vista, con `st.subheader(...)` + gráfico de Plotly
+   (`st.plotly_chart(...)`).
+2. El push redespliega el dashboard automáticamente.
 
 ### 10.3 Rotación del DASHBOARD_TOKEN
 

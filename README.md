@@ -57,6 +57,8 @@ proyecto-grado-dashboard/
 │   └── results_backup.json     # Respaldo pre-línea-base (piloto, 4 ejecuciones)
 ├── tests/                      # Pruebas pytest del parser (14 casos)
 ├── docs/                       # Documentación técnica por fases
+├── .github/workflows/
+│   └── test-parser.yml         # Ejecuta las 14 pruebas pytest del parser
 ├── requirements.txt
 └── README.md
 ```
