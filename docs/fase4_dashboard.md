@@ -61,7 +61,7 @@ específicos), filtros laterales por proyecto y pie de página informativo.
 
 ### 5.1 Estructura del código
 
-`dashboard/app.py` (~430 líneas) organizado en:
+`dashboard/app.py` (783 líneas) organizado en:
 
 - **Estilos personalizados** (CSS): encabezado con degradado, tarjetas de
   objetivos, métricas con borde, pie de página.

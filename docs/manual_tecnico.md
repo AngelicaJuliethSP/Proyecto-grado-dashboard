@@ -279,7 +279,7 @@ Secrets and variables → Actions → New repository secret → nombre
 {
   "project": "SauceDemoAutomation",
   "executed_at": "2026-11-08T13:58:20-05:00",
-  "total": 12, "passed": 11, "failed": 1, "skipped": 0,
+  "total": 4, "passed": 4, "failed": 0, "skipped": 0,
   "duration_ms": 45230,
   "tests": [
     {"name": "...", "class": "...", "status": "passed",
@@ -309,7 +309,7 @@ Secrets and variables → Actions → New repository secret → nombre
 | 4 | Resultados por ejecución | Comportamiento por corrida |
 | 5 | Duración de ejecuciones | Degradación de tiempos |
 | 6 | Tests más fallidos | Puntos críticos de las suites |
-| 7 | Matriz de causa raíz probable | Análisis de fallos recurrentes (regex sobre `exception_message`) |
+| 7 | Matriz de causa raíz probable | Análisis de fallos recurrentes (primero `exception_type`, luego regex sobre `exception_message`) |
 | 8 | Top bottlenecks | Optimización de tiempos de CI (Pareto) |
 | 9 | Pruebas inestables (flaky) | Identificación de inestabilidad |
 | 10 | Detalle por test | Trazabilidad completa |
@@ -354,8 +354,8 @@ rojo en la tabla de resumen.
 ### 10.2 Agregar una vista al dashboard
 
 1. Agregar la función de render en `dashboard/app.py` (patrón: función
-   `render_xxx(df)` con `st.subheader` + gráfico Streamlit/Altair).
-2. Registrarla en el selector de vistas.
+   `render_xxx(df)` con `st.subheader` + gráfico de Plotly).
+2. Agregar su llamada en `main()`, en el orden en que debe aparecer.
 3. El push redespliega el dashboard automáticamente.
 
 ### 10.3 Rotación del DASHBOARD_TOKEN
