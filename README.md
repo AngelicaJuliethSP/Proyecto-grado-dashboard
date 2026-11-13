@@ -128,8 +128,9 @@ streamlit run dashboard/app.py
 
 Las metas se definieron con el criterio: duraciones calibradas con los
 tiempos habituales de cada suite en CI; web y API (entornos deterministas)
-exigen 0 fallos y 100% de éxito; la móvil tolera 1 fallo (emulador de CI
-intermitente) con éxito mínimo 75%, coherente con sus 4 pruebas. El máximo
+exigen 0 fallos y 100% de éxito; la móvil tolera 1 fallo (mayor variabilidad
+del entorno emulado: arranque del emulador y gestos táctiles) con éxito
+mínimo 75%, coherente con sus 4 pruebas. El máximo
 de pruebas inestables (flaky) se evalúa sobre las **últimas 10 ejecuciones**
 de cada suite, no sobre todo el histórico.
 

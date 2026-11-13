@@ -25,7 +25,8 @@ DATA_PATH = Path(__file__).resolve().parent.parent / "data" / "results.json"
 # habituales de cada suite en CI (percentil alto de ejecuciones en verde);
 # web y API, al ser entornos deterministas, exigen 0 fallos y 100% de
 # éxito; la móvil tolera 1 fallo (con éxito mínimo 75%, coherente con 4
-# pruebas) porque el emulador de CI es intermitente. flaky_max se evalúa
+# pruebas) por la mayor variabilidad del entorno emulado: arranque del
+# emulador y gestos táctiles. flaky_max se evalúa
 # sobre una ventana reciente (ver FLAKY_WINDOW).
 # fallos_max: fallos permitidos por ejecución
 # exito_min: tasa de éxito mínima (%)

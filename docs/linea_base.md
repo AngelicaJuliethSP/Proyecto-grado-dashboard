@@ -51,6 +51,11 @@ Metodología: cada suite se ejecutó localmente 3 veces consecutivas, sin modifi
 
 **Diagnóstico:** en la suite móvil, en cambio, ninguna de las tres ejecuciones pudo completarse: la sesión de Appium falló debido a una incompatibilidad entre el controlador (driver uiautomator2) y la imagen del emulador. En las ejecuciones previas a estas corridas, con el emulador en buen estado, la suite móvil había superado únicamente 2 de las 4 pruebas, ya que las dos restantes dependen del renderizado gráfico del emulador (véase el Anexo G). Se trata, por tanto, de fallos de infraestructura y no de fallos del framework de pruebas.
 
+> **Nota posterior (11-nov-2026):** el diagnóstico de renderizado se refutó en
+> la Fase 2; los fallos de Navigation y Swipe se debían al código de pruebas
+> (aserciones prematuras y gesto de swipe), no al emulador. Los fallos de
+> sesión de Appium de esta línea base sí fueron de infraestructura.
+
 **Hallazgo clave para la tesis:** los tests mobile son sensibles a la estabilidad del entorno de ejecución (emulador). Esto motiva la ejecución mobile en el pipeline de CI con un emulador gestionado (`reactivecircus/android-emulator-runner`), donde el entorno se aprovisiona limpio en cada corrida.
 
 ## 3. Línea base consolidada

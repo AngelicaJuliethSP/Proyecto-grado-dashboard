@@ -101,7 +101,9 @@ de CI):
 30 mobile de aserción (`navigateThroughBottomMenu` 17 —incluido el único sin
 tipo de excepción, clasificado por su mensaje— + `swipeCardsAndFindHiddenText` 13;
 contenido no visible — causa real: aserciones ejecutadas antes de que la
-pantalla terminara de cargar, corregido el 11-nov con esperas explícitas;
+pantalla terminara de cargar, corregido el 11-nov con esperas explícitas
+(`6b17dae`) y, en Swipe, además con el gesto nativo `mobile: swipeGesture`
+(`b6383ef`);
 el 14º fallo de Swipe es `TimeoutException` y ya está contado en los 3
 timeouts), 5 web de infraestructura (`NoSuchElement` en
 checkout, resuelto con waits explícitos), 3 timeouts móviles

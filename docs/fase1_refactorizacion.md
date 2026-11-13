@@ -150,6 +150,12 @@ Observaciones de la verificación:
   documentado como limitación conocida y se reevaluará en la fase de CI, donde
   el emulador se ejecuta con aceleración por hardware.
 
+> **Actualización (11-nov-2026):** la hipótesis de esta fase quedó refutada.
+> La causa real fueron dos defectos del código de pruebas: aserciones
+> ejecutadas antes de que la pantalla terminara de cargar (commit `6b17dae`)
+> y un gesto de swipe insuficiente (commit `b6383ef`). Ver
+> `fase2_pipeline_ci.md`, sección 6.3.
+
 ## 6. Incidencias resueltas durante la fase
 
 Durante la verificación se presentaron dos incidencias de entorno, ambas
@@ -205,7 +211,8 @@ del archivo con un mensaje de error accionable.
 - La suite web y la API quedaron **listas para CI** (headless verificado,
   dependencias de entorno eliminadas).
 - La suite mobile quedó lista salvo la limitación de renderizado WebView en
-  emulador headless local, que se reevaluará en CI con aceleración por hardware.
+  emulador headless local, que se reevaluó en CI (ver la actualización de la
+  sección 5).
 - Las incidencias de entorno resueltas (driver Appium, resolución de rutas)
   quedaron documentadas y se incorporarán a la documentación técnica del
   proyecto (Fase 5).
