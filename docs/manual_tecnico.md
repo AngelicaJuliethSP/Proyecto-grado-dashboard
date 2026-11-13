@@ -39,7 +39,7 @@ historial de Git, como declaración explícita de la herramienta empleada.
 Al 12-nov-2026, 18:54 (hora Colombia), los commits co-firmados con CODA son:
 `SauceDemoAutomation` 17 de 39, `PetStoreRestAssured` 14 de 30,
 `WdioMobileAutomation` 24 de 47 y `Proyecto-grado-dashboard` 64 de 111
-(122 de 227 en total).
+(119 de 227 en total).
 
 Las decisiones de arquitectura, el alcance de cada fase, la interpretación de
 resultados y la validación final son de la autora. La herramienta actuó como
