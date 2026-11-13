@@ -1,7 +1,7 @@
 # Tabla de comparación de suites — Evidencia de reportes
 
 Fuente: `data/results.json` (almacén consolidado de ejecuciones).
-Corte: **2026-11-12 23:43 UTC** (18:47 Colombia, 73 registros — corte del
+Corte: **2026-11-12 23:43 UTC** (18:43 Colombia, 73 registros — corte del
 informe: excluye las corridas locales del 11-nov y solo contiene línea base,
 verificación de la Fase 1 y ejecuciones de CI).
 

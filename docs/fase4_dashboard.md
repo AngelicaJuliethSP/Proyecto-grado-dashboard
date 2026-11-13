@@ -94,7 +94,7 @@ Dos refinamientos sobre la primera versión del clasificador:
    `SessionNotCreatedException` → infraestructura; `TimeoutException` →
    timeouts), ya que el tipo es más confiable que el texto del mensaje.
 
-Verificado con el histórico real al **12-nov 23:43 UTC** (18:47 Colombia;
+Verificado con el histórico real al **12-nov 23:43 UTC** (18:43 Colombia;
 40 fallos en 73 registros — corte que excluye las corridas locales del
 11-nov y solo contiene línea base, verificación de la Fase 1 y ejecuciones
 de CI):
