@@ -5398,5 +5398,53 @@
         "exception_message": null
       }
     ]
+  },
+  {
+    "project": "WdioMobileAutomation",
+    "executed_at": "2026-11-17T01:11:18+00:00",
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": 100.0,
+    "duration_ms": 82121,
+    "tests": [
+      {
+        "name": "successfulLogin",
+        "class": "tests.LoginTest",
+        "status": "passed",
+        "duration_ms": 12389,
+        "started_at": "2026-11-17T01:10:06 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "successfulSignUp",
+        "class": "tests.SignupTest",
+        "status": "passed",
+        "duration_ms": 7356,
+        "started_at": "2026-11-17T01:10:24 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "swipeCardsAndFindHiddenText",
+        "class": "tests.SwipeTest",
+        "status": "passed",
+        "duration_ms": 14003,
+        "started_at": "2026-11-17T01:10:52 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "navigateThroughBottomMenu",
+        "class": "tests.NavigationTest",
+        "status": "passed",
+        "duration_ms": 11183,
+        "started_at": "2026-11-17T01:10:35 UTC",
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
   }
 ]
