@@ -1,20 +1,22 @@
 # Tabla de comparación de suites — Evidencia de reportes
 
 Fuente: `data/results.json` (almacén consolidado de ejecuciones).
-Corte: **2026-11-12 23:43 UTC** (18:43 Colombia, 73 registros — corte del
+Corte: **2026-11-17 20:07 UTC** (15:07 Colombia, 115 registros — corte del
 informe: excluye las corridas locales del 11-nov y solo contiene línea base,
 verificación de la Fase 1 y ejecuciones de CI).
 
 | Suite | Ejecuciones | Tests | Pasados | Fallados | Skipped | % Éxito prom. | Duración prom. | Estabilidad (últimas 10) |
 |---|---|---|---|---|---|---|---|---|
-| SauceDemoAutomation | 24 | 96 | 89 | 7 | 0 | 92.7% | 17.8 s | Estable (100% últimas 10) |
-| PetStoreRestAssured | 21 | 126 | 126 | 0 | 0 | 100.0% | 4.1 s | Estable (100% últimas 10) |
-| WdioMobileAutomation | 28 | 108 | 63 | 33 | 12 | 58.6% | 110.9 s | En recuperación (80% últimas 10; estable 4/4 desde el 11-nov) |
+| SauceDemoAutomation | 38 | 152 | 145 | 7 | 0 | 95.4% | 19.4 s | Estable (100% últimas 10) |
+| PetStoreRestAssured | 34 | 204 | 204 | 0 | 0 | 100.0% | 3.9 s | Estable (100% últimas 10) |
+| WdioMobileAutomation | 43 | 168 | 122 | 34 | 12 | 72.5% | 99.2 s | Estable (100% últimas 10) |
 
-> Nota: los promedios de WdioMobile arrastran la intermitencia previa al
-> 11-nov (aserciones prematuras y gesto de swipe insuficiente, corregidos en
-> los commits 6b17dae y b6383ef). Desde el 11-nov las 4 pruebas pasan de
-> forma estable en CI.
+> Nota: los promedios de WdioMobile arrastran los fallos previos a las
+> correcciones de la suite móvil: aserciones prematuras y gesto de swipe
+> insuficiente (corregidos el 11-nov en los commits 6b17dae y b6383ef) y la
+> espera que faltaba en `WebScreen` (fallo del 14-nov, corregido en 1e21b8b).
+> Desde 1e21b8b, las 4 pruebas pasaron en las 11 ejecuciones de CI
+> registradas hasta el corte.
 
 ## Detalle por ejecución
 
@@ -93,3 +95,45 @@ verificación de la Fase 1 y ejecuciones de CI).
 | SauceDemoAutomation | 2026-11-12T14:20:16 | 4 | 4 | 0 | 0 | 100.0% | 32.9 s |
 | PetStoreRestAssured | 2026-11-12T14:24:57 | 6 | 6 | 0 | 0 | 100.0% | 5.7 s |
 | WdioMobileAutomation | 2026-11-12T23:43:07 | 4 | 4 | 0 | 0 | 100.0% | 101.0 s |
+| SauceDemoAutomation | 2026-11-12T23:55:44 | 4 | 4 | 0 | 0 | 100.0% | 24.7 s |
+| PetStoreRestAssured | 2026-11-12T23:55:49 | 6 | 6 | 0 | 0 | 100.0% | 3.2 s |
+| WdioMobileAutomation | 2026-11-13T00:05:46 | 4 | 4 | 0 | 0 | 100.0% | 101.7 s |
+| SauceDemoAutomation | 2026-11-13T00:17:59 | 4 | 4 | 0 | 0 | 100.0% | 20.3 s |
+| WdioMobileAutomation | 2026-11-13T00:18:08 | 4 | 4 | 0 | 0 | 100.0% | 88.4 s |
+| WdioMobileAutomation | 2026-11-13T13:31:03 | 4 | 4 | 0 | 0 | 100.0% | 69.3 s |
+| SauceDemoAutomation | 2026-11-13T13:41:09 | 4 | 4 | 0 | 0 | 100.0% | 48.2 s |
+| PetStoreRestAssured | 2026-11-13T13:43:41 | 6 | 6 | 0 | 0 | 100.0% | 2.0 s |
+| WdioMobileAutomation | 2026-11-14T12:37:23 | 4 | 3 | 1 | 0 | 75.0% | 82.4 s |
+| SauceDemoAutomation | 2026-11-14T12:45:23 | 4 | 4 | 0 | 0 | 100.0% | 36.9 s |
+| PetStoreRestAssured | 2026-11-14T12:48:13 | 6 | 6 | 0 | 0 | 100.0% | 1.6 s |
+| WdioMobileAutomation | 2026-11-14T20:11:59 | 4 | 4 | 0 | 0 | 100.0% | 72.1 s |
+| PetStoreRestAssured | 2026-11-14T20:17:26 | 6 | 6 | 0 | 0 | 100.0% | 3.4 s |
+| SauceDemoAutomation | 2026-11-14T20:17:43 | 4 | 4 | 0 | 0 | 100.0% | 13.1 s |
+| WdioMobileAutomation | 2026-11-14T20:20:50 | 4 | 4 | 0 | 0 | 100.0% | 79.2 s |
+| PetStoreRestAssured | 2026-11-14T20:47:19 | 6 | 6 | 0 | 0 | 100.0% | 4.2 s |
+| SauceDemoAutomation | 2026-11-14T20:47:35 | 4 | 4 | 0 | 0 | 100.0% | 21.4 s |
+| WdioMobileAutomation | 2026-11-14T20:50:47 | 4 | 4 | 0 | 0 | 100.0% | 78.4 s |
+| WdioMobileAutomation | 2026-11-15T13:02:35 | 4 | 4 | 0 | 0 | 100.0% | 78.3 s |
+| SauceDemoAutomation | 2026-11-15T13:12:13 | 4 | 4 | 0 | 0 | 100.0% | 12.9 s |
+| PetStoreRestAssured | 2026-11-15T13:15:02 | 6 | 6 | 0 | 0 | 100.0% | 3.2 s |
+| WdioMobileAutomation | 2026-11-16T14:06:04 | 4 | 4 | 0 | 0 | 100.0% | 69.4 s |
+| SauceDemoAutomation | 2026-11-16T14:20:59 | 4 | 4 | 0 | 0 | 100.0% | 21.4 s |
+| PetStoreRestAssured | 2026-11-16T14:26:27 | 6 | 6 | 0 | 0 | 100.0% | 3.7 s |
+| SauceDemoAutomation | 2026-11-16T21:42:20 | 4 | 4 | 0 | 0 | 100.0% | 19.6 s |
+| PetStoreRestAssured | 2026-11-16T21:43:03 | 6 | 6 | 0 | 0 | 100.0% | 4.5 s |
+| WdioMobileAutomation | 2026-11-16T21:44:27 | 4 | 4 | 0 | 0 | 100.0% | 79.9 s |
+| SauceDemoAutomation | 2026-11-17T01:08:19 | 4 | 4 | 0 | 0 | 100.0% | 14.7 s |
+| PetStoreRestAssured | 2026-11-17T01:08:37 | 6 | 6 | 0 | 0 | 100.0% | 3.2 s |
+| WdioMobileAutomation | 2026-11-17T01:11:18 | 4 | 4 | 0 | 0 | 100.0% | 82.1 s |
+| PetStoreRestAssured | 2026-11-17T02:16:54 | 6 | 6 | 0 | 0 | 100.0% | 3.5 s |
+| SauceDemoAutomation | 2026-11-17T02:17:05 | 4 | 4 | 0 | 0 | 100.0% | 19.2 s |
+| WdioMobileAutomation | 2026-11-17T02:20:00 | 4 | 4 | 0 | 0 | 100.0% | 77.4 s |
+| WdioMobileAutomation | 2026-11-17T15:00:20 | 4 | 4 | 0 | 0 | 100.0% | 76.4 s |
+| SauceDemoAutomation | 2026-11-17T15:14:01 | 4 | 4 | 0 | 0 | 100.0% | 24.9 s |
+| PetStoreRestAssured | 2026-11-17T15:18:29 | 6 | 6 | 0 | 0 | 100.0% | 3.0 s |
+| PetStoreRestAssured | 2026-11-17T16:45:35 | 6 | 6 | 0 | 0 | 100.0% | 3.7 s |
+| SauceDemoAutomation | 2026-11-17T16:45:51 | 4 | 4 | 0 | 0 | 100.0% | 19.0 s |
+| WdioMobileAutomation | 2026-11-17T16:49:06 | 4 | 4 | 0 | 0 | 100.0% | 62.5 s |
+| PetStoreRestAssured | 2026-11-17T20:05:01 | 6 | 6 | 0 | 0 | 100.0% | 4.9 s |
+| SauceDemoAutomation | 2026-11-17T20:05:16 | 4 | 4 | 0 | 0 | 100.0% | 16.2 s |
+| WdioMobileAutomation | 2026-11-17T20:07:40 | 4 | 4 | 0 | 0 | 100.0% | 64.1 s |

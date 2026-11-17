@@ -139,8 +139,8 @@ entorno headless).
   informe.
 - La tabla de comparación consolida la evidencia entre suites y deja
   documentada la situación mobile (dependiente del entorno de ejecución;
-  diagnóstico posterior: defectos del código de pruebas, resueltos el 11-nov;
-  ver fase2 §6.3).
+  diagnóstico posterior: defectos del código de pruebas, corregidos el 11-nov
+  y completados el 14-nov; ver fase2 §6.3 y §6.4).
 
 ## 9. Criterios de salida cumplidos
 

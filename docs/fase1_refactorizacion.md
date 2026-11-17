@@ -153,8 +153,9 @@ Observaciones de la verificación:
 > **Actualización (11-nov-2026):** la hipótesis de esta fase quedó refutada.
 > La causa real fueron dos defectos del código de pruebas: aserciones
 > ejecutadas antes de que la pantalla terminara de cargar (commit `6b17dae`)
-> y un gesto de swipe insuficiente (commit `b6383ef`). Ver
-> `fase2_pipeline_ci.md`, sección 6.3.
+> y un gesto de swipe insuficiente (commit `b6383ef`); la espera de la
+> pantalla Web se completó el 14-nov (commit `1e21b8b`). Ver
+> `fase2_pipeline_ci.md`, secciones 6.3 y 6.4.
 
 ## 6. Incidencias resueltas durante la fase
 

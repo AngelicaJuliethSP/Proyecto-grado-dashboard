@@ -95,16 +95,17 @@ Dos refinamientos sobre la primera versión del clasificador:
    `SessionNotCreatedException` → infraestructura; `TimeoutException` →
    timeouts), ya que el tipo es más confiable que el texto del mensaje.
 
-Verificado con el histórico real al **12-nov 23:43 UTC** (18:43 Colombia;
-40 fallos en 73 registros — corte que excluye las corridas locales del
+Verificado con el histórico real al **17-nov 20:07 UTC** (15:07 Colombia;
+41 fallos en 115 registros — corte que excluye las corridas locales del
 11-nov y solo contiene línea base, verificación de la Fase 1 y ejecuciones
 de CI):
-30 mobile de aserción (`navigateThroughBottomMenu` 17 —incluido el único sin
+31 mobile de aserción (`navigateThroughBottomMenu` 18 —incluido el único sin
 tipo de excepción, clasificado por su mensaje— + `swipeCardsAndFindHiddenText` 13;
 contenido no visible — causa real: aserciones ejecutadas antes de que la
 pantalla terminara de cargar, corregido el 11-nov con esperas explícitas
 (`6b17dae`) y, en Swipe, además con el gesto nativo `mobile: swipeGesture`
-(`b6383ef`);
+(`b6383ef`); el fallo 18 de Navigation es el del 14-nov, por la espera que
+faltaba en `WebScreen`, corregida en `1e21b8b`;
 el 14º fallo de Swipe es `TimeoutException` y ya está contado en los 3
 timeouts), 5 web de infraestructura (`NoSuchElement` en
 checkout, resuelto con waits explícitos), 3 timeouts móviles
@@ -122,7 +123,7 @@ corresponden a la fecha de corte indicada.
 
 Un test se marca como *flaky* si en el histórico aparece con estado `passed`
 y `failed` en ejecuciones distintas (agrupación por suite, clase y nombre).
-Con el criterio del propio dashboard, el histórico al **12-nov 23:43 UTC**
+Con el criterio del propio dashboard, el histórico al **17-nov 20:07 UTC**
 (corte del informe) registra **6 pruebas inestables** sobre todo el histórico:
 
 - `purchaseProductSuccessfully` (SauceDemo): pasó en la mayoría de corridas y
@@ -134,17 +135,18 @@ Con el criterio del propio dashboard, el histórico al **12-nov 23:43 UTC**
   corridas; fallaron solo en la corrida de debugging del 7-nov
   (`TimeoutException` esperando visibilidad de elementos).
 - `navigateThroughBottomMenu` y `swipeCardsAndFindHiddenText` (Wdio): fallaron
-  de forma intermitente hasta el 11-nov (aserciones prematuras y gesto de
-  swipe insuficiente) y pasan de forma estable desde entonces.
+  de forma recurrente hasta el 11-nov (aserciones prematuras y gesto de
+  swipe insuficiente). Navigation volvió a fallar una vez el 14-nov por la
+  espera que faltaba en `WebScreen` (`1e21b8b`); desde entonces ambas pasaron
+  en las 11 ejecuciones registradas.
 
 **Nota sobre la ventana de evaluación:** en el dashboard, el máximo de
 pruebas inestables (flaky_max = 0) se evalúa sobre las **últimas 10
 ejecuciones** de cada suite, no sobre todo el histórico — con el criterio
 histórico, una sola prueba inestable quedaría marcada para siempre y la meta
-nunca podría cumplirse. Con la ventana actual, SauceDemo y PetStore tienen 0
-pruebas inestables; WdioMobile registra 2 (`navigateThroughBottomMenu` y
-`swipeCardsAndFindHiddenText`, que alternaron éxito/fallo en las corridas de
-CI previas al 11-nov y pasan de forma estable desde entonces).
+nunca podría cumplirse. Con la ventana al corte del 17-nov, las tres suites
+tienen 0 pruebas inestables: las últimas 10 ejecuciones de cada una pasaron
+completas.
 
 ## 6. Despliegue
 
@@ -160,8 +162,8 @@ CI previas al 11-nov y pasan de forma estable desde entonces).
 ## 7. Verificación
 
 - Compilación sin errores (`py_compile`).
-- Lógica de datos validada con el almacén real (73 registros al corte del
-  12-nov, 330 filas de tests, 40 fallos clasificados).
+- Lógica de datos validada con el almacén real (115 registros al corte del
+  17-nov, 524 filas de tests, 41 fallos clasificados).
 - Verificación visual local del servidor (las 11 vistas renderizan).
 - Despliegue en la nube verificado en la URL pública.
 
@@ -178,8 +180,8 @@ CI previas al 11-nov y pasan de forma estable desde entonces).
 
 ## 9. Limitaciones conocidas
 
-- **Histórico corto**: al corte del 12-nov el almacén acumula 73 ejecuciones
-  de 7 días (6 al 12 de noviembre de 2026). Es suficiente para validar el
+- **Histórico corto**: al corte del 17-nov el almacén acumula 115 ejecuciones
+  de 12 días (6 al 17 de noviembre de 2026). Es suficiente para validar el
   mecanismo, pero las
   "tendencias" que muestra el dashboard deben leerse como **tendencia inicial**
   y no como comportamiento estable: se requieren más corridas acumuladas antes

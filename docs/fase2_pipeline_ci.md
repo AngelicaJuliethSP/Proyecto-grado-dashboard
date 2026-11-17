@@ -109,11 +109,42 @@ de swipe que no alcanzaba a mover el carrusel o caía en la zona del gesto
 "atrás" de Android (fix: gesto nativo `mobile: swipeGesture` de uiautomator2
 y margen del 10%, commit `b6383ef`).
 
-**Estado final (desde el 11-nov-2026):** las 4 pruebas mobile pasan de forma
-estable y el workflow quedó **unificado en un solo paso** (`mvn clean test -B`
-sin exclusiones ni tolerancia de fallas), con un único directorio de reportes
-Surefire y publicación simplificada al dashboard. El emulador lento de CI solo
-actuó como amplificador de un problema que existía en el código de pruebas.
+**Unificación (12-nov-2026):** el workflow quedó **unificado en un solo paso**
+(`mvn clean test -B` sin exclusiones ni tolerancia de fallas), con un único
+directorio de reportes Surefire y publicación simplificada al dashboard
+(commit `d22b43c`).
+
+**Fallo residual (14-nov-2026):** la ejecución programada del 14-nov falló en
+`NavigationTest` a los 262 ms (`Web screen no se muestra`). La corrección
+`6b17dae` había agregado la espera al texto de `WebScreen`, pero no a la
+verificación de su contenedor (`isScreenDisplayed()`), que seguía siendo una
+consulta inmediata. Se completó con `waitForDisplayed(screenContainer, 15 s)`
+(commit `1e21b8b`).
+
+**Estado al 17-nov-2026:** desde `1e21b8b`, las 4 pruebas mobile pasaron en
+las 11 ejecuciones de CI registradas (44 de 44), incluidas las programadas del
+15, 16 y 17 de noviembre. El emulador lento de CI solo actuó como amplificador
+de un problema de sincronización que existía en el código de pruebas.
+
+### 6.4 Cambio de entorno y seguimiento hasta la estabilidad
+
+| Etapa | Entorno móvil | Efecto observado | Acción |
+|---|---|---|---|
+| Fase 0 (local) | Emulador local Pixel_6, API 37.1, sin interfaz gráfica | La sesión de Appium no se creaba (incompatibilidad del driver uiautomator2 con la imagen) | Revisión manual del emulador y del controlador; en la Fase 1, Appium Server pasó a 3.9.0 |
+| Fase 2 (CI) | Runner `ubuntu-latest` sin GPU, emulador API 30 con `swiftshader_indirect` y KVM | El entorno es más lento; Navigation y Swipe fallan de forma recurrente (hipótesis inicial: renderizado) | Espera base de 25 s; Navigation y Swipe como fallas conocidas para conservar sus resultados en el histórico |
+| Diagnóstico (11-nov) | Mismo entorno de CI | El dashboard concentra los fallos en las dos pruebas y los clasifica como aserción, no como infraestructura | Logs de Appium y dumps de uiautomator: aserciones prematuras y gesto insuficiente (`6b17dae`, `b6383ef`); workflow unificado (`d22b43c`) |
+| Seguimiento (11 al 14-nov) | Mismo entorno de CI | 8 de 9 ejecuciones con 4/4; la programada del 14-nov falla en `NavigationTest` | Espera faltante en `WebScreen` (`1e21b8b`) |
+| Estabilidad (14 al 17-nov) | Mismo entorno de CI | 11 de 11 ejecuciones con 4/4 | Continuar las ejecuciones programadas |
+
+| Etapa | Ejecuciones | Pruebas aprobadas | `navigateThroughBottomMenu` | `swipeCardsAndFindHiddenText` |
+|---|---|---|---|---|
+| Antes de las correcciones (hasta el 11-nov) | 20 | 43 de 76 (57 %) | 0 de 17 | 5 de 19 |
+| Primera corrección (11 al 14-nov) | 9 | 35 de 36 | 8 de 9 | 9 de 9 |
+| Corrección completa (14 al 17-nov) | 11 | 44 de 44 (100 %) | 11 de 11 | 11 de 11 |
+
+El entorno de CI no cambió entre la segunda y la última etapa: la estabilidad
+se alcanzó corrigiendo la sincronización del código de pruebas, no cambiando
+de emulador.
 
 ## 7. Incidencias y depuración
 
@@ -142,7 +173,8 @@ por su valor de aprendizaje:
    cargar y un gesto de swipe insuficiente —, corregidos con esperas
    explícitas (commit `6b17dae`) y el gesto nativo `mobile: swipeGesture`
    (commit `b6383ef`); desde entonces el workflow está **unificado en un solo
-   paso** con CI estricto para las 4 pruebas.
+   paso** con CI estricto para las 4 pruebas. La espera que faltaba en
+   `WebScreen` se completó el 14-nov (commit `1e21b8b`, sección 6.3).
 
 Los pipelines web y API quedaron en verde en su primera ejecución.
 
@@ -154,7 +186,7 @@ Estado final de los tres pipelines (verificado tras la última ejecución):
 |---|---|---|
 | `SauceDemoAutomation` | CI - SauceDemo Web Tests | ✅ success |
 | `PetStoreRestAssured` | CI - PetStore API Tests | ✅ success |
-| `WdioMobileAutomation` | CI - WdioMobile Android Tests | ✅ success (las 4 pruebas en un solo paso, desde el 11-nov) |
+| `WdioMobileAutomation` | CI - WdioMobile Android Tests | ✅ success (las 4 pruebas en un solo paso; 11 de 11 ejecuciones desde el 14-nov) |
 
 Cada ejecución genera como artefactos los reportes Surefire y los resultados
 Allure de la suite, con 7 días de retención.

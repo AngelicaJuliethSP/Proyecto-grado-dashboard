@@ -218,7 +218,9 @@ src/test/java/
   cada tap, commit `6b17dae`) y un gesto de swipe que no alcanzaba a mover el
   carrusel o caía en la zona del gesto "atrás" de Android (fix: gesto nativo
   `mobile: swipeGesture` de uiautomator2 y margen del 10%, commit `b6383ef`).
-  Desde el 11-nov-2026 las 4 pruebas pasan de forma estable en CI.
+  El 14-nov se completó la espera de la pantalla Web (`isScreenDisplayed()`,
+  commit `1e21b8b`); desde entonces las 4 pruebas pasaron en las 11
+  ejecuciones de CI registradas al 17-nov-2026.
 
 ### 6.4 Ejecución
 
