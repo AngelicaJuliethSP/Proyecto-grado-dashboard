@@ -36,17 +36,19 @@ refactorización de los frameworks, configuración de los pipelines de CI,
 construcción del parser, del dashboard y de este documento. Cada commit
 asistido lleva la co-firma `Co-Authored-By: CODA <coda@globant.com>` en el
 historial de Git, como declaración explícita de la herramienta empleada.
-Al 12-nov-2026, 18:54 (hora Colombia), los commits co-firmados con CODA son:
-`SauceDemoAutomation` 17 de 39, `PetStoreRestAssured` 14 de 30,
-`WdioMobileAutomation` 24 de 47 y `Proyecto-grado-dashboard` 64 de 111
-(119 de 227 en total).
+Al corte del 17-nov-2026, 15:07 (hora Colombia), los commits co-firmados con
+CODA son: `SauceDemoAutomation` 19 de 41, `PetStoreRestAssured` 15 de 31,
+`WdioMobileAutomation` 26 de 50 y `Proyecto-grado-dashboard` 72 de 162
+(132 de 284 en total).
 
 Las decisiones de arquitectura, el alcance de cada fase, la interpretación de
 resultados y la validación final son de la autora. La herramienta actuó como
 asistente de implementación bajo dirección humana, de forma análoga a un
 par de programación. Se declara este uso en cumplimiento de la transparencia
-académica; la autora verificó la política de la institución (UCC) sobre uso
-de IA en trabajos de grado antes de la entrega.
+académica. A la fecha de este manual, la Universidad Cooperativa de Colombia
+no ha publicado una política institucional sobre el uso de IA en trabajos de
+grado; la declaración se hace en coherencia con los principios de
+responsabilidad y transparencia que la universidad ha planteado.
 
 ## 2. Arquitectura general
 
@@ -110,7 +112,9 @@ con Selenium WebDriver y patrón Page Object.
 | Tecnología | Versión | Rol |
 |---|---|---|
 | Selenium Java | 4.47.0 | Automatización del navegador |
-| WebDriverManager | 5.8.2 | Gestión del driver de Chrome |
+
+El driver de Chrome lo resuelve Selenium Manager, incluido en Selenium 4; el
+proyecto no usa WebDriverManager.
 
 ### 4.2 Estructura
 
@@ -122,7 +126,7 @@ src/test/java/com/saucedemo/
 ├── listeners/
 │   └── ScreenshotListener.java  # captura en fallo
 ├── pages/                  # Page Objects (Login, Inventory, Cart, Checkout x3)
-└── tests/                  # Login, Purchase, RemoveCartItems, Logout
+└── tests/                  # Purchase, RemoveCartItems, Logout (el login se hace en LoginPage dentro de cada prueba)
 ```
 
 ### 4.3 Decisiones de diseño
