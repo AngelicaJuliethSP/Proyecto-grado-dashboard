@@ -6772,5 +6772,71 @@
         "exception_message": null
       }
     ]
+  },
+  {
+    "project": "PetStoreRestAssured",
+    "executed_at": "2026-11-21T13:58:18+00:00",
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": 100.0,
+    "duration_ms": 2595,
+    "tests": [
+      {
+        "name": "getPetByIdTest",
+        "class": "com.globant.automation.test.GetPetByIdTest",
+        "status": "passed",
+        "duration_ms": 367,
+        "started_at": "2026-11-21T13:58:10 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "loginUserTest",
+        "class": "com.globant.automation.test.LoginUserTest",
+        "status": "passed",
+        "duration_ms": 160,
+        "started_at": "2026-11-21T13:58:09 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "createUserTest",
+        "class": "com.globant.automation.test.CreateUserTest",
+        "status": "passed",
+        "duration_ms": 1104,
+        "started_at": "2026-11-21T13:58:08 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "createOrderTest",
+        "class": "com.globant.automation.test.CreateOrderTest",
+        "status": "passed",
+        "duration_ms": 373,
+        "started_at": "2026-11-21T13:58:10 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "getPetsByStatusTest",
+        "class": "com.globant.automation.test.GetPetsByStatusTest",
+        "status": "passed",
+        "duration_ms": 258,
+        "started_at": "2026-11-21T13:58:09 UTC",
+        "exception_type": null,
+        "exception_message": null
+      },
+      {
+        "name": "logoutUserTest",
+        "class": "com.globant.automation.test.LogoutUserTest",
+        "status": "passed",
+        "duration_ms": 138,
+        "started_at": "2026-11-21T13:58:10 UTC",
+        "exception_type": null,
+        "exception_message": null
+      }
+    ]
   }
 ]
